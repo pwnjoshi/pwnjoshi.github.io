@@ -11,7 +11,6 @@
     <meta name="googlebot" content="index, follow">
     <link rel="canonical" href="https://iampawan.me">
     
-    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Pawan Joshi - AI/ML & Full-Stack Developer | Graphic Era Student">
     <meta property="og:description" content="Portfolio of Pawan Joshi, Computer Science student at Graphic Era University, CTO & Co-Founder of Tech Sangi Pvt. Ltd. Top 35 finalist at Graph-E-Thon 2025. Specializes in AI/ML, React Native, Firebase.">
@@ -19,19 +18,16 @@
     <meta property="og:url" content="https://iampawan.me">
     <meta property="og:site_name" content="Pawan Joshi Portfolio">
     
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Pawan Joshi - AI/ML & Full-Stack Developer">
     <meta name="twitter:description" content="Computer Science student, CTO & Co-Founder, Graph-E-Thon 2025 finalist. Expert in AI/ML, React Native, Firebase.">
     <meta name="twitter:image" content="https://placehold.co/1200x630/0F0F0F/00f0ff?text=Pawan+Joshi">
     
-    <!-- LinkedIn Specific -->
     <meta property="article:author" content="Pawan Joshi">
     <meta property="profile:first_name" content="Pawan">
     <meta property="profile:last_name" content="Joshi">
     <meta property="profile:username" content="pawan-joshi">
     
-    <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -121,18 +117,9 @@
         <nav id="dock" class="dock"></nav>
         <div id="os-widgets">
             <button id="theme-toggle" class="widget-btn" title="Toggle Theme"><i data-lucide="sun"></i></button>
-            <button id="chatbot-toggle" class="widget-btn" title="Talk to Zenari"><i data-lucide="message-circle"></i></button>
         </div>
         <div id="notification-center"></div>
         <div id="context-menu"></div>
-        <div id="chatbot-container">
-            <div id="chatbot-header">Zenari Assistant</div>
-            <div id="chatbot-messages"></div>
-            <form id="chatbot-input-form">
-                <input type="text" id="chatbot-input" placeholder="Ask about Pawan..." autocomplete="off">
-                <button type="submit" id="chatbot-send"><i data-lucide="send"></i></button>
-            </form>
-        </div>
         <div id="start-menu">
             <div class="start-menu-grid"></div>
         </div>
@@ -450,12 +437,76 @@
             <div id="project-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;"></div>
         </div>
         <div id="music-content">
-             <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; text-align: center;">
-                <i data-lucide="music" style="width: 64px; height: 64px; color: var(--accent-primary);"></i>
-                <h3 style="margin: 1rem 0 0.5rem;">Chill Lo-fi Beat</h3>
-                <p style="color: var(--text-secondary-color); margin-bottom: 1.5rem;">A little something to code to.</p>
-                <div style="display: flex; align-items: center; gap: 1rem;">
-                    <button id="music-play-btn" style="background: var(--widget-bg); border: none; padding: 1rem; border-radius: 50%; cursor: pointer;"><i data-lucide="play"></i></button>
+            <div class="music-player-container">
+                <div class="music-header">
+                    <div class="music-header-info">
+                        <i data-lucide="music" class="music-header-icon"></i>
+                        <div>
+                            <h2 class="music-title">PawanOS Music</h2>
+                            <p class="music-subtitle">Curated coding playlist</p>
+                        </div>
+                    </div>
+                    <div class="music-stats">
+                        <span class="music-stat">5 Songs</span>
+                        <span class="music-stat">24 min</span>
+                    </div>
+                </div>
+
+                <div class="now-playing-section">
+                    <div class="album-art">
+                        <div class="album-art-inner">
+                            <i data-lucide="music" class="album-icon"></i>
+                        </div>
+                        <div class="vinyl-effect"></div>
+                    </div>
+                    <div class="now-playing-info">
+                        <h3 id="current-song-title">Lo-fi Study Beats</h3>
+                        <p id="current-song-artist">ChillHop Essentials</p>
+                        <div class="progress-container">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progress-fill"></div>
+                                <div class="progress-handle" id="progress-handle"></div>
+                            </div>
+                            <div class="time-display">
+                                <span id="current-time">0:00</span>
+                                <span id="total-time">4:32</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="player-controls">
+                    <button id="shuffle-btn" class="control-btn secondary" title="Shuffle">
+                        <i data-lucide="shuffle"></i>
+                    </button>
+                    <button id="prev-btn" class="control-btn" title="Previous">
+                        <i data-lucide="skip-back"></i>
+                    </button>
+                    <button id="play-pause-btn" class="control-btn primary" title="Play/Pause">
+                        <i data-lucide="play"></i>
+                    </button>
+                    <button id="next-btn" class="control-btn" title="Next">
+                        <i data-lucide="skip-forward"></i>
+                    </button>
+                    <button id="repeat-btn" class="control-btn secondary" title="Repeat">
+                        <i data-lucide="repeat"></i>
+                    </button>
+                </div>
+
+                <div class="volume-control">
+                    <i data-lucide="volume-2" class="volume-icon"></i>
+                    <div class="volume-slider">
+                        <input type="range" id="volume-slider" min="0" max="100" value="70" class="slider">
+                    </div>
+                </div>
+
+                <div class="playlist-section">
+                    <h4 class="playlist-title">
+                        <i data-lucide="list-music"></i>
+                        Up Next
+                    </h4>
+                    <div class="playlist" id="playlist">
+                        </div>
                 </div>
             </div>
         </div>
@@ -614,10 +665,27 @@
         </div>
         <div id="terminal-content">
             <div id="terminal-output" style="flex-grow: 1; overflow-y: auto; font-family: var(--font-mono); padding: 0.5rem;"></div>
-            <form id="terminal-form" style="display: flex;">
-                <span style="color: var(--accent-primary); margin-right: 0.5rem;">joshi@PawanOS:~$</span>
-                <input type="text" id="terminal-input" style="flex-grow: 1; background: transparent; border: none; color: var(--text-color); outline: none; font-family: var(--font-mono);">
+            <form id="terminal-form" style="display: flex; align-items: center; padding: 0.5rem; border-top: 1px solid rgba(255,255,255,0.1);">
+                <span style="color: var(--accent-primary); margin-right: 0.5rem; white-space: nowrap;">joshi@PawanOS:~$</span>
+                <input type="text" id="terminal-input" autocomplete="off" spellcheck="false" style="flex-grow: 1; background: transparent; border: none; color: var(--text-color); outline: none; font-family: var(--font-mono); font-size: 14px;">
+                <button type="submit" style="display: none;">Submit</button>
             </form>
+        </div>
+        <div id="file-viewer-content">
+            <div class="file-viewer-header">
+                <i data-lucide="file-text" id="file-viewer-icon"></i>
+                <h3 id="file-viewer-name">file.txt</h3>
+            </div>
+            <div class="file-viewer-properties">
+                <p><strong>Type:</strong> <span id="file-viewer-type">Text Document</span></p>
+                <p><strong>Size:</strong> <span id="file-viewer-size">12 KB</span></p>
+            </div>
+            <div class="file-viewer-preview" id="file-viewer-preview">
+                Content preview is not available for this file type in PawanOS.
+            </div>
+        </div>
+        <div id="image-viewer-content">
+            <img src="" id="image-viewer-img" style="width: 100%; height: 100%; object-fit: contain;">
         </div>
     </div>
 

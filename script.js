@@ -45,8 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
         { id: 'about', name: 'About', icon: 'user-round' },
         { id: 'projects', name: 'Projects', icon: 'rocket' },
         { id: 'terminal', name: 'Terminal', icon: 'terminal' },
-        { id: 'file-explorer', name: 'Explorer', icon: 'folder' },
-        { id: 'music', name: 'Music', icon: 'music' },
         { id: 'settings', name: 'Settings', icon: 'settings' }
     ];
 
@@ -88,8 +86,8 @@ document.addEventListener('DOMContentLoaded', () => {
         dock.appendChild(dockItem);
     });
 
-    function openWindow(id, name, icon) {
-        if (openWindows[id]) {
+    function openWindow(id, name, icon, data = {}) {
+        if (openWindows[id] && !id.startsWith('viewer-')) {
             const win = openWindows[id];
             win.style.zIndex = ++zIndexCounter;
             win.classList.add('is-focused');
@@ -97,12 +95,15 @@ document.addEventListener('DOMContentLoaded', () => {
             Object.values(openWindows).forEach(w => { if(w !== win) w.classList.remove('is-focused'); });
             return;
         }
+
+        const windowId = id.startsWith('viewer-') ? `${id}-${Date.now()}` : id;
+
         const windowEl = document.createElement('div');
         windowEl.className = 'window is-focused';
-        windowEl.id = `${id}-window`;
+        windowEl.id = `${windowId}-window`;
         Object.assign(windowEl.style, {
-            width: window.innerWidth > 768 ? '60vw' : '100vw',
-            height: window.innerWidth > 768 ? '70vh' : '100vh',
+            width: data.width || (window.innerWidth > 768 ? '60vw' : '100vw'),
+            height: data.height || (window.innerWidth > 768 ? '70vh' : '100vh'),
             left: window.innerWidth > 768 ? `${Math.random() * 20 + 15}%` : '0',
             top: window.innerWidth > 768 ? `${Math.random() * 15 + 10}%` : '0',
             zIndex: ++zIndexCounter
@@ -111,21 +112,22 @@ document.addEventListener('DOMContentLoaded', () => {
         windowEl.innerHTML = `<div class="title-bar"><div class="traffic-lights"><div class="traffic-light close"></div><div class="traffic-light minimize"></div><div class="traffic-light maximize"></div></div><span style="font-weight: 600;">${name}</span><i data-lucide="${icon}" style="width: 16px; height: 16px;"></i></div><div class="window-content">${contentHTML}</div>`;
         document.body.appendChild(windowEl);
         windowEl.style.display = 'flex';
-        openWindows[id] = windowEl;
+        openWindows[windowId] = windowEl;
         updateDock();
         Object.values(openWindows).forEach(w => { if(w !== windowEl) w.classList.remove('is-focused'); });
         
+        lucide.createIcons();
+        
+        // App-specific initializations
         if (id === 'about') {
-            initRadarChart(windowEl);
             animateSkillBars(windowEl);
         }
         if (id === 'projects') renderProjects(windowEl);
-        if (id === 'music') initMusicPlayer(windowEl);
-        if (id === 'file-explorer') renderFileGrid(windowEl);
         if (id === 'settings') initSettings(windowEl);
         if (id === 'terminal') initTerminal(windowEl);
+        if (id === 'file-viewer') initFileViewer(windowEl, data);
+        if (id === 'image-viewer') initImageViewer(windowEl, data);
         
-        lucide.createIcons();
         makeWindowDraggable(windowEl);
         
         windowEl.onmousedown = () => {
@@ -133,7 +135,11 @@ document.addEventListener('DOMContentLoaded', () => {
             windowEl.classList.add('is-focused');
             Object.values(openWindows).forEach(w => { if(w !== windowEl) w.classList.remove('is-focused'); });
         };
-        windowEl.querySelector('.close').onclick = () => { windowEl.remove(); delete openWindows[id]; updateDock(); };
+        windowEl.querySelector('.close').onclick = () => { 
+            windowEl.remove(); 
+            delete openWindows[windowId]; 
+            updateDock(); 
+        };
         windowEl.querySelector('.minimize').onclick = () => windowEl.style.display = 'none';
         windowEl.querySelector('.maximize').onclick = () => {
             const isMaximized = windowEl.classList.toggle('maximized');
@@ -375,15 +381,6 @@ document.addEventListener('DOMContentLoaded', () => {
         setupWelcomeWidget();
     }
     
-    // --- CHATBOT TOGGLE ---
-    const chatbotToggle = document.getElementById('chatbot-toggle')
-    const chatbotContainer = document.getElementById('chatbot-container')
-    
-    chatbotToggle.onclick = () => {
-        const isVisible = chatbotContainer.style.display === 'flex'
-        chatbotContainer.style.display = isVisible ? 'none' : 'flex'
-        chatbotToggle.classList.toggle('active', !isVisible)
-    }
     
     // --- NOTIFICATIONS ---
     function showNotification(title, message) {
@@ -430,8 +427,7 @@ document.addEventListener('DOMContentLoaded', () => {
             : [
                 { icon: 'refresh-cw', text: 'Refresh', action: () => location.reload() },
                 { icon: 'monitor', text: 'Display Settings', action: () => openWindow('settings', 'Settings', 'settings') },
-                { icon: 'terminal', text: 'Open Terminal', action: () => openWindow('terminal', 'Terminal', 'terminal') },
-                { icon: 'folder', text: 'File Explorer', action: () => openWindow('file-explorer', 'Explorer', 'folder') }
+                { icon: 'terminal', text: 'Open Terminal', action: () => openWindow('terminal', 'Terminal', 'terminal') }
             ]
         
         contextMenu.innerHTML = menuItems.map(item => 
@@ -511,11 +507,6 @@ document.addEventListener('DOMContentLoaded', () => {
             openWindow('terminal', 'Terminal', 'terminal')
         }
         
-        // Ctrl + Shift + E: Open File Explorer
-        if (e.ctrlKey && e.shiftKey && e.key === 'E') {
-            e.preventDefault()
-            openWindow('file-explorer', 'Explorer', 'folder')
-        }
         
         // F11: Toggle fullscreen simulation
         if (e.key === 'F11') {
@@ -922,53 +913,59 @@ document.addEventListener('DOMContentLoaded', () => {
         // File system simulation with portfolio-aligned content
         const fileSystem = {
             '~': {
-                'Desktop': {
-                    'Development Projects': { type: 'folder' },
-                    'Design Assets': { type: 'folder' },
-                    'Certificates': { type: 'folder' },
-                    'Pawan_Joshi_Resume.pdf': { type: 'file', size: '2.1 MB', modified: '2025-01-23' },
-                    'Portfolio_Presentation.pptx': { type: 'file', size: '8.5 MB', modified: '2025-01-22' },
-                    'Skills_Assessment.xlsx': { type: 'file', size: '245 KB', modified: '2025-01-20' },
-                    'Quick_Notes.txt': { type: 'file', size: '3 KB', modified: '2025-01-25' }
-                },
-                'Documents': {
-                    'Academic': { type: 'folder' },
-                    'Professional': { type: 'folder' },
-                    'Research Papers': { type: 'folder' },
-                    'Project Documentation': { type: 'folder' },
-                    'Graph-E-Thon_2025_Report.pdf': { type: 'file', size: '1.8 MB', modified: '2025-01-18' },
-                    'AI_ML_Study_Notes.md': { type: 'file', size: '28 KB', modified: '2025-01-15' },
-                    'Full_Stack_Roadmap.txt': { type: 'file', size: '12 KB', modified: '2025-01-10' }
-                },
-                'Downloads': {
-                    'zenari-wellness-app.apk': { type: 'file', size: '25.6 MB', modified: '2025-01-22' },
-                    'react-native-setup.exe': { type: 'file', size: '128 MB', modified: '2025-01-20' },
-                    'firebase-config.json': { type: 'file', size: '2 KB', modified: '2025-01-19' },
-                    'node-modules-backup.zip': { type: 'file', size: '45.2 MB', modified: '2025-01-18' },
-                    'vs-code-extensions.txt': { type: 'file', size: '1 KB', modified: '2025-01-16' }
-                },
-                'Pictures': {
-                    'Project Screenshots': { type: 'folder' },
-                    'Profile Photos': { type: 'folder' },
-                    'UI Mockups': { type: 'folder' },
-                    'professional_headshot.jpg': { type: 'file', size: '3.2 MB', modified: '2025-01-21' },
-                    'zenari_app_demo.png': { type: 'file', size: '1.8 MB', modified: '2025-01-20' },
-                    'portfolio_website_preview.png': { type: 'file', size: '2.1 MB', modified: '2025-01-19' },
-                    'graph_e_thon_team_photo.jpg': { type: 'file', size: '4.5 MB', modified: '2025-01-15' }
-                },
-                'Music': {
-                    'Coding Playlists': { type: 'folder' },
-                    'lo-fi-coding-beats.mp3': { type: 'file', size: '4.5 MB', modified: '2025-01-16' },
-                    'focus_music_mix.mp3': { type: 'file', size: '3.8 MB', modified: '2025-01-14' },
-                    'ambient_work_sounds.mp3': { type: 'file', size: '5.2 MB', modified: '2025-01-12' }
-                },
-                'Videos': {
-                    'Project Demos': { type: 'folder' },
-                    'Tutorials': { type: 'folder' },
-                    'zenari_app_walkthrough.mp4': { type: 'file', size: '45.2 MB', modified: '2025-01-17' },
-                    'portfolio_website_demo.mp4': { type: 'file', size: '28.7 MB', modified: '2025-01-15' },
-                    'react_native_tutorial.mp4': { type: 'file', size: '156.3 MB', modified: '2025-01-10' }
-                }
+                'Desktop': { type: 'folder' },
+                'Documents': { type: 'folder' },
+                'Downloads': { type: 'folder' },
+                'Pictures': { type: 'folder' },
+                'Music': { type: 'folder' },
+                'Videos': { type: 'folder' }
+            },
+            '~/Desktop': {
+                'Development Projects': { type: 'folder' },
+                'Design Assets': { type: 'folder' },
+                'Certificates': { type: 'folder' },
+                'Pawan_Joshi_Resume.pdf': { type: 'file', size: '2.1 MB', modified: '2025-01-23' },
+                'Portfolio_Presentation.pptx': { type: 'file', size: '8.5 MB', modified: '2025-01-22' },
+                'Skills_Assessment.xlsx': { type: 'file', size: '245 KB', modified: '2025-01-20' },
+                'Quick_Notes.txt': { type: 'file', size: '3 KB', modified: '2025-01-25' }
+            },
+            '~/Documents': {
+                'Academic': { type: 'folder' },
+                'Professional': { type: 'folder' },
+                'Research Papers': { type: 'folder' },
+                'Project Documentation': { type: 'folder' },
+                'Graph-E-Thon_2025_Report.pdf': { type: 'file', size: '1.8 MB', modified: '2025-01-18' },
+                'AI_ML_Study_Notes.md': { type: 'file', size: '28 KB', modified: '2025-01-15' },
+                'Full_Stack_Roadmap.txt': { type: 'file', size: '12 KB', modified: '2025-01-10' }
+            },
+            '~/Downloads': {
+                'zenari-wellness-app.apk': { type: 'file', size: '25.6 MB', modified: '2025-01-22' },
+                'react-native-setup.exe': { type: 'file', size: '128 MB', modified: '2025-01-20' },
+                'firebase-config.json': { type: 'file', size: '2 KB', modified: '2025-01-19' },
+                'node-modules-backup.zip': { type: 'file', size: '45.2 MB', modified: '2025-01-18' },
+                'vs-code-extensions.txt': { type: 'file', size: '1 KB', modified: '2025-01-16' }
+            },
+            '~/Pictures': {
+                'Project Screenshots': { type: 'folder' },
+                'Profile Photos': { type: 'folder' },
+                'UI Mockups': { type: 'folder' },
+                'professional_headshot.jpg': { type: 'file', size: '3.2 MB', modified: '2025-01-21' },
+                'zenari_app_demo.png': { type: 'file', size: '1.8 MB', modified: '2025-01-20' },
+                'portfolio_website_preview.png': { type: 'file', size: '2.1 MB', modified: '2025-01-19' },
+                'graph_e_thon_team_photo.jpg': { type: 'file', size: '4.5 MB', modified: '2025-01-15' }
+            },
+            '~/Music': {
+                'Coding Playlists': { type: 'folder' },
+                'lo-fi-coding-beats.mp3': { type: 'file', size: '4.5 MB', modified: '2025-01-16' },
+                'focus_music_mix.mp3': { type: 'file', size: '3.8 MB', modified: '2025-01-14' },
+                'ambient_work_sounds.mp3': { type: 'file', size: '5.2 MB', modified: '2025-01-12' }
+            },
+            '~/Videos': {
+                'Project Demos': { type: 'folder' },
+                'Tutorials': { type: 'folder' },
+                'zenari_app_walkthrough.mp4': { type: 'file', size: '45.2 MB', modified: '2025-01-17' },
+                'portfolio_website_demo.mp4': { type: 'file', size: '28.7 MB', modified: '2025-01-15' },
+                'react_native_tutorial.mp4': { type: 'file', size: '156.3 MB', modified: '2025-01-10' }
             },
             '~/Desktop/Development Projects': {
                 'Zenari - AI Wellness App': { type: 'folder' },
@@ -1330,24 +1327,292 @@ document.addEventListener('DOMContentLoaded', () => {
         // Initial render
         render();
     }
-    function initMusicPlayer(win) { 
-        const playBtn = win.querySelector('#music-play-btn');
-        let isPlaying = false;
+    function initMusicPlayer(win) {
+        const playPauseBtn = win.querySelector('#play-pause-btn');
+        const prevBtn = win.querySelector('#prev-btn');
+        const nextBtn = win.querySelector('#next-btn');
+        const shuffleBtn = win.querySelector('#shuffle-btn');
+        const repeatBtn = win.querySelector('#repeat-btn');
+        const volumeSlider = win.querySelector('#volume-slider');
+        const currentSongTitle = win.querySelector('#current-song-title');
+        const currentSongArtist = win.querySelector('#current-song-artist');
+        const albumArt = win.querySelector('.album-art');
+        const playlistContainer = win.querySelector('#playlist');
+        const progressBar = win.querySelector('.progress-bar');
+        const progressFill = win.querySelector('.progress-fill');
+        const currentTimeDisplay = win.querySelector('#current-time');
+        const totalTimeDisplay = win.querySelector('#total-time');
         
-        if (playBtn) {
-            playBtn.onclick = () => {
-                isPlaying = !isPlaying;
-                const icon = playBtn.querySelector('i');
-                if (isPlaying) {
-                    icon.setAttribute('data-lucide', 'pause');
-                    showNotification('Music Player', 'Playing chill lo-fi beats...');
-                } else {
-                    icon.setAttribute('data-lucide', 'play');
-                    showNotification('Music Player', 'Music paused');
-                }
-                lucide.createIcons();
-            };
+        const songs = [
+            { title: "Lofi Study", artist: "FASSounds", duration: 140, url: "https://cdn.pixabay.com/audio/2022/10/18/audio_85273b7596.mp3"},
+            { title: "Midnight Forest", artist: "chillmore", duration: 164, url: "https://cdn.pixabay.com/audio/2022/05/27/audio_1808447342.mp3"},
+            { title: "Coffee Chill Out", artist: "AME", duration: 128, url: "https://cdn.pixabay.com/audio/2023/04/24/audio_903713289b.mp3"},
+            { title: "Deep Focus", artist: "Study Vibes", duration: 180, url: "https://cdn.pixabay.com/audio/2022/11/11/audio_d0b61496c6.mp3"},
+            { title: "Calm Waters", artist: "Ambient Zone", duration: 156, url: "https://cdn.pixabay.com/audio/2023/02/14/audio_31b2f00a71.mp3"}
+        ];
+
+        let currentAudio = null;
+        let currentSongIndex = 0;
+        let isPlaying = false;
+        let isShuffled = false;
+        let repeatMode = 0; // 0: no repeat, 1: repeat all, 2: repeat one
+        let volume = 0.7;
+        let currentTime = 0;
+        let duration = 0;
+        let progressInterval = null;
+
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs.toString().padStart(2, '0')}`;
         }
+        
+        function updateUI() {
+            const song = songs[currentSongIndex];
+            currentSongTitle.textContent = song.title;
+            currentSongArtist.textContent = song.artist;
+            totalTimeDisplay.textContent = formatTime(song.duration);
+            
+            // Update playlist active state
+            playlistContainer.querySelectorAll('.playlist-item').forEach((item, index) => {
+                if (index === currentSongIndex) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+            
+            // Update album art animation
+            if (isPlaying) {
+                albumArt.classList.add('playing');
+            } else {
+                albumArt.classList.remove('playing');
+            }
+        }
+
+        function updateProgress() {
+            if (currentAudio && duration > 0) {
+                currentTime = currentAudio.currentTime;
+                const progressPercent = (currentTime / duration) * 100;
+                progressFill.style.width = `${progressPercent}%`;
+                currentTimeDisplay.textContent = formatTime(currentTime);
+            }
+        }
+
+        function loadSong(index) {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.removeEventListener('loadedmetadata', updateDuration);
+                currentAudio.removeEventListener('ended', handleSongEnd);
+                currentAudio.removeEventListener('timeupdate', updateProgress);
+            }
+            
+            currentSongIndex = index;
+            const song = songs[currentSongIndex];
+            currentAudio = new Audio(song.url);
+            currentAudio.volume = volume;
+            
+            currentAudio.addEventListener('loadedmetadata', updateDuration);
+            currentAudio.addEventListener('ended', handleSongEnd);
+            currentAudio.addEventListener('timeupdate', updateProgress);
+            
+            updateUI();
+        }
+
+        function updateDuration() {
+            if (currentAudio) {
+                duration = currentAudio.duration || songs[currentSongIndex].duration;
+                totalTimeDisplay.textContent = formatTime(duration);
+            }
+        }
+
+        function handleSongEnd() {
+            if (repeatMode === 2) {
+                // Repeat current song
+                playSong(currentSongIndex);
+            } else if (repeatMode === 1 || currentSongIndex < songs.length - 1) {
+                // Repeat all or next song available
+                nextSong();
+            } else {
+                // Stop playback
+                stopPlayback();
+            }
+        }
+
+        function playSong(index) {
+            loadSong(index);
+            currentAudio.play().then(() => {
+                isPlaying = true;
+                playPauseBtn.querySelector('i').setAttribute('data-lucide', 'pause');
+                lucide.createIcons();
+                updateUI();
+            }).catch(error => {
+                console.error('Error playing audio:', error);
+                showNotification('Playback Error', 'Could not play audio. Please try again.');
+            });
+        }
+
+        function pauseSong() {
+            if (currentAudio) {
+                currentAudio.pause();
+                isPlaying = false;
+                playPauseBtn.querySelector('i').setAttribute('data-lucide', 'play');
+                lucide.createIcons();
+                updateUI();
+            }
+        }
+
+        function stopPlayback() {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+                isPlaying = false;
+                playPauseBtn.querySelector('i').setAttribute('data-lucide', 'play');
+                lucide.createIcons();
+                updateUI();
+                progressFill.style.width = '0%';
+                currentTimeDisplay.textContent = '0:00';
+            }
+        }
+
+        function nextSong() {
+            let nextIndex;
+            if (isShuffled) {
+                nextIndex = Math.floor(Math.random() * songs.length);
+            } else {
+                nextIndex = (currentSongIndex + 1) % songs.length;
+            }
+            playSong(nextIndex);
+        }
+
+        function prevSong() {
+            const prevIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+            playSong(prevIndex);
+        }
+
+        // Event Listeners
+        playPauseBtn.onclick = () => {
+            if (isPlaying) {
+                pauseSong();
+            } else {
+                if (currentAudio) {
+                    currentAudio.play().then(() => {
+                        isPlaying = true;
+                        playPauseBtn.querySelector('i').setAttribute('data-lucide', 'pause');
+                        lucide.createIcons();
+                        updateUI();
+                    }).catch(error => {
+                        console.error('Error resuming audio:', error);
+                    });
+                } else {
+                    playSong(currentSongIndex);
+                }
+            }
+        };
+
+        nextBtn.onclick = () => {
+            nextSong();
+        };
+
+        prevBtn.onclick = () => {
+            prevSong();
+        };
+
+        shuffleBtn.onclick = () => {
+            isShuffled = !isShuffled;
+            if (isShuffled) {
+                shuffleBtn.classList.add('active');
+            } else {
+                shuffleBtn.classList.remove('active');
+            }
+        };
+
+        repeatBtn.onclick = () => {
+            repeatMode = (repeatMode + 1) % 3;
+            repeatBtn.classList.remove('active');
+            const icon = repeatBtn.querySelector('i');
+            
+            switch(repeatMode) {
+                case 0:
+                    icon.setAttribute('data-lucide', 'repeat');
+                    break;
+                case 1:
+                    icon.setAttribute('data-lucide', 'repeat');
+                    repeatBtn.classList.add('active');
+                    break;
+                case 2:
+                    icon.setAttribute('data-lucide', 'repeat-1');
+                    repeatBtn.classList.add('active');
+                    break;
+            }
+            lucide.createIcons();
+        };
+
+        volumeSlider.oninput = () => {
+            volume = volumeSlider.value / 100;
+            if (currentAudio) {
+                currentAudio.volume = volume;
+            }
+        };
+
+        // Progress bar click to seek
+        progressBar.onclick = (e) => {
+            if (currentAudio && duration > 0) {
+                const rect = progressBar.getBoundingClientRect();
+                const clickX = e.clientX - rect.left;
+                const progressWidth = rect.width;
+                const seekTime = (clickX / progressWidth) * duration;
+                currentAudio.currentTime = seekTime;
+            }
+        };
+
+        // Populate playlist
+        playlistContainer.innerHTML = songs.map((song, index) => `
+            <div class="playlist-item" data-song-index="${index}">
+                <div class="playlist-item-info">
+                    <div class="playlist-item-icon">
+                        <i data-lucide="music"></i>
+                    </div>
+                    <div class="playlist-item-text">
+                        <h5>${song.title}</h5>
+                        <p>${song.artist}</p>
+                    </div>
+                </div>
+                <div class="playlist-item-duration">${formatTime(song.duration)}</div>
+            </div>
+        `).join('');
+
+        playlistContainer.querySelectorAll('.playlist-item').forEach(item => {
+            item.onclick = () => {
+                playSong(parseInt(item.dataset.songIndex));
+            };
+        });
+        
+        // Initialize
+        loadSong(0);
+        volumeSlider.value = volume * 100;
+        lucide.createIcons();
+        
+        // Store player instance for cleanup
+        win.musicPlayer = {
+            isPlaying,
+            togglePlayPause: () => {
+                if (isPlaying) {
+                    pauseSong();
+                } else {
+                    playSong(currentSongIndex);
+                }
+            },
+            cleanup: () => {
+                if (currentAudio) {
+                    currentAudio.pause();
+                    currentAudio = null;
+                }
+                if (progressInterval) {
+                    clearInterval(progressInterval);
+                }
+            }
+        };
     }
     
     function initTerminal(win) {
@@ -1361,7 +1626,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let historyIndex = commandHistory.length;
         let isAuthenticated = false;
         
-        // Portfolio data
+        // --- FIX START: Correctly define portfolioData ---
         const portfolioData = {
             about: {
                 name: 'Pawan Joshi',
@@ -1436,17 +1701,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 '/home/pawan/Skills': {
                     type: 'directory',
                     contents: ['programming.json', 'tools.json', 'soft-skills.json']
-                },
-                '/home/pawan/About': {
-                    type: 'file',
-                    content: `# About Pawan Joshi\n\n${portfolioData.about.name} - ${portfolioData.about.title}\n${portfolioData.about.education}\n${portfolioData.about.role}\n\n🏆 ${portfolioData.about.achievement}\n⚡ ${portfolioData.about.experience}\n🎯 Focus: ${portfolioData.about.focus}`
-                },
-                '/home/pawan/Contact': {
-                    type: 'file',
-                    content: `# Contact Information\n\n📧 Email: ${portfolioData.contact.email}\n🔗 LinkedIn: ${portfolioData.contact.linkedin}\n🐙 GitHub: ${portfolioData.contact.github}\n🐦 Twitter: ${portfolioData.contact.twitter}`
                 }
             }
         };
+
+        // Now, add the file content that depends on the main portfolioData object
+        portfolioData.fileSystem['/home/pawan/About'] = {
+            type: 'file',
+            content: `# About Pawan Joshi\n\n${portfolioData.about.name} - ${portfolioData.about.title}\n${portfolioData.about.education}\n${portfolioData.about.role}\n\n🏆 ${portfolioData.about.achievement}\n⚡ ${portfolioData.about.experience}\n🎯 Focus: ${portfolioData.about.focus}`
+        };
+
+        portfolioData.fileSystem['/home/pawan/Contact'] = {
+            type: 'file',
+            content: `# Contact Information\n\n📧 Email: ${portfolioData.contact.email}\n🔗 LinkedIn: ${portfolioData.contact.linkedin}\n🐙 GitHub: ${portfolioData.contact.github}\n🐦 Twitter: ${portfolioData.contact.twitter}`
+        };
+        // --- FIX END ---
         
         // Color schemes
         const colors = {
@@ -1501,7 +1770,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         return `<span style="color: ${isDir ? colors.primary : colors.success}">${item}${isDir ? '/' : ''}</span>`;
                     }).join('  ');
                     
-                    return items || '<span style="color: ${colors.muted}">Empty directory</span>';
+                    return items || `<span style="color: ${colors.muted}">Empty directory</span>`;
                 }
             },
             
@@ -1609,9 +1878,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                         
                         return `\n<span style="color: ${colors.primary}">${project.name}</span>\n\n` +
-                               `<span style="color: ${colors.info}">Description:</span> ${project.description}\n` +
-                               `<span style="color: ${colors.info}">Technologies:</span> ${project.tech.join(', ')}\n` +
-                               `<span style="color: ${colors.info}">Status:</span> <span style="color: ${colors.success}">${project.status}</span>\n`;
+                                   `<span style="color: ${colors.info}">Description:</span> ${project.description}\n` +
+                                   `<span style="color: ${colors.info}">Technologies:</span> ${project.tech.join(', ')}\n` +
+                                   `<span style="color: ${colors.info}">Status:</span> <span style="color: ${colors.success}">${project.status}</span>\n`;
                     }
                     
                     const projectList = projects.map(project => 
@@ -1711,17 +1980,17 @@ document.addEventListener('DOMContentLoaded', () => {
             neofetch: {
                 description: 'Display system information',
                 execute: () => {
-                    return `\n<span style="color: ${colors.primary}">      ___           ___           ___           ___           ___           ___           ___     </span>\n` +
-                           `<span style="color: ${colors.primary}">     /\  \         /\  \         /\  \         /\  \         /\  \         /\  \         /\  \    </span>\n` +
-                           `<span style="color: ${colors.primary}">    /::\  \       /::\  \       /::\  \       /::\  \        \:\  \       /::\  \       /::\  \   </span>\n` +
-                           `<span style="color: ${colors.primary}">   /:/\:\  \     /:/\:\  \     /:/\:\  \     /:/\:\  \        \:\  \     /:/\:\  \     /:/\ \  \  </span>\n` +
-                           `<span style="color: ${colors.primary}">  /::\~\:\  \   /::\~\:\  \   /::\~\:\  \   /:/  \:\  \   _____\:\  \   /:/  \:\  \   _\:\~\ \  \ </span>\n` +
-                           `<span style="color: ${colors.primary}"> /:/\:\ \:\__\ /:/\:\ \:\__\ /:/\:\ \:\__\ /:/__/ \:\__\ /::::::::\__\ /:/__/ \:\__\ /\ \:\ \ \__\</span>\n` +
-                           `<span style="color: ${colors.primary}"> \/__\:\/:/  / \/__\:\/:/  / \/__\:\/:/  / \:\  \ /:/  / \:\~~\~~\/__/ \:\  \ /:/  / \:\ \:\ \/__/</span>\n` +
-                           `<span style="color: ${colors.primary}">      \::/  /       \::/  /       \::/  /   \:\  /:/  /   \:\  \        \:\  /:/  /   \:\ \:\__\  </span>\n` +
-                           `<span style="color: ${colors.primary}">       \/__/         \/__/         \/__/     \:\/:/  /     \:\  \        \:\/:/  /     \:\/:/  /  </span>\n` +
-                           `<span style="color: ${colors.primary}">                                            \::/  /       \:\__\        \::/  /       \::/  /   </span>\n` +
-                           `<span style="color: ${colors.primary}">                                             \/__/         \/__/         \/__/         \/__/    </span>\n\n` +
+                    return `\n<span style="color: ${colors.primary}">  ___   ___   ___   ___   ___   ___   ___  </span>\n` +
+                           `<span style="color: ${colors.primary}"> /\\  \\ /\\  \\ /\\  \\ /\\  \\ /\\  \\ /\\  \\ /\\  \\ </span>\n` +
+                           `<span style="color: ${colors.primary}">/::\\  \\/::\\  \\/::\\  \\/::\\  \\ \\:\\  \\/::\\  \\/::\\  \\</span>\n` +
+                           `<span style="color: ${colors.primary}">/:/\\:\\  \\/:/\\:\\  \\/:/\\:\\  \\/:/\\:\\  \\ \\:\\  \\/:/\\:\\  \\/:/\\ \\  \\</span>\n` +
+                           `<span style="color: ${colors.primary}">/::\\~\\:\\  \\/::\\~\\:\\  \\/::\\~\\:\\  \\/:/  \\:\\  \\_____\\:\\  \\/:/  \\:\\  \\_\\:\\~\\ \\  \\</span>\n` +
+                           `<span style="color: ${colors.primary}">/:/\\:\\ \\:\\__\\/:/\\:\\ \\:\\__\\/:/\\:\\ \\:\\__\\/:/__/ \\:\\__\\::::::::\\__\\/:/__/ \\:\\__\\/\\ \\:\\ \\ \\__\\</span>\n` +
+                           `<span style="color: ${colors.primary}">\\/__\\:\\/:/  /\\/__\\:\\/:/  /\\/__\\:\\/:/  / \\:\\  \\ /:/  / \\:\\~~\\~\\/__/ \\:\\  \\ /:/  / \\:\\ \\:\\ \\/__/</span>\n` +
+                           `<span style="color: ${colors.primary}">     \\::/  /      \\::/  /      \\::/  /   \\:\\ /:/  /   \\:\\  \\      \\:\\ /:/  /   \\:\\ \\:\\__\\  </span>\n` +
+                           `<span style="color: ${colors.primary}">      \\/__/        \\/__/        \\/__/     \\:\\/:/  /     \\:\\  \\      \\:\\/:/  /     \\:\\/:/  /  </span>\n` +
+                           `<span style="color: ${colors.primary}">                                         \\::/  /       \\:\\__\\      \\::/  /       \\::/  /   </span>\n` +
+                           `<span style="color: ${colors.primary}">                                          \\/__/         \\/__/       \\/__/         \\/__/    </span>\n\n` +
                            `<span style="color: ${colors.info}">OS:</span> PawanOS (Portfolio Edition)\n` +
                            `<span style="color: ${colors.info}">Developer:</span> Pawan Joshi\n` +
                            `<span style="color: ${colors.info}">Role:</span> AI/ML & Full-Stack Developer\n` +
@@ -1832,24 +2101,32 @@ document.addEventListener('DOMContentLoaded', () => {
         appendOutput(`Type '<span style="color: ${colors.primary}">help</span>' for available commands, '<span style="color: ${colors.primary}">about</span>' for portfolio info.`);
         appendOutput('');
         
-        // Event handlers
-        terminalForm.addEventListener('submit', (e) => {
+        // --- FIX START: Simplified and robust event handling ---
+        const handleTerminalSubmit = (e) => {
             e.preventDefault();
-            const input = terminalInput.value;
+            const input = terminalInput.value.trim();
             
-            if (input.trim()) {
+            if (input) {
                 appendOutput(input, true);
                 addToHistory(input);
                 
-                const output = executeCommand(input);
-                if (output) {
-                    appendOutput(output);
+                try {
+                    const output = executeCommand(input);
+                    if (output !== null && output !== undefined) {
+                        appendOutput(output);
+                    }
+                } catch (error) {
+                    appendOutput(`<span style="color: ${colors.error}">Error executing command: ${error.message}</span>`);
                 }
+                
                 appendOutput('');
             }
             
             terminalInput.value = '';
-        });
+            terminalInput.focus();
+        };
+
+        terminalForm.addEventListener('submit', handleTerminalSubmit);
         
         // Keyboard shortcuts
         terminalInput.addEventListener('keydown', (e) => {
@@ -1907,6 +2184,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     break;
             }
         });
+        // --- FIX END ---
         
         // Focus terminal input when terminal is clicked
         win.addEventListener('click', () => {
