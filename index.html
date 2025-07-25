@@ -1,193 +1,249 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-    <!-- SEO Meta Tags -->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pawan Joshi | Full-Stack & AI/ML Developer</title>
-    <meta name="description" content="Pawan Joshi's portfolio. A Computer Science undergraduate at GEU specializing in Full-Stack Development, AI/ML, and building real-world tech with impact.">
-    <meta name="keywords" content="Pawan Joshi, Full-Stack Developer, AI/ML, React Native, Python, Firebase, Portfolio, GEU, Dehradun">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>PawanOS - A Futuristic Portfolio Experience</title>
+    <meta name="description" content="Welcome to PawanOS. Explore the projects, skills, and journey of Pawan Joshi, a Full-Stack & AI/ML Developer.">
+    <meta name="keywords" content="Pawan Joshi, Portfolio, OS, Developer, AI, Full-Stack, React Native, Python">
     <meta name="author" content="Pawan Joshi">
+    <meta property="og:title" content="PawanOS - A Futuristic Portfolio Experience">
+    <meta property="og:description" content="An interactive, OS-style portfolio showcasing the work of Pawan Joshi.">
+    <meta property="og:image" content="https://placehold.co/1200x630/0F0F0F/00f0ff?text=PawanOS">
+    <meta property="og:url" content="https://iampawan.me">
+    <meta name="twitter:card" content="summary_large_image">
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://iampawan.me/">
-    <meta property="og:title" content="Pawan Joshi | Full-Stack & AI/ML Developer">
-    <meta property="og:description" content="Driven CS undergrad building impactful tech solutions. Explore my projects, skills, and journey.">
-    <meta property="og:image" content="https://placehold.co/1200x630/0a0a0a/ffffff?text=Pawan+Joshi">
+    <link rel="icon" href="https://placehold.co/32x32/0F0F0F/00f0ff?text=PJ" type="image/png">
+    <link rel="manifest" href="manifest.json">
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://iampawan.me/">
-    <meta property="twitter:title" content="Pawan Joshi | Full-Stack & AI/ML Developer">
-    <meta property="twitter:description" content="Driven CS undergrad building impactful tech solutions. Explore my projects, skills, and journey.">
-    <meta property="twitter:image" content="https://placehold.co/1200x630/0a0a0a/ffffff?text=Pawan+Joshi">
-
-    <!-- Favicon, Fonts, and Stylesheet -->
-    <link rel="icon" href="https://placehold.co/32x32/0a0a0a/ffffff?text=PJ" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Sora:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js"></script>
+    <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <div id="desktop-container">
-        <canvas id="particle-canvas"></canvas>
-        <div id="top-menu-bar">
-            <div class="menu-item logo">
-                <i class="fab fa-dev"></i>
-                <span>pwnOS</span>
-            </div>
-            <div id="clock" class="menu-item"></div>
-        </div>
-
-        <div id="desktop">
-            <!-- Desktop Icons -->
-            <div class="desktop-icon" data-window="about">
-                <i class="fas fa-user-astronaut fa-2x"></i>
-                <span>AboutMe.md</span>
-            </div>
-            <div class="desktop-icon" data-window="projects">
-                <i class="fas fa-rocket fa-2x"></i>
-                <span>Projects</span>
-            </div>
-            <div class="desktop-icon" data-window="skills">
-                <i class="fas fa-code-branch fa-2x"></i>
-                <span>Skills</span>
-            </div>
-            <div class="desktop-icon" data-window="education">
-                <i class="fas fa-graduation-cap fa-2x"></i>
-                <span>Education</span>
-            </div>
-            <div class="desktop-icon" data-window="terminal">
-                <i class="fas fa-terminal fa-2x"></i>
-                <span>Terminal</span>
-            </div>
-            <div class="desktop-icon" data-window="settings">
-                <i class="fas fa-cog fa-2x"></i>
-                <span>Settings</span>
-            </div>
+    <div id="loading-screen" class="fullscreen-overlay">
+        <div class="boot-logo">PawanOS</div>
+        <div class="progress-bar"><div class="progress-bar-inner"></div></div>
+    </div>
+    <div id="login-screen" class="fullscreen-overlay">
+        <div class="login-box">
+            <img src="https://placehold.co/100x100/0F0F0F/00f0ff?text=PJ" alt="Avatar" class="login-avatar">
+            <div id="login-user-typewriter" class="login-user"></div>
+            <button id="login-btn" class="login-btn">Enter as Guest</button>
         </div>
     </div>
 
-    <!-- Window Containers -->
-    <div id="window-container">
-        <!-- About Window -->
-        <div class="window" id="about-window" style="display:none;">
-            <div class="title-bar">
-                <span class="title">👤 About Me</span>
-                <div class="buttons">
-                    <span class="close-btn" data-window="about">&times;</span>
-                </div>
-            </div>
-            <div class="content">
-                <h1 class="text-2xl font-bold">Pawan Joshi <span class="text-gray-400 text-lg">(He/Him)</span></h1>
-                <p class="tagline text-blue-300">CS Undergrad @ GEU | Full-Stack & AI/ML Dev</p>
-                <hr class="my-4 border-gray-600">
-                <p>I’m Pawan, a driven Computer Science undergraduate at Graphic Era University with a deep passion for building impactful tech solutions that address real-world challenges.</p>
-                <p class="mt-4">My journey in tech is fueled by curiosity and a desire to merge creativity with robust engineering. From developing full-stack applications to exploring the depths of AI and machine learning, I am constantly seeking opportunities to learn, grow, and contribute to innovative projects.</p>
+    <div id="particles-js"></div>
+    <div class="os-container">
+        <div id="desktop"></div>
+        <div id="desktop-widgets">
+            <div id="clock-widget" class="desktop-widget">
+                <div class="time"></div>
+                <div class="date"></div>
             </div>
         </div>
-
-        <!-- Projects Window -->
-        <div class="window" id="projects-window" style="display:none;">
-             <div class="title-bar">
-                <span class="title">💡 Projects & Achievements</span>
-                <div class="buttons">
-                    <span class="close-btn" data-window="projects">&times;</span>
+        <div id="welcome-widget" class="desktop-widget">
+            <i data-lucide="x" class="close-widget"></i>
+            <h3>Welcome to PawanOS</h3>
+            <p id="welcome-text">This is the portfolio of Pawan Joshi, a Full-Stack & AI/ML Developer. Double-click icons to explore.</p>
+        </div>
+        <nav id="dock" class="dock"></nav>
+        <div id="os-widgets">
+            <button id="theme-toggle" class="widget-btn" title="Toggle Theme"><i data-lucide="sun"></i></button>
+            <button id="chatbot-toggle" class="widget-btn" title="Talk to Zenari"><i data-lucide="message-circle"></i></button>
+        </div>
+        <div id="notification-center"></div>
+        <div id="context-menu"></div>
+        <div id="chatbot-container">
+            <div id="chatbot-header">Zenari Assistant</div>
+            <div id="chatbot-messages"></div>
+            <form id="chatbot-input-form">
+                <input type="text" id="chatbot-input" placeholder="Ask about Pawan..." autocomplete="off">
+                <button type="submit" id="chatbot-send"><i data-lucide="send"></i></button>
+            </form>
+        </div>
+        <div id="start-menu">
+            <div class="start-menu-grid"></div>
+        </div>
+    </div>
+    
+    <div id="app-templates" style="display: none;">
+        <div id="about-content">
+            <h2 style="font-size: 2rem; font-weight: 700; text-align: center; margin-bottom: 2rem;">About Me</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; align-items: center;">
+                <div>
+                    <h3>Hi! I’m Pawan</h3>
+                    <p>A highly motivated Computer Science undergraduate at Graphic Era University. My journey is driven by the desire to build technology that solves real-world problems—especially through AI, Machine Learning, and Full-Stack Development.</p>
+                    <br>
+                    <h4>Key Highlights:</h4>
+                    <ul style="padding-left: 1.5rem;">
+                        <li>Top 35 Finalist at Graph-E-Thon 2025.</li>
+                        <li>Skilled in React Native, Firebase, Python, and more.</li>
+                        <li>Passionate about learning and collaboration.</li>
+                    </ul>
                 </div>
-            </div>
-            <div class="content">
-                 <h2 class="font-bold text-xl mb-2">🔷 Zenari (AI Wellness Companion App)</h2>
-                 <p class="text-sm text-blue-300 mb-2">🏆 Top 35 Finalist @ Graph-E-Thon 2025 (out of 2500+)</p>
-                 <p class="text-gray-400 mb-4">An AI-powered emotional wellness companion built in 48 hours. Features AI chat, mood tracking, journaling, sound therapy, and gamification.</p>
-                 <div class="tags">
-                    <span>React Native</span><span>Firebase</span><span>AI/ML</span><span>Hackathon</span>
-                 </div>
+                <div style="height: 300px;"><canvas id="skillsRadarChart"></canvas></div>
             </div>
         </div>
-
-        <!-- Skills Window -->
-        <div class="window" id="skills-window" style="display:none;">
-            <div class="title-bar">
-                <span class="title">🔧 Skills & Interests</span>
-                <div class="buttons">
-                    <span class="close-btn" data-window="skills">&times;</span>
-                </div>
-            </div>
-            <div class="content">
-                <h3 class="font-bold text-lg mb-2">Programming & Tech Stack</h3>
-                <div class="tags">
-                    <span>React Native</span><span>Python</span><span>JavaScript</span><span>HTML</span><span>CSS</span><span>Firebase</span><span>Full-Stack</span><span>WordPress</span>
-                </div>
-                <h3 class="font-bold text-lg mt-4 mb-2">Other Strengths</h3>
-                 <div class="tags">
-                    <span>AI/ML</span><span>Public Speaking</span><span>Leadership</span><span>Music (Guitar/Vocals)</span>
-                </div>
-            </div>
+        <div id="projects-content">
+            <h2 style="font-size: 2rem; font-weight: 700; text-align: center; margin-bottom: 2rem;">Innovations & Code</h2>
+            <div id="project-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;"></div>
         </div>
-
-        <!-- Education Window -->
-        <div class="window" id="education-window" style="display:none;">
-            <div class="title-bar">
-                <span class="title">🎓 Education</span>
-                <div class="buttons">
-                    <span class="close-btn" data-window="education">&times;</span>
-                </div>
-            </div>
-            <div class="content">
-                <h3 class="text-xl font-bold">Graphic Era Deemed to be University</h3>
-                <p class="text-blue-300">B.Tech, Computer Science | Aug 2024 – 2028</p>
-                <p class="text-gray-400 mt-2">Focusing on Artificial Intelligence, Machine Learning, and advanced Software Development.</p>
-                <hr class="my-4 border-gray-600">
-                <h3 class="text-xl font-bold">Global Academy Secondary School</h3>
-                <p class="text-blue-300">Secondary Education Examination (SEE) | 2019 – 2021</p>
-            </div>
-        </div>
-
-        <!-- Terminal Window -->
-        <div class="window" id="terminal-window" style="display:none;">
-            <div class="title-bar">
-                <span class="title">👨‍💻 pwnOS Terminal</span>
-                <div class="buttons">
-                    <span class="close-btn" data-window="terminal">&times;</span>
-                </div>
-            </div>
-            <div class="content terminal-content">
-                <div id="terminal-output"></div>
-                <div class="terminal-input-line">
-                    <span class="prompt">pawan@desktop:~$</span>
-                    <input type="text" id="terminal-input" autofocus autocomplete="off">
+        <div id="music-content">
+             <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; text-align: center;">
+                <i data-lucide="music" style="width: 64px; height: 64px; color: var(--accent-primary);"></i>
+                <h3 style="margin: 1rem 0 0.5rem;">Chill Lo-fi Beat</h3>
+                <p style="color: var(--text-secondary-color); margin-bottom: 1.5rem;">A little something to code to.</p>
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <button id="music-play-btn" style="background: var(--widget-bg); border: none; padding: 1rem; border-radius: 50%; cursor: pointer;"><i data-lucide="play"></i></button>
                 </div>
             </div>
         </div>
-        
-        <!-- Settings Window -->
-        <div class="window" id="settings-window" style="display:none;">
-            <div class="title-bar">
-                <span class="title">⚙️ Settings</span>
-                <div class="buttons">
-                    <span class="close-btn" data-window="settings">&times;</span>
+        <div id="file-explorer-content">
+            <div id="explorer-toolbar" style="background: rgba(0,0,0,0.1); padding: 0.5rem 1rem; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; gap: 1rem;">
+                <button id="back-btn" style="background: var(--widget-bg); border: none; padding: 0.5rem; border-radius: 0.25rem; cursor: pointer; color: var(--text-color);"><i data-lucide="arrow-left" style="width: 16px; height: 16px;"></i></button>
+                <button id="forward-btn" style="background: var(--widget-bg); border: none; padding: 0.5rem; border-radius: 0.25rem; cursor: pointer; color: var(--text-color);"><i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i></button>
+                <button id="up-btn" style="background: var(--widget-bg); border: none; padding: 0.5rem; border-radius: 0.25rem; cursor: pointer; color: var(--text-color);"><i data-lucide="arrow-up" style="width: 16px; height: 16px;"></i></button>
+                <div id="path-bar" style="flex-grow: 1; background: var(--widget-bg); padding: 0.5rem; border-radius: 0.25rem; font-family: var(--font-mono); font-size: 0.9rem;">~/</div>
+                <input type="text" id="search-input" placeholder="Search files..." style="background: var(--widget-bg); border: none; padding: 0.5rem; border-radius: 0.25rem; color: var(--text-color); outline: none; width: 150px;">
+                <button id="view-toggle" style="background: var(--widget-bg); border: none; padding: 0.5rem; border-radius: 0.25rem; cursor: pointer; color: var(--text-color);"><i data-lucide="grid-3x3" style="width: 16px; height: 16px;"></i></button>
+            </div>
+            <div style="display: flex; height: calc(100% - 60px);">
+                <div id="sidebar" style="width: 200px; border-right: 1px solid var(--border-color); padding: 1rem; flex-shrink: 0; overflow-y: auto;">
+                    <h3 style="font-weight: 600; margin-bottom: 1rem;">Quick Access</h3>
+                    <ul id="quick-access" style="list-style: none; padding: 0; margin: 0;">
+                        <li class="sidebar-item" data-path="~" style="padding: 0.5rem; cursor: pointer; border-radius: 0.25rem; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;"><i data-lucide="home" style="width: 16px; height: 16px;"></i>Home</li>
+                        <li class="sidebar-item" data-path="~/Desktop" style="padding: 0.5rem; cursor: pointer; border-radius: 0.25rem; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem; background: var(--widget-bg);"><i data-lucide="monitor" style="width: 16px; height: 16px;"></i>Desktop</li>
+                        <li class="sidebar-item" data-path="~/Documents" style="padding: 0.5rem; cursor: pointer; border-radius: 0.25rem; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;"><i data-lucide="folder" style="width: 16px; height: 16px;"></i>Documents</li>
+                        <li class="sidebar-item" data-path="~/Downloads" style="padding: 0.5rem; cursor: pointer; border-radius: 0.25rem; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;"><i data-lucide="download" style="width: 16px; height: 16px;"></i>Downloads</li>
+                        <li class="sidebar-item" data-path="~/Pictures" style="padding: 0.5rem; cursor: pointer; border-radius: 0.25rem; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;"><i data-lucide="image" style="width: 16px; height: 16px;"></i>Pictures</li>
+                        <li class="sidebar-item" data-path="~/Music" style="padding: 0.5rem; cursor: pointer; border-radius: 0.25rem; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;"><i data-lucide="music" style="width: 16px; height: 16px;"></i>Music</li>
+                        <li class="sidebar-item" data-path="~/Videos" style="padding: 0.5rem; cursor: pointer; border-radius: 0.25rem; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;"><i data-lucide="video" style="width: 16px; height: 16px;"></i>Videos</li>
+                    </ul>
+                </div>
+                <div style="flex-grow: 1; display: flex; flex-direction: column;">
+                    <div id="file-area" style="flex-grow: 1; padding: 1rem; overflow-y: auto;">
+                        <div id="file-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 1rem; align-content: flex-start;"></div>
+                        <div id="file-list" style="display: none;">
+                            <table style="width: 100%; border-collapse: collapse;">
+                                <thead>
+                                    <tr style="border-bottom: 1px solid var(--border-color);">
+                                        <th style="text-align: left; padding: 0.5rem; font-weight: 600;">Name</th>
+                                        <th style="text-align: left; padding: 0.5rem; font-weight: 600;">Size</th>
+                                        <th style="text-align: left; padding: 0.5rem; font-weight: 600;">Type</th>
+                                        <th style="text-align: left; padding: 0.5rem; font-weight: 600;">Modified</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="file-list-body"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div id="status-bar" style="background: rgba(0,0,0,0.1); padding: 0.5rem 1rem; border-top: 1px solid var(--border-color); font-size: 0.9rem; display: flex; justify-content: space-between;">
+                        <span id="item-count">0 items</span>
+                        <span id="selection-info"></span>
+                    </div>
                 </div>
             </div>
-            <div class="content">
-                <h3 class="font-bold text-lg mb-2">Appearance</h3>
-                <p class="text-gray-400 mb-4">Change the desktop wallpaper.</p>
-                <div id="wallpaper-options" class="tags">
-                    <button class="wallpaper-btn" data-bg="url('https://images.unsplash.com/photo-1554415707-6e8cfc93a23e?q=80&w=2070&auto=format&fit=crop')">Default</button>
-                    <button class="wallpaper-btn" data-bg="url('https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=2070&auto=format&fit=crop')">Mountains</button>
-                    <button class="wallpaper-btn" data-bg="url('https://images.unsplash.com/photo-1487017159836-4e23ece2e4cf?q=80&w=2071&auto=format&fit=crop')">Abstract</button>
+        </div>
+        <div id="settings-content">
+            <h2 style="font-size: 2rem; font-weight: 700; text-align: center; margin-bottom: 2rem;">System Settings</h2>
+            
+            <div class="settings-section">
+                <h3 style="font-weight: 600; margin-bottom: 1rem;">Appearance</h3>
+                <div id="wallpaper-options" style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem;"></div>
+                
+                <div class="setting-item" style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    <span>Dark Theme</span>
+                    <label class="toggle-switch" style="position: relative; display: inline-block; width: 50px; height: 24px;">
+                        <input type="checkbox" id="dark-theme-toggle" checked style="opacity: 0; width: 0; height: 0;">
+                        <span class="slider" style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--accent-primary); transition: .4s; border-radius: 24px;"></span>
+                    </label>
+                </div>
+                
+                <div class="setting-item" style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    <span>Particle Background</span>
+                    <label class="toggle-switch" style="position: relative; display: inline-block; width: 50px; height: 24px;">
+                        <input type="checkbox" id="particles-toggle" checked style="opacity: 0; width: 0; height: 0;">
+                        <span class="slider" style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--accent-primary); transition: .4s; border-radius: 24px;"></span>
+                    </label>
+                </div>
+                
+                <div class="setting-item" style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    <span>Smooth Animations</span>
+                    <label class="toggle-switch" style="position: relative; display: inline-block; width: 50px; height: 24px;">
+                        <input type="checkbox" id="animations-toggle" checked style="opacity: 0; width: 0; height: 0;">
+                        <span class="slider" style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--accent-primary); transition: .4s; border-radius: 24px;"></span>
+                    </label>
                 </div>
             </div>
+            
+            <div class="settings-section" style="margin-top: 2rem;">
+                <h3 style="font-weight: 600; margin-bottom: 1rem;">Interface</h3>
+                
+                <div class="setting-item" style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    <span>Sound Effects</span>
+                    <label class="toggle-switch" style="position: relative; display: inline-block; width: 50px; height: 24px;">
+                        <input type="checkbox" id="sound-toggle" checked style="opacity: 0; width: 0; height: 0;">
+                        <span class="slider" style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--accent-primary); transition: .4s; border-radius: 24px;"></span>
+                    </label>
+                </div>
+                
+                <div class="setting-item" style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    <span>Desktop Notifications</span>
+                    <label class="toggle-switch" style="position: relative; display: inline-block; width: 50px; height: 24px;">
+                        <input type="checkbox" id="notifications-toggle" checked style="opacity: 0; width: 0; height: 0;">
+                        <span class="slider" style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--accent-primary); transition: .4s; border-radius: 24px;"></span>
+                    </label>
+                </div>
+                
+                <div class="setting-item" style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    <span>24-Hour Clock Format</span>
+                    <label class="toggle-switch" style="position: relative; display: inline-block; width: 50px; height: 24px;">
+                        <input type="checkbox" id="clock-format-toggle" style="opacity: 0; width: 0; height: 0;">
+                        <span class="slider" style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--accent-primary); transition: .4s; border-radius: 24px;"></span>
+                    </label>
+                </div>
+                
+                <div class="setting-item" style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    <span>CPU Update Interval (ms)</span>
+                    <input type="range" id="cpu-interval-slider" min="500" max="5000" value="1000" step="500" style="width: 120px; accent-color: var(--accent-primary);">
+                    <span id="cpu-interval-value" style="color: var(--accent-primary); font-weight: 600;">1000</span>
+                </div>
+            </div>
+            
+            <div class="settings-section" style="margin-top: 2rem;">
+                <h3 style="font-weight: 600; margin-bottom: 1rem;">Data & Privacy</h3>
+                
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem;">
+                    <button id="export-settings-btn" style="background: var(--accent-primary); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 0.5rem; cursor: pointer; flex: 1; min-width: 120px;">Export Settings</button>
+                    <button id="import-settings-btn" style="background: var(--accent-secondary); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 0.5rem; cursor: pointer; flex: 1; min-width: 120px;">Import Settings</button>
+                </div>
+                
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <button id="clear-data-btn" style="background: #ff6b6b; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 0.5rem; cursor: pointer; flex: 1; min-width: 120px;">Clear All Data</button>
+                    <button id="reset-os-btn" style="background: #ff4757; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 0.5rem; cursor: pointer; flex: 1; min-width: 120px;">Reset OS</button>
+                </div>
+            </div>
+            
+            <input type="file" id="settings-file-input" accept=".json" style="display: none;">
+        </div>
+        <div id="terminal-content">
+            <div id="terminal-output" style="flex-grow: 1; overflow-y: auto; font-family: var(--font-mono); padding: 0.5rem;"></div>
+            <form id="terminal-form" style="display: flex;">
+                <span style="color: var(--accent-primary); margin-right: 0.5rem;">joshi@PawanOS:~$</span>
+                <input type="text" id="terminal-input" style="flex-grow: 1; background: transparent; border: none; color: var(--text-color); outline: none; font-family: var(--font-mono);">
+            </form>
         </div>
     </div>
 
-    <div id="dock">
-        <div class="dock-separator"></div>
-    </div>
-
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>
