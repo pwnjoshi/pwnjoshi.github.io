@@ -32,10 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 showNotification('Welcome to PawanOS!', 'Right-click for context menus, use keyboard shortcuts, and explore!')
             }, 1000)
             
-            // Show keyboard shortcuts after a delay
-            setTimeout(() => {
-                showNotification('Keyboard Shortcuts', 'Alt+Tab: Switch windows • Ctrl+Shift+T: Terminal • Ctrl+Shift+E: Explorer')
-            }, 4000)
         }, 500);
     };
 
@@ -119,7 +115,10 @@ document.addEventListener('DOMContentLoaded', () => {
         updateDock();
         Object.values(openWindows).forEach(w => { if(w !== windowEl) w.classList.remove('is-focused'); });
         
-        if (id === 'about') initRadarChart(windowEl);
+        if (id === 'about') {
+            initRadarChart(windowEl);
+            animateSkillBars(windowEl);
+        }
         if (id === 'projects') renderProjects(windowEl);
         if (id === 'music') initMusicPlayer(windowEl);
         if (id === 'file-explorer') renderFileGrid(windowEl);
@@ -474,6 +473,19 @@ document.addEventListener('DOMContentLoaded', () => {
     
     document.addEventListener('click', () => hideContextMenu())
     
+    // Global event delegation for welcome widget close button
+    document.addEventListener('click', (e) => {
+        if (e.target.matches('.close-widget') || e.target.closest('.close-widget')) {
+            const welcomeWidget = document.getElementById('welcome-widget');
+            if (welcomeWidget) {
+                e.preventDefault();
+                e.stopPropagation();
+                welcomeWidget.style.display = 'none';
+                sessionStorage.setItem('welcomeClosed', 'true');
+            }
+        }
+    })
+    
     // --- KEYBOARD SHORTCUTS ---
     document.addEventListener('keydown', (e) => {
         // Alt + Tab: Switch between windows
@@ -543,6 +555,34 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- START MENU ---
     const startBtn = document.getElementById('start-btn');
     const startMenu = document.getElementById('start-menu');
+    
+    // Create enhanced start menu structure
+    startMenu.innerHTML = `
+        <div class="start-menu-header">
+            <h3 class="start-menu-title">PawanOS</h3>
+            <p class="start-menu-subtitle">Portfolio Experience</p>
+        </div>
+        <div class="start-menu-grid"></div>
+        <div class="start-menu-footer">
+            <div class="start-menu-user">
+                <img src="https://media.licdn.com/dms/image/v2/D5603AQGQAi62iRw1xA/profile-displayphoto-shrink_800_800/B56ZcX1WnDGsAg-/0/1748451552389?e=1756339200&v=beta&t=ovjGwcj0WEH1BH06XuJAO_rHrKL8YzZxV52CFeMWwdM" 
+                     alt="Pawan Joshi" class="start-menu-avatar">
+                <div class="start-menu-user-info">
+                    <div class="start-menu-username">Pawan Joshi</div>
+                    <div class="start-menu-status">AI/ML Developer</div>
+                </div>
+            </div>
+            <div class="start-menu-power">
+                <button class="power-btn" title="Settings" id="power-settings">
+                    <i data-lucide="settings"></i>
+                </button>
+                <button class="power-btn" title="Refresh" id="power-refresh">
+                    <i data-lucide="refresh-cw"></i>
+                </button>
+            </div>
+        </div>
+    `;
+    
     const startMenuGrid = startMenu.querySelector('.start-menu-grid');
     startMenuGrid.innerHTML = apps.map(app => `
         <a href="#" class="start-menu-item" data-app="${app.id}" data-name="${app.name}" data-icon="${app.icon}">
@@ -550,22 +590,46 @@ document.addEventListener('DOMContentLoaded', () => {
             <span>${app.name}</span>
         </a>
     `).join('');
+    
+    // Start menu event handlers
     startBtn.onclick = (e) => {
         e.stopPropagation();
-        startMenu.style.display = startMenu.style.display === 'block' ? 'none' : 'block';
+        const isVisible = startMenu.style.display === 'block';
+        startMenu.style.display = isVisible ? 'none' : 'block';
+        
+        if (!isVisible) {
+            // Re-create icons when menu opens
+            lucide.createIcons();
+        }
     };
+    
     document.addEventListener('click', (e) => {
         if (!startMenu.contains(e.target) && e.target !== startBtn) {
             startMenu.style.display = 'none';
         }
     });
+    
+    // App item handlers
     startMenuGrid.querySelectorAll('.start-menu-item').forEach(item => {
         item.onclick = (e) => {
             e.preventDefault();
             const { app, name, icon } = e.currentTarget.dataset;
             openWindow(app, name, icon);
             startMenu.style.display = 'none';
+            showNotification('App Launched', `Opening ${name}...`);
         };
+    });
+    
+    // Power button handlers
+    document.addEventListener('click', (e) => {
+        if (e.target.closest('#power-settings')) {
+            openWindow('settings', 'Settings', 'settings');
+            startMenu.style.display = 'none';
+        } else if (e.target.closest('#power-refresh')) {
+            showNotification('System Refresh', 'Refreshing PawanOS...');
+            setTimeout(() => location.reload(), 1000);
+            startMenu.style.display = 'none';
+        }
     });
 
     // --- APP INIT ---
@@ -771,6 +835,55 @@ document.addEventListener('DOMContentLoaded', () => {
             };
         }
     }
+    function animateSkillBars(win) {
+        // Get all skill progress bars within the window
+        const skillBars = win.querySelectorAll('.skill-progress');
+        
+        // Create intersection observer to trigger animation when skills section is visible
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Animate each skill bar
+                    skillBars.forEach((bar, index) => {
+                        // Get the target percentage from the data attribute (using data-width)
+                        const targetPercentage = bar.getAttribute('data-width');
+                        
+                        // Reset the bar width to 0
+                        bar.style.width = '0%';
+                        
+                        // Animate with a slight delay for each bar
+                        setTimeout(() => {
+                            bar.style.transition = 'width 1.5s cubic-bezier(0.4, 0, 0.2, 1)';
+                            bar.style.width = targetPercentage + '%';
+                        }, index * 100); // 100ms delay between each bar
+                    });
+                    
+                    // Stop observing after animation triggers
+                    observer.disconnect();
+                }
+            });
+        }, {
+            threshold: 0.3 // Trigger when 30% of the skills section is visible
+        });
+        
+        // Observe the skills section
+        const skillsSection = win.querySelector('.skills-section');
+        if (skillsSection) {
+            observer.observe(skillsSection);
+        } else {
+            // Fallback: if skills section not found, animate immediately
+            skillBars.forEach((bar, index) => {
+                const targetPercentage = bar.getAttribute('data-width');
+                bar.style.width = '0%';
+                
+                setTimeout(() => {
+                    bar.style.transition = 'width 1.5s cubic-bezier(0.4, 0, 0.2, 1)';
+                    bar.style.width = targetPercentage + '%';
+                }, index * 100);
+            });
+        }
+    }
+    
     function initRadarChart(win) { /* Logic remains the same */ }
     function renderProjects(win) { 
         const projectData = [
@@ -1217,8 +1330,594 @@ document.addEventListener('DOMContentLoaded', () => {
         // Initial render
         render();
     }
-    function initMusicPlayer(win) { /* Logic remains the same */ }
-    function initTerminal(win) { /* Logic remains the same */ }
+    function initMusicPlayer(win) { 
+        const playBtn = win.querySelector('#music-play-btn');
+        let isPlaying = false;
+        
+        if (playBtn) {
+            playBtn.onclick = () => {
+                isPlaying = !isPlaying;
+                const icon = playBtn.querySelector('i');
+                if (isPlaying) {
+                    icon.setAttribute('data-lucide', 'pause');
+                    showNotification('Music Player', 'Playing chill lo-fi beats...');
+                } else {
+                    icon.setAttribute('data-lucide', 'play');
+                    showNotification('Music Player', 'Music paused');
+                }
+                lucide.createIcons();
+            };
+        }
+    }
+    
+    function initTerminal(win) {
+        const terminalOutput = win.querySelector('#terminal-output');
+        const terminalInput = win.querySelector('#terminal-input');
+        const terminalForm = win.querySelector('#terminal-form');
+        
+        // Terminal state
+        let currentPath = '/home/pawan';
+        let commandHistory = JSON.parse(localStorage.getItem('terminalHistory')) || [];
+        let historyIndex = commandHistory.length;
+        let isAuthenticated = false;
+        
+        // Portfolio data
+        const portfolioData = {
+            about: {
+                name: 'Pawan Joshi',
+                title: 'AI/ML & Full-Stack Developer',
+                education: 'Computer Science Student at Graphic Era University',
+                role: 'CTO & Co-Founder of Tech Sangi Pvt. Ltd.',
+                achievement: 'Top 35 Finalist - Graph-E-Thon 2025',
+                experience: '3+ years building production-ready applications',
+                focus: 'AI/ML, React Native, Firebase, Full-Stack Development'
+            },
+            skills: {
+                'Industry Knowledge': {
+                    'JavaScript': '90%',
+                    'C (Programming Language)': '80%',
+                    'C++': '85%',
+                    'Python (Programming Language)': '88%',
+                    'AI/ML': '82%'
+                },
+                'Tools & Technologies': {
+                    'React Native': '90%',
+                    'Firebase': '92%',
+                    'Node.js': '85%',
+                    'WordPress (Passed LinkedIn Skill Assessment)': '78%'
+                },
+                'Interpersonal Skills': {
+                    'Leadership': '88%',
+                    'Public Speaking': '82%',
+                    'Creativity': '90%',
+                    'Team Collaboration': '92%',
+                    'Graphic Design': '78%'
+                }
+            },
+            projects: [
+                {
+                    name: 'Zenari - AI Wellness App',
+                    description: 'Developed during Graph-E-Thon 2.0 in 48 hours. Zenari provides empathetic AI chat support, smart journaling, mood analytics, and more.',
+                    tech: ['React Native', 'Firebase', 'AI/ML'],
+                    status: 'Top 35 Finalist'
+                },
+                {
+                    name: 'PawanOS Portfolio',
+                    description: 'Interactive portfolio website designed as an operating system interface.',
+                    tech: ['JavaScript', 'CSS3', 'HTML5', 'Particles.js'],
+                    status: 'Live'
+                },
+                {
+                    name: 'Full-Stack E-commerce',
+                    description: 'Complete e-commerce solution with user authentication, product management, and payment gateway integration.',
+                    tech: ['React.js', 'Node.js', 'MongoDB'],
+                    status: 'In Development'
+                }
+            ],
+            contact: {
+                email: 'me@joshipawan.com.np',
+                linkedin: 'https://www.linkedin.com/in/pwnjoshi/',
+                github: 'https://github.com/pwnjoshi',
+                twitter: 'https://twitter.com/pwnjoshidev'
+            },
+            fileSystem: {
+                '/home/pawan': {
+                    type: 'directory',
+                    contents: ['Documents', 'Projects', 'Skills', 'About', 'Contact', '.bashrc', '.profile']
+                },
+                '/home/pawan/Documents': {
+                    type: 'directory',
+                    contents: ['resume.pdf', 'certificates', 'academic']
+                },
+                '/home/pawan/Projects': {
+                    type: 'directory',
+                    contents: ['zenari-app', 'pawanos-portfolio', 'ecommerce-platform', 'README.md']
+                },
+                '/home/pawan/Skills': {
+                    type: 'directory',
+                    contents: ['programming.json', 'tools.json', 'soft-skills.json']
+                },
+                '/home/pawan/About': {
+                    type: 'file',
+                    content: `# About Pawan Joshi\n\n${portfolioData.about.name} - ${portfolioData.about.title}\n${portfolioData.about.education}\n${portfolioData.about.role}\n\n🏆 ${portfolioData.about.achievement}\n⚡ ${portfolioData.about.experience}\n🎯 Focus: ${portfolioData.about.focus}`
+                },
+                '/home/pawan/Contact': {
+                    type: 'file',
+                    content: `# Contact Information\n\n📧 Email: ${portfolioData.contact.email}\n🔗 LinkedIn: ${portfolioData.contact.linkedin}\n🐙 GitHub: ${portfolioData.contact.github}\n🐦 Twitter: ${portfolioData.contact.twitter}`
+                }
+            }
+        };
+        
+        // Color schemes
+        const colors = {
+            primary: '#00f0ff',
+            secondary: '#ff2f7d',
+            success: '#4ade80',
+            warning: '#f59e0b',
+            error: '#ef4444',
+            info: '#3b82f6',
+            muted: '#a0aec0'
+        };
+        
+        // Terminal commands
+        const commands = {
+            help: {
+                description: 'Show available commands',
+                execute: () => {
+                    const commandList = Object.entries(commands).map(([cmd, info]) => 
+                        `<span style="color: ${colors.primary}">${cmd.padEnd(15)}</span> - ${info.description}`
+                    ).join('\n');
+                    
+                    return `\n<span style="color: ${colors.success}">Available Commands:</span>\n\n${commandList}\n\n<span style="color: ${colors.info}">💡 Tip: Use tab for autocomplete, ↑↓ for history</span>`;
+                }
+            },
+            
+            clear: {
+                description: 'Clear terminal screen',
+                execute: () => {
+                    terminalOutput.innerHTML = '';
+                    return null;
+                }
+            },
+            
+            ls: {
+                description: 'List directory contents',
+                execute: (args) => {
+                    const path = args[0] ? resolvePath(args[0]) : currentPath;
+                    const dir = portfolioData.fileSystem[path];
+                    
+                    if (!dir) {
+                        return `<span style="color: ${colors.error}">ls: cannot access '${args[0] || path}': No such file or directory</span>`;
+                    }
+                    
+                    if (dir.type === 'file') {
+                        return `<span style="color: ${colors.info}">${path.split('/').pop()}</span>`;
+                    }
+                    
+                    const items = dir.contents.map(item => {
+                        const itemPath = `${path}/${item}`;
+                        const itemData = portfolioData.fileSystem[itemPath];
+                        const isDir = itemData?.type === 'directory' || !itemData;
+                        return `<span style="color: ${isDir ? colors.primary : colors.success}">${item}${isDir ? '/' : ''}</span>`;
+                    }).join('  ');
+                    
+                    return items || '<span style="color: ${colors.muted}">Empty directory</span>';
+                }
+            },
+            
+            cd: {
+                description: 'Change directory',
+                execute: (args) => {
+                    if (!args[0]) {
+                        currentPath = '/home/pawan';
+                        return null;
+                    }
+                    
+                    const newPath = resolvePath(args[0]);
+                    const dir = portfolioData.fileSystem[newPath];
+                    
+                    if (!dir || dir.type !== 'directory') {
+                        return `<span style="color: ${colors.error}">cd: ${args[0]}: No such directory</span>`;
+                    }
+                    
+                    currentPath = newPath;
+                    return null;
+                }
+            },
+            
+            pwd: {
+                description: 'Print working directory',
+                execute: () => `<span style="color: ${colors.info}">${currentPath}</span>`
+            },
+            
+            cat: {
+                description: 'Display file contents',
+                execute: (args) => {
+                    if (!args[0]) {
+                        return `<span style="color: ${colors.error}">cat: missing file operand</span>`;
+                    }
+                    
+                    const filePath = resolvePath(args[0]);
+                    const file = portfolioData.fileSystem[filePath];
+                    
+                    if (!file) {
+                        return `<span style="color: ${colors.error}">cat: ${args[0]}: No such file or directory</span>`;
+                    }
+                    
+                    if (file.type === 'directory') {
+                        return `<span style="color: ${colors.error}">cat: ${args[0]}: Is a directory</span>`;
+                    }
+                    
+                    return `<span style="color: ${colors.muted}">${file.content.replace(/\n/g, '<br>')}</span>`;
+                }
+            },
+            
+            about: {
+                description: 'Show about information',
+                execute: () => {
+                    const about = portfolioData.about;
+                    return `\n<span style="color: ${colors.success}">📋 About ${about.name}</span>\n\n` +
+                           `<span style="color: ${colors.primary}">Title:</span> ${about.title}\n` +
+                           `<span style="color: ${colors.primary}">Education:</span> ${about.education}\n` +
+                           `<span style="color: ${colors.primary}">Role:</span> ${about.role}\n` +
+                           `<span style="color: ${colors.primary}">Achievement:</span> ${about.achievement}\n` +
+                           `<span style="color: ${colors.primary}">Experience:</span> ${about.experience}\n` +
+                           `<span style="color: ${colors.primary}">Focus:</span> ${about.focus}\n`;
+                }
+            },
+            
+            skills: {
+                description: 'Show technical skills',
+                execute: (args) => {
+                    const category = args[0];
+                    const skills = portfolioData.skills;
+                    
+                    if (category) {
+                        const categoryData = skills[category] || skills[Object.keys(skills).find(k => k.toLowerCase().includes(category.toLowerCase()))];
+                        if (!categoryData) {
+                            return `<span style="color: ${colors.error}">Category '${category}' not found. Available: ${Object.keys(skills).join(', ')}</span>`;
+                        }
+                        
+                        const skillList = Object.entries(categoryData).map(([skill, level]) => 
+                            `<span style="color: ${colors.info}">${skill}</span>: <span style="color: ${colors.success}">${level}</span>`
+                        ).join('\n');
+                        
+                        return `\n<span style="color: ${colors.primary}">${category}</span>\n\n${skillList}\n`;
+                    }
+                    
+                    const allSkills = Object.entries(skills).map(([category, skillList]) => {
+                        const skills = Object.entries(skillList).map(([skill, level]) => 
+                            `  <span style="color: ${colors.info}">${skill}</span>: <span style="color: ${colors.success}">${level}</span>`
+                        ).join('\n');
+                        return `<span style="color: ${colors.primary}">${category}</span>\n${skills}`;
+                    }).join('\n\n');
+                    
+                    return `\n<span style="color: ${colors.success}">🛠️ Technical Skills</span>\n\n${allSkills}\n`;
+                }
+            },
+            
+            projects: {
+                description: 'Show project portfolio',
+                execute: (args) => {
+                    const projectName = args[0];
+                    const projects = portfolioData.projects;
+                    
+                    if (projectName) {
+                        const project = projects.find(p => p.name.toLowerCase().includes(projectName.toLowerCase()));
+                        if (!project) {
+                            return `<span style="color: ${colors.error}">Project '${projectName}' not found</span>`;
+                        }
+                        
+                        return `\n<span style="color: ${colors.primary}">${project.name}</span>\n\n` +
+                               `<span style="color: ${colors.info}">Description:</span> ${project.description}\n` +
+                               `<span style="color: ${colors.info}">Technologies:</span> ${project.tech.join(', ')}\n` +
+                               `<span style="color: ${colors.info}">Status:</span> <span style="color: ${colors.success}">${project.status}</span>\n`;
+                    }
+                    
+                    const projectList = projects.map(project => 
+                        `<span style="color: ${colors.primary}">${project.name}</span> - ${project.description.substring(0, 60)}...`
+                    ).join('\n');
+                    
+                    return `\n<span style="color: ${colors.success}">🚀 Projects Portfolio</span>\n\n${projectList}\n\n<span style="color: ${colors.muted}">Use 'projects <name>' for details</span>`;
+                }
+            },
+            
+            contact: {
+                description: 'Show contact information',
+                execute: () => {
+                    const contact = portfolioData.contact;
+                    return `\n<span style="color: ${colors.success}">📞 Contact Information</span>\n\n` +
+                           `<span style="color: ${colors.primary}">Email:</span> <a href="mailto:${contact.email}" style="color: ${colors.info}">${contact.email}</a>\n` +
+                           `<span style="color: ${colors.primary}">LinkedIn:</span> <a href="${contact.linkedin}" target="_blank" style="color: ${colors.info}">${contact.linkedin}</a>\n` +
+                           `<span style="color: ${colors.primary}">GitHub:</span> <a href="${contact.github}" target="_blank" style="color: ${colors.info}">${contact.github}</a>\n` +
+                           `<span style="color: ${colors.primary}">Twitter:</span> <a href="${contact.twitter}" target="_blank" style="color: ${colors.info}">${contact.twitter}</a>\n`;
+                }
+            },
+            
+            open: {
+                description: 'Open PawanOS applications',
+                execute: (args) => {
+                    if (!args[0]) {
+                        return `<span style="color: ${colors.error}">Usage: open <app>\nAvailable apps: about, projects, settings, music, file-explorer</span>`;
+                    }
+                    
+                    const appMap = {
+                        'about': { id: 'about', name: 'About', icon: 'user-round' },
+                        'projects': { id: 'projects', name: 'Projects', icon: 'rocket' },
+                        'settings': { id: 'settings', name: 'Settings', icon: 'settings' },
+                        'music': { id: 'music', name: 'Music', icon: 'music' },
+                        'explorer': { id: 'file-explorer', name: 'Explorer', icon: 'folder' },
+                        'file-explorer': { id: 'file-explorer', name: 'Explorer', icon: 'folder' }
+                    };
+                    
+                    const app = appMap[args[0].toLowerCase()];
+                    if (!app) {
+                        return `<span style="color: ${colors.error}">Unknown app: ${args[0]}</span>`;
+                    }
+                    
+                    openWindow(app.id, app.name, app.icon);
+                    return `<span style="color: ${colors.success}">Opening ${app.name}...</span>`;
+                }
+            },
+            
+            theme: {
+                description: 'Toggle dark/light theme',
+                execute: (args) => {
+                    const currentTheme = document.documentElement.getAttribute('data-theme');
+                    const newTheme = args[0] || (currentTheme === 'dark' ? 'light' : 'dark');
+                    
+                    if (!['dark', 'light'].includes(newTheme)) {
+                        return `<span style="color: ${colors.error}">Invalid theme. Use: dark, light</span>`;
+                    }
+                    
+                    document.documentElement.setAttribute('data-theme', newTheme);
+                    localStorage.setItem('theme', newTheme);
+                    updateThemeIcon(newTheme);
+                    
+                    return `<span style="color: ${colors.success}">Theme changed to ${newTheme}</span>`;
+                }
+            },
+            
+            whoami: {
+                description: 'Display current user info',
+                execute: () => `<span style="color: ${colors.info}">pawan@pawanos</span>`
+            },
+            
+            date: {
+                description: 'Display current date and time',
+                execute: () => `<span style="color: ${colors.info}">${new Date().toString()}</span>`
+            },
+            
+            echo: {
+                description: 'Display text',
+                execute: (args) => `<span style="color: ${colors.muted}">${args.join(' ')}</span>`
+            },
+            
+            history: {
+                description: 'Show command history',
+                execute: () => {
+                    if (commandHistory.length === 0) {
+                        return `<span style="color: ${colors.muted}">No commands in history</span>`;
+                    }
+                    
+                    const historyList = commandHistory.map((cmd, index) => 
+                        `<span style="color: ${colors.muted}">${(index + 1).toString().padStart(3)}</span>  <span style="color: ${colors.info}">${cmd}</span>`
+                    ).join('\n');
+                    
+                    return `\n${historyList}\n`;
+                }
+            },
+            
+            neofetch: {
+                description: 'Display system information',
+                execute: () => {
+                    return `\n<span style="color: ${colors.primary}">      ___           ___           ___           ___           ___           ___           ___     </span>\n` +
+                           `<span style="color: ${colors.primary}">     /\  \         /\  \         /\  \         /\  \         /\  \         /\  \         /\  \    </span>\n` +
+                           `<span style="color: ${colors.primary}">    /::\  \       /::\  \       /::\  \       /::\  \        \:\  \       /::\  \       /::\  \   </span>\n` +
+                           `<span style="color: ${colors.primary}">   /:/\:\  \     /:/\:\  \     /:/\:\  \     /:/\:\  \        \:\  \     /:/\:\  \     /:/\ \  \  </span>\n` +
+                           `<span style="color: ${colors.primary}">  /::\~\:\  \   /::\~\:\  \   /::\~\:\  \   /:/  \:\  \   _____\:\  \   /:/  \:\  \   _\:\~\ \  \ </span>\n` +
+                           `<span style="color: ${colors.primary}"> /:/\:\ \:\__\ /:/\:\ \:\__\ /:/\:\ \:\__\ /:/__/ \:\__\ /::::::::\__\ /:/__/ \:\__\ /\ \:\ \ \__\</span>\n` +
+                           `<span style="color: ${colors.primary}"> \/__\:\/:/  / \/__\:\/:/  / \/__\:\/:/  / \:\  \ /:/  / \:\~~\~~\/__/ \:\  \ /:/  / \:\ \:\ \/__/</span>\n` +
+                           `<span style="color: ${colors.primary}">      \::/  /       \::/  /       \::/  /   \:\  /:/  /   \:\  \        \:\  /:/  /   \:\ \:\__\  </span>\n` +
+                           `<span style="color: ${colors.primary}">       \/__/         \/__/         \/__/     \:\/:/  /     \:\  \        \:\/:/  /     \:\/:/  /  </span>\n` +
+                           `<span style="color: ${colors.primary}">                                            \::/  /       \:\__\        \::/  /       \::/  /   </span>\n` +
+                           `<span style="color: ${colors.primary}">                                             \/__/         \/__/         \/__/         \/__/    </span>\n\n` +
+                           `<span style="color: ${colors.info}">OS:</span> PawanOS (Portfolio Edition)\n` +
+                           `<span style="color: ${colors.info}">Developer:</span> Pawan Joshi\n` +
+                           `<span style="color: ${colors.info}">Role:</span> AI/ML & Full-Stack Developer\n` +
+                           `<span style="color: ${colors.info}">University:</span> Graphic Era University\n` +
+                           `<span style="color: ${colors.info}">Experience:</span> 3+ Years\n` +
+                           `<span style="color: ${colors.info}">Specialization:</span> React Native, Firebase, AI/ML\n` +
+                           `<span style="color: ${colors.info}">Achievement:</span> Top 35 Finalist - Graph-E-Thon 2025\n`;
+                }
+            }
+        };
+        
+        // Helper functions
+        function resolvePath(path) {
+            if (path.startsWith('/')) {
+                return path;
+            }
+            
+            if (path === '..') {
+                const parts = currentPath.split('/');
+                parts.pop();
+                return parts.join('/') || '/';
+            }
+            
+            if (path === '.') {
+                return currentPath;
+            }
+            
+            return `${currentPath}/${path}`.replace(/\/+/g, '/');
+        }
+        
+        function addToHistory(command) {
+            if (command.trim() && commandHistory[commandHistory.length - 1] !== command) {
+                commandHistory.push(command);
+                if (commandHistory.length > 100) {
+                    commandHistory.shift();
+                }
+                localStorage.setItem('terminalHistory', JSON.stringify(commandHistory));
+            }
+            historyIndex = commandHistory.length;
+        }
+        
+        function getAutocomplete(input) {
+            const parts = input.split(' ');
+            const command = parts[0];
+            
+            if (parts.length === 1) {
+                // Command completion
+                const matches = Object.keys(commands).filter(cmd => cmd.startsWith(command));
+                return matches.length === 1 ? matches[0] : matches;
+            }
+            
+            // Path completion for commands that accept paths
+            if (['cd', 'ls', 'cat'].includes(command) && parts.length === 2) {
+                const pathInput = parts[1];
+                const basePath = pathInput.includes('/') ? pathInput.substring(0, pathInput.lastIndexOf('/')) : '';
+                const fileName = pathInput.includes('/') ? pathInput.substring(pathInput.lastIndexOf('/') + 1) : pathInput;
+                
+                const searchPath = basePath ? resolvePath(basePath) : currentPath;
+                const dir = portfolioData.fileSystem[searchPath];
+                
+                if (dir && dir.type === 'directory') {
+                    const matches = dir.contents.filter(item => item.startsWith(fileName));
+                    if (matches.length === 1) {
+                        return basePath ? `${basePath}/${matches[0]}` : matches[0];
+                    }
+                    return matches;
+                }
+            }
+            
+            return [];
+        }
+        
+        function executeCommand(input) {
+            const parts = input.trim().split(/\s+/);
+            const command = parts[0].toLowerCase();
+            const args = parts.slice(1);
+            
+            if (!command) return null;
+            
+            if (commands[command]) {
+                return commands[command].execute(args);
+            } else {
+                return `<span style="color: ${colors.error}">Command '${command}' not found. Type 'help' for available commands.</span>`;
+            }
+        }
+        
+        function appendOutput(content, isCommand = false) {
+            if (content === null) return;
+            
+            const line = document.createElement('div');
+            line.style.marginBottom = '0.5rem';
+            line.style.fontFamily = 'var(--font-mono)';
+            line.style.whiteSpace = 'pre-wrap';
+            line.style.wordBreak = 'break-word';
+            
+            if (isCommand) {
+                line.innerHTML = `<span style="color: ${colors.primary}">joshi@PawanOS</span><span style="color: ${colors.muted}">:</span><span style="color: ${colors.info}">${currentPath.replace('/home/pawan', '~')}</span><span style="color: ${colors.muted}">$</span> <span style="color: ${colors.success}">${content}</span>`;
+            } else {
+                line.innerHTML = content;
+            }
+            
+            terminalOutput.appendChild(line);
+            terminalOutput.scrollTop = terminalOutput.scrollHeight;
+        }
+        
+        // Initialize terminal
+        appendOutput('Welcome to PawanOS Terminal v2.1.0');
+        appendOutput(`Type '<span style="color: ${colors.primary}">help</span>' for available commands, '<span style="color: ${colors.primary}">about</span>' for portfolio info.`);
+        appendOutput('');
+        
+        // Event handlers
+        terminalForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const input = terminalInput.value;
+            
+            if (input.trim()) {
+                appendOutput(input, true);
+                addToHistory(input);
+                
+                const output = executeCommand(input);
+                if (output) {
+                    appendOutput(output);
+                }
+                appendOutput('');
+            }
+            
+            terminalInput.value = '';
+        });
+        
+        // Keyboard shortcuts
+        terminalInput.addEventListener('keydown', (e) => {
+            switch (e.key) {
+                case 'ArrowUp':
+                    e.preventDefault();
+                    if (historyIndex > 0) {
+                        historyIndex--;
+                        terminalInput.value = commandHistory[historyIndex] || '';
+                    }
+                    break;
+                    
+                case 'ArrowDown':
+                    e.preventDefault();
+                    if (historyIndex < commandHistory.length - 1) {
+                        historyIndex++;
+                        terminalInput.value = commandHistory[historyIndex] || '';
+                    } else {
+                        historyIndex = commandHistory.length;
+                        terminalInput.value = '';
+                    }
+                    break;
+                    
+                case 'Tab':
+                    e.preventDefault();
+                    const autocomplete = getAutocomplete(terminalInput.value);
+                    if (typeof autocomplete === 'string') {
+                        const parts = terminalInput.value.split(' ');
+                        if (parts.length === 1) {
+                            terminalInput.value = autocomplete + ' ';
+                        } else {
+                            parts[parts.length - 1] = autocomplete;
+                            terminalInput.value = parts.join(' ');
+                        }
+                    } else if (Array.isArray(autocomplete) && autocomplete.length > 0) {
+                        appendOutput(`Possible completions: ${autocomplete.join('  ')}`);
+                        appendOutput('');
+                    }
+                    break;
+                    
+                case 'l':
+                    if (e.ctrlKey) {
+                        e.preventDefault();
+                        commands.clear.execute();
+                    }
+                    break;
+                    
+                case 'c':
+                    if (e.ctrlKey) {
+                        e.preventDefault();
+                        terminalInput.value = '';
+                        appendOutput('^C');
+                        appendOutput('');
+                    }
+                    break;
+            }
+        });
+        
+        // Focus terminal input when terminal is clicked
+        win.addEventListener('click', () => {
+            terminalInput.focus();
+        });
+        
+        // Auto-focus when terminal opens
+        setTimeout(() => {
+            terminalInput.focus();
+        }, 100);
+    }
 
     // --- INITIALIZE OS ---
     const savedWallpaper = localStorage.getItem('wallpaper');
@@ -1227,16 +1926,4 @@ document.addEventListener('DOMContentLoaded', () => {
     particlesJS('particles-js', {"particles":{"number":{"value":80,"density":{"enable":true,"value_area":800}},"color":{"value":"#ffffff"},"shape":{"type":"circle"},"opacity":{"value":0.5,"random":true},"size":{"value":3,"random":true},"line_linked":{"enable":false},"move":{"enable":true,"speed":1,"direction":"none","random":true,"straight":false,"out_mode":"out","bounce":false}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":false},"onclick":{"enable":false},"resize":true}},"retina_detect":true});
     lucide.createIcons();
     
-    // Setup welcome widget close button after lucide icons are created
-    setTimeout(() => {
-        const closeBtn = welcomeWidget.querySelector('.close-widget');
-        if (closeBtn) {
-            closeBtn.onclick = (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                welcomeWidget.style.display = 'none';
-                sessionStorage.setItem('welcomeClosed', 'true');
-            };
-        }
-    }, 100);
 });
