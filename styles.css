@@ -1,0 +1,239 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Source+Code+Pro:wght@400;700&display=swap');
+
+:root {
+    --background-color: #008080;
+    --window-bg: #c0c0c0;
+    --window-header: #000080;
+    --text-color: #222;
+    --border-light: #ffffff;
+    --border-dark: #808080;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    overflow: hidden;
+    color: var(--text-color);
+    height: 100vh;
+    width: 100vw;
+}
+
+.desktop {
+    width: 100%;
+    height: calc(100vh - 40px);
+    position: relative;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80px;
+    text-align: center;
+    color: white;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.icon i {
+    font-size: 36px;
+    margin-bottom: 8px;
+}
+
+.icon span {
+    font-size: 14px;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 2px 4px;
+    border-radius: 3px;
+}
+
+.window {
+    display: none;
+    position: absolute;
+    top: 50px;
+    left: 150px;
+    width: 600px;
+    max-width: 90%;
+    min-height: 300px;
+    background-color: var(--window-bg);
+    border: 2px solid;
+    border-color: var(--border-light) var(--border-dark) var(--border-dark) var(--border-light);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    resize: both;
+    overflow: hidden;
+    flex-direction: column;
+}
+
+.title-bar {
+    background-color: var(--window-header);
+    color: white;
+    padding: 5px 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: move;
+    height: 30px;
+    box-sizing: border-box;
+}
+
+.title-bar .title {
+    font-weight: bold;
+}
+
+.buttons .close-btn {
+    background: #c0c0c0;
+    color: black;
+    font-weight: bold;
+    border: 1px solid;
+    border-color: var(--border-light) var(--border-dark) var(--border-dark) var(--border-light);
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.content {
+    padding: 15px;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.content h1, .content h2 {
+    margin-top: 0;
+}
+
+.content hr {
+    border: 0;
+    border-top: 1px solid var(--border-dark);
+}
+
+.content a {
+    color: #0000ee;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.skills-grid span {
+    background: #e0e0e0;
+    padding: 8px;
+    border-radius: 4px;
+    text-align: center;
+    border: 1px solid var(--border-dark);
+}
+
+.soft-skills {
+    list-style: none;
+    padding: 0;
+}
+
+.soft-skills li::before {
+    content: "✓";
+    margin-right: 8px;
+    color: green;
+}
+
+.taskbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background-color: var(--window-bg);
+    border-top: 2px solid var(--border-light);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5px;
+    z-index: 1000;
+}
+
+.start-menu {
+    font-weight: bold;
+    border: 2px solid;
+    border-color: var(--border-light) var(--border-dark) var(--border-dark) var(--border-light);
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.time {
+    border: 1px solid var(--border-dark);
+    padding: 5px 10px;
+}
+
+/* Terminal Styles */
+.terminal-content {
+    background-color: #000;
+    color: #0f0;
+    font-family: 'Source Code Pro', monospace;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+#terminal-output {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+#terminal-output p {
+    margin: 0 0 5px 0;
+    word-break: break-all;
+}
+
+.terminal-input-line {
+    display: flex;
+    padding: 0 10px 10px 10px;
+}
+
+.prompt {
+    margin-right: 8px;
+    color: #00a8ff;
+}
+
+#terminal-input {
+    flex-grow: 1;
+    background: none;
+    border: none;
+    color: #0f0;
+    font-family: 'Source Code Pro', monospace;
+}
+
+#terminal-input:focus {
+    outline: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .desktop {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        padding: 10px;
+        gap: 10px;
+    }
+    
+    .window {
+        width: 95%;
+        height: 80%;
+        top: 5%;
+        left: 2.5%;
+        resize: none;
+    }
+
+    .icon {
+        width: auto;
+    }
+}
