@@ -1,164 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- SEO Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pawan Joshi | Portfolio</title>
+    <title>Pawan Joshi | Full-Stack & AI/ML Developer</title>
+    <meta name="description" content="Pawan Joshi's portfolio. A Computer Science undergraduate at GEU specializing in Full-Stack Development, AI/ML, and building real-world tech with impact.">
+    <meta name="keywords" content="Pawan Joshi, Full-Stack Developer, AI/ML, React Native, Python, Firebase, Portfolio, GEU, Dehradun">
+    <meta name="author" content="Pawan Joshi">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://iampawan.me/">
+    <meta property="og:title" content="Pawan Joshi | Full-Stack & AI/ML Developer">
+    <meta property="og:description" content="Driven CS undergrad building impactful tech solutions. Explore my projects, skills, and journey.">
+    <meta property="og:image" content="https://placehold.co/1200x630/0a0a0a/ffffff?text=Pawan+Joshi">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://iampawan.me/">
+    <meta property="twitter:title" content="Pawan Joshi | Full-Stack & AI/ML Developer">
+    <meta property="twitter:description" content="Driven CS undergrad building impactful tech solutions. Explore my projects, skills, and journey.">
+    <meta property="twitter:image" content="https://placehold.co/1200x630/0a0a0a/ffffff?text=Pawan+Joshi">
+
+    <!-- Favicon, Fonts, and Stylesheet -->
+    <link rel="icon" href="https://placehold.co/32x32/0a0a0a/ffffff?text=PJ" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="desktop">
-        <div class="icon" id="aboutIcon">
-            <i class="fas fa-user-circle"></i>
-            <span>AboutMe.txt</span>
+
+    <div id="desktop">
+        <!-- Desktop Icons -->
+        <div class="desktop-icon" data-window="about">
+            <i class="fas fa-user-astronaut fa-2x"></i>
+            <span>AboutMe.md</span>
         </div>
-        <div class="icon" id="projectsIcon">
-            <i class="fas fa-rocket"></i>
+        <div class="desktop-icon" data-window="projects">
+            <i class="fas fa-rocket fa-2x"></i>
             <span>Projects</span>
         </div>
-        <div class="icon" id="skillsIcon">
-            <i class="fas fa-code"></i>
-            <span>Skills.md</span>
+        <div class="desktop-icon" data-window="skills">
+            <i class="fas fa-code-branch fa-2x"></i>
+            <span>Skills</span>
         </div>
-        <div class="icon" id="eduIcon">
-            <i class="fas fa-graduation-cap"></i>
+        <div class="desktop-icon" data-window="education">
+            <i class="fas fa-graduation-cap fa-2x"></i>
             <span>Education</span>
         </div>
-        <div class="icon" id="terminalIcon">
-            <i class="fas fa-terminal"></i>
+         <div class="desktop-icon" data-window="terminal">
+            <i class="fas fa-terminal fa-2x"></i>
             <span>Terminal</span>
         </div>
+    </div>
 
-        <div class="window" id="aboutWindow">
+    <!-- Window Containers -->
+    <div id="window-container">
+        <div class="window" id="about-window" style="display:none;">
             <div class="title-bar">
                 <span class="title">👤 About Me</span>
                 <div class="buttons">
-                    <span class="close-btn">&times;</span>
+                    <span class="close-btn" data-window="about">&times;</span>
                 </div>
             </div>
             <div class="content">
-                <h1>Pawan Joshi <span class="pronouns">(He/Him)</span></h1>
-                <p class="tagline">CS Undergrad @ GEU | Full-Stack & AI/ML Dev | Building Real-World Tech with Impact</p>
-                <hr>
-                <h3>About Me</h3>
+                <h1 class="text-2xl font-bold">Pawan Joshi <span class="text-gray-400 text-lg">(He/Him)</span></h1>
+                <p class="tagline text-blue-300">CS Undergrad @ GEU | Full-Stack & AI/ML Dev</p>
+                <hr class="my-4 border-gray-600">
                 <p>I’m Pawan, a driven Computer Science undergraduate at Graphic Era University with a deep passion for building impactful tech solutions that address real-world challenges.</p>
-                <h3>Connect with Me</h3>
-                <p>
-                    <i class="fas fa-globe"></i> <a href="https://iampawan.me" target="_blank">iampawan.me</a> |
-                    <i class="fab fa-linkedin"></i> <a href="https://linkedin.com/in/pwnjoshi" target="_blank">linkedin.com/in/pwnjoshi</a> |
-                    <i class="fas fa-map-marker-alt"></i> Dehradun, India
-                </p>
-                <h3>Soft Skills</h3>
-                <ul class="soft-skills">
-                    <li>Communication</li>
-                    <li>Teamwork</li>
-                    <li>Creativity</li>
-                    <li>Mentorship</li>
-                    <li>Growth Mindset</li>
-                </ul>
+                <p class="mt-4">My journey in tech is fueled by curiosity and a desire to merge creativity with robust engineering. From developing full-stack applications to exploring the depths of AI and machine learning, I am constantly seeking opportunities to learn, grow, and contribute to innovative projects.</p>
             </div>
         </div>
 
-        <div class="window" id="projectsWindow">
-            <div class="title-bar">
-                <span class="title">💡 Projects</span>
+        <div class="window" id="projects-window" style="display:none;">
+             <div class="title-bar">
+                <span class="title">💡 Projects & Achievements</span>
                 <div class="buttons">
-                    <span class="close-btn">&times;</span>
+                    <span class="close-btn" data-window="projects">&times;</span>
                 </div>
             </div>
             <div class="content">
-                <h2>Key Achievements</h2>
-                <p><strong>Graph-E-Thon 2025:</strong> Top 35 Finalist out of 2500+</p>
-                <hr>
-                <h2>🔷 Zenari (AI Wellness Companion App)</h2>
-                <p>Built in 48 hours during Graph-E-Thon, Zenari is an AI-powered emotional wellness companion.</p>
-                <h4>Features:</h4>
-                <ul>
-                    <li>AI chat (Dr. Zenari) with mood-aware support</li>
-                    <li>AI Journaling & Mood tracking</li>
-                    <li>Breathing techniques & mini-courses</li>
-                    <li>Sound therapy (e.g., ocean waves)</li>
-                    <li>Gamification (achievements, streaks)</li>
-                    <li>Mindful games & Expert support connection</li>
-                </ul>
+                 <h2 class="font-bold text-xl mb-2">🔷 Zenari (AI Wellness Companion App)</h2>
+                 <p class="text-sm text-blue-300 mb-2">🏆 Top 35 Finalist @ Graph-E-Thon 2025 (out of 2500+)</p>
+                 <p class="text-gray-400 mb-4">An AI-powered emotional wellness companion built in 48 hours. Features AI chat, mood tracking, journaling, sound therapy, and gamification.</p>
+                 <div class="tags">
+                    <span>React Native</span><span>Firebase</span><span>AI/ML</span><span>Hackathon</span>
+                 </div>
             </div>
         </div>
 
-        <div class="window" id="skillsWindow">
+        <div class="window" id="skills-window" style="display:none;">
             <div class="title-bar">
                 <span class="title">🔧 Skills & Interests</span>
                 <div class="buttons">
-                    <span class="close-btn">&times;</span>
+                    <span class="close-btn" data-window="skills">&times;</span>
                 </div>
             </div>
             <div class="content">
-                <h2>Programming & Tech Stack</h2>
-                <div class="skills-grid">
-                    <span>React Native</span>
-                    <span>Python</span>
-                    <span>JavaScript</span>
-                    <span>HTML</span>
-                    <span>CSS</span>
-                    <span>Firebase</span>
-                    <span>Full-Stack Dev</span>
-                    <span>WordPress</span>
+                <h3 class="font-bold text-lg mb-2">Programming & Tech Stack</h3>
+                <div class="tags">
+                    <span>React Native</span><span>Python</span><span>JavaScript</span><span>HTML</span><span>CSS</span><span>Firebase</span><span>Full-Stack</span><span>WordPress</span>
                 </div>
-                <h2>Other Strengths</h2>
-                <div class="skills-grid">
-                    <span>AI/ML</span>
-                    <span>Public Speaking</span>
-                    <span>Leadership</span>
-                    <span>Music (Guitar/Vocals)</span>
+                <h3 class="font-bold text-lg mt-4 mb-2">Other Strengths</h3>
+                 <div class="tags">
+                    <span>AI/ML</span><span>Public Speaking</span><span>Leadership</span><span>Music (Guitar/Vocals)</span>
                 </div>
             </div>
         </div>
 
-        <div class="window" id="eduWindow">
+        <div class="window" id="education-window" style="display:none;">
             <div class="title-bar">
                 <span class="title">🎓 Education</span>
                 <div class="buttons">
-                    <span class="close-btn">&times;</span>
+                    <span class="close-btn" data-window="education">&times;</span>
                 </div>
             </div>
             <div class="content">
-                <h2>Graphic Era Deemed to be University</h2>
-                <p><strong>Program:</strong> B.Tech – Computer Science (2024 – 2028)</p>
-                <p><strong>Focus:</strong> AI, Machine Learning, Software Development</p>
-                <p><strong>Involvement:</strong> Technical clubs, Hackathons</p>
-                <hr>
-                <h2>Global Academy Secondary School</h2>
-                <p><strong>Program:</strong> Secondary Education Examination (SEE) (2019 – 2021)</p>
+                <h3 class="text-xl font-bold">Graphic Era Deemed to be University</h3>
+                <p class="text-blue-300">B.Tech, Computer Science | Aug 2024 – 2028</p>
+                <p class="text-gray-400 mt-2">Focusing on Artificial Intelligence, Machine Learning, and advanced Software Development.</p>
+                <hr class="my-4 border-gray-600">
+                <h3 class="text-xl font-bold">Global Academy Secondary School</h3>
+                <p class="text-blue-300">Secondary Education Examination (SEE) | 2019 – 2021</p>
             </div>
         </div>
-        
-        <div class="window" id="terminalWindow">
+
+        <div class="window" id="terminal-window" style="display:none;">
             <div class="title-bar">
-                <span class="title">👨‍💻 Terminal</span>
+                <span class="title">👨‍💻 pwnOS Terminal</span>
                 <div class="buttons">
-                    <span class="close-btn">&times;</span>
+                    <span class="close-btn" data-window="terminal">&times;</span>
                 </div>
             </div>
             <div class="content terminal-content">
-                <div id="terminal-output">
-                    <p>PawanOS [Version 1.0.0]</p>
-                    <p>(c) 2025 Pawan Joshi. All rights reserved.</p>
-                    <p>Type 'help' to see available commands.</p>
-                </div>
+                <div id="terminal-output"></div>
                 <div class="terminal-input-line">
                     <span class="prompt">pawan@desktop:~$</span>
-                    <input type="text" id="terminal-input" autofocus>
+                    <input type="text" id="terminal-input" autofocus autocomplete="off">
                 </div>
             </div>
         </div>
-
     </div>
 
-    <div class="taskbar">
-        <div class="start-menu">
-            <i class="fab fa-dev"></i> START
-        </div>
-        <div class="time" id="clock"></div>
+    <div id="dock">
+        <div class="dock-separator"></div>
     </div>
 
     <script src="script.js"></script>
