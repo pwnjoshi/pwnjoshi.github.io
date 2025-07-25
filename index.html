@@ -33,32 +33,48 @@
 </head>
 <body>
 
-    <div id="desktop">
-        <!-- Desktop Icons -->
-        <div class="desktop-icon" data-window="about">
-            <i class="fas fa-user-astronaut fa-2x"></i>
-            <span>AboutMe.md</span>
+    <div id="desktop-container">
+        <canvas id="particle-canvas"></canvas>
+        <div id="top-menu-bar">
+            <div class="menu-item logo">
+                <i class="fab fa-dev"></i>
+                <span>pwnOS</span>
+            </div>
+            <div id="clock" class="menu-item"></div>
         </div>
-        <div class="desktop-icon" data-window="projects">
-            <i class="fas fa-rocket fa-2x"></i>
-            <span>Projects</span>
-        </div>
-        <div class="desktop-icon" data-window="skills">
-            <i class="fas fa-code-branch fa-2x"></i>
-            <span>Skills</span>
-        </div>
-        <div class="desktop-icon" data-window="education">
-            <i class="fas fa-graduation-cap fa-2x"></i>
-            <span>Education</span>
-        </div>
-         <div class="desktop-icon" data-window="terminal">
-            <i class="fas fa-terminal fa-2x"></i>
-            <span>Terminal</span>
+
+        <div id="desktop">
+            <!-- Desktop Icons -->
+            <div class="desktop-icon" data-window="about">
+                <i class="fas fa-user-astronaut fa-2x"></i>
+                <span>AboutMe.md</span>
+            </div>
+            <div class="desktop-icon" data-window="projects">
+                <i class="fas fa-rocket fa-2x"></i>
+                <span>Projects</span>
+            </div>
+            <div class="desktop-icon" data-window="skills">
+                <i class="fas fa-code-branch fa-2x"></i>
+                <span>Skills</span>
+            </div>
+            <div class="desktop-icon" data-window="education">
+                <i class="fas fa-graduation-cap fa-2x"></i>
+                <span>Education</span>
+            </div>
+            <div class="desktop-icon" data-window="terminal">
+                <i class="fas fa-terminal fa-2x"></i>
+                <span>Terminal</span>
+            </div>
+            <div class="desktop-icon" data-window="settings">
+                <i class="fas fa-cog fa-2x"></i>
+                <span>Settings</span>
+            </div>
         </div>
     </div>
 
     <!-- Window Containers -->
     <div id="window-container">
+        <!-- About Window -->
         <div class="window" id="about-window" style="display:none;">
             <div class="title-bar">
                 <span class="title">👤 About Me</span>
@@ -75,6 +91,7 @@
             </div>
         </div>
 
+        <!-- Projects Window -->
         <div class="window" id="projects-window" style="display:none;">
              <div class="title-bar">
                 <span class="title">💡 Projects & Achievements</span>
@@ -92,6 +109,7 @@
             </div>
         </div>
 
+        <!-- Skills Window -->
         <div class="window" id="skills-window" style="display:none;">
             <div class="title-bar">
                 <span class="title">🔧 Skills & Interests</span>
@@ -111,6 +129,7 @@
             </div>
         </div>
 
+        <!-- Education Window -->
         <div class="window" id="education-window" style="display:none;">
             <div class="title-bar">
                 <span class="title">🎓 Education</span>
@@ -128,6 +147,7 @@
             </div>
         </div>
 
+        <!-- Terminal Window -->
         <div class="window" id="terminal-window" style="display:none;">
             <div class="title-bar">
                 <span class="title">👨‍💻 pwnOS Terminal</span>
@@ -140,6 +160,25 @@
                 <div class="terminal-input-line">
                     <span class="prompt">pawan@desktop:~$</span>
                     <input type="text" id="terminal-input" autofocus autocomplete="off">
+                </div>
+            </div>
+        </div>
+        
+        <!-- Settings Window -->
+        <div class="window" id="settings-window" style="display:none;">
+            <div class="title-bar">
+                <span class="title">⚙️ Settings</span>
+                <div class="buttons">
+                    <span class="close-btn" data-window="settings">&times;</span>
+                </div>
+            </div>
+            <div class="content">
+                <h3 class="font-bold text-lg mb-2">Appearance</h3>
+                <p class="text-gray-400 mb-4">Change the desktop wallpaper.</p>
+                <div id="wallpaper-options" class="tags">
+                    <button class="wallpaper-btn" data-bg="url('https://images.unsplash.com/photo-1554415707-6e8cfc93a23e?q=80&w=2070&auto=format&fit=crop')">Default</button>
+                    <button class="wallpaper-btn" data-bg="url('https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=2070&auto=format&fit=crop')">Mountains</button>
+                    <button class="wallpaper-btn" data-bg="url('https://images.unsplash.com/photo-1487017159836-4e23ece2e4cf?q=80&w=2071&auto=format&fit=crop')">Abstract</button>
                 </div>
             </div>
         </div>
