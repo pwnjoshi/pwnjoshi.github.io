@@ -1,5 +1,10 @@
 # 🖥️ Pawan Joshi | Interactive Portfolio
-An interactive, OS-inspired developer portfolio built with vanilla **HTML, CSS, and JavaScript**.
+[![Website](https://img.shields.io/badge/Website-iampawan.me-blue?style=for-the-badge&logo=google-chrome)](https://iampawan.me)
+[![GitHub Pages](https://img.shields.io/badge/Live-Demo-black?style=for-the-badge&logo=github)](https://pwnjoshi.github.io)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Pawan%20Joshi-0A66C2?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/pawan-joshi)
+[![Stars](https://img.shields.io/github/stars/pwnjoshi/pwnjoshi.github.io?style=for-the-badge&logo=github)](https://github.com/pwnjoshi/pwnjoshi.github.io/stargazers)
+
+An interactive, OS-inspired developer portfolio built with **HTML, CSS, and JavaScript** that mimics a retro desktop environment.
 
 ---
 
@@ -10,44 +15,40 @@ An interactive, OS-inspired developer portfolio built with vanilla **HTML, CSS, 
 ---
 
 ## ✨ Features
-- 🖥️ **OS-Inspired UI** – A responsive desktop-style interface that works across all devices.
-- 🪟 **Interactive Windows** – Sections like *About, Projects, and Skills* open in draggable and resizable windows.
-- 👨‍💻 **Functional Terminal** – A built-in CLI with commands like `help`, `neofetch`, and `open projects`.
-- 📱 **Fully Responsive** – Seamless experience on both mobile and desktop.
-- ⚡ **Lightweight & Fast** – Built with pure HTML, CSS, and JS, no heavy frameworks.
+- 🖥️ **OS-Inspired UI** – Retro desktop-style interface across all devices.
+- 🪟 **Interactive Windows** – Draggable & resizable windows for *About, Projects, Skills*.
+- 👨‍💻 **Functional Terminal** – Commands like `help`, `neofetch`, and `open projects`.
+- 📱 **Responsive Design** – Optimized for both mobile and desktop.
+- ⚡ **Lightweight & Fast** – Pure HTML, CSS, and JS, no heavy frameworks.
 
 ---
 
 ## 💻 Tech Stack
-| Technology     | Purpose |
-|----------------|---------|
-| **HTML**       | Core structure and markup |
-| **CSS**        | Styling, retro OS theme, window UI, and animations |
-| **JavaScript** | Interactivity, window management, and terminal logic |
-| **Font Awesome** | Icons for clean UI |
+| Technology       | Purpose |
+|------------------|---------|
+| **HTML5**        | Core structure and markup |
+| **CSS3**         | Styling, retro OS theme, window UI, animations |
+| **JavaScript (ES6+)** | Interactivity, window management, terminal logic |
+| **Font Awesome** | Icons for a polished look |
 | **GitHub Pages** | Hosting the live portfolio |
 
 ---
 
 ## 👨‍💻 Terminal Commands
-The built-in terminal supports:
-
-| Command         | Description |
-|-----------------|-------------|
-| `help`          | Lists all available commands |
-| `about`         | Displays a short bio about the developer |
-| `projects`      | Shows a list of key projects |
-| `skills`        | Displays the developer's technical skills and tools |
-| `contact`       | Provides contact links (Portfolio, LinkedIn, GitHub) |
+| Command          | Description |
+|------------------|-------------|
+| `help`           | Lists all available commands |
+| `about`          | Shows a short bio about the developer |
+| `projects`       | Displays key projects |
+| `skills`         | Lists technical skills and tools |
+| `contact`        | Provides contact links |
 | `open <section>` | Opens a specific window (e.g., `open projects`) |
-| `neofetch`      | Shows an OS-style summary of the developer's profile |
-| `clear`         | Clears the terminal screen |
+| `neofetch`       | Shows an OS-style developer summary |
+| `clear`          | Clears the terminal screen |
 
 ---
 
 ## 🛠️ How To Run Locally
-Clone and open in your browser:
-
 ```bash
 git clone https://github.com/pwnjoshi/pwnjoshi.github.io.git
 cd pwnjoshi.github.io
@@ -60,20 +61,20 @@ open index.html   # or just double-click index.html
 ```
 pwnjoshi.github.io/
 ├── index.html      # Main entry point for the portfolio
-├── style.css       # All desktop-style UI & animation styling
-├── script.js       # Core interactivity and terminal logic
+├── style.css       # Desktop-style UI & animations
+├── script.js       # Terminal logic & interactivity
 ├── manifest.json   # Web app manifest for PWA features
-└── README.md       # Documentation file
+└── README.md       # Documentation
 ```
 
 ---
 
 ## 🎯 Roadmap & Future Enhancements
-- Add more terminal commands and features.
-- Implement a file system simulation.
-- Create additional "desktop apps" to open.
-- Add sound effects for interactivity.
-- Support multiple UI themes and customization.
+- 🔧 More terminal commands & features.
+- 📂 File system simulation.
+- 🖼️ Additional "desktop apps".
+- 🔊 Interactive sound effects.
+- 🎨 Theme customization & UI personalization.
 
 ---
 
@@ -82,4 +83,4 @@ pwnjoshi.github.io/
 - 🐙 **GitHub:** [@pwnjoshi](https://github.com/pwnjoshi)
 - 💼 **LinkedIn:** [Pawan Joshi](https://linkedin.com/in/pawan-joshi)
 
-⭐ *If you liked this project, please consider giving it a star!*
+⭐ *If you found this project useful or inspiring, give it a star!*
