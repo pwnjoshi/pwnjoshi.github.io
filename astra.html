@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEAM ASTRA - ARTAMS Project Hub v6.0 (Modern UI)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+    <style>
+        :root {
+            --background-start-rgb: 15, 23, 42;
+            --background-end-rgb: 51, 65, 85;
+            --glow-color: 34, 211, 238; /* Cyan */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            background-color: #0f172a; /* slate-900 */
+            color: #e2e8f0; /* slate-200 */
+        }
+
+        @keyframes background-pan {
+            from { background-position: 0% center; }
+            to { background-position: -200% center; }
+        }
+
+        .animated-gradient-bg {
+            background: linear-gradient(
+                90deg,
+                rgb(var(--background-start-rgb)),
+                rgb(var(--background-end-rgb)),
+                rgb(var(--background-start-rgb))
+            );
+            background-size: 200% auto;
+            animation: background-pan 15s linear infinite;
+        }
+
+        .glass-card {
+            background: rgba(30, 41, 59, 0.5); /* slate-800 with opacity */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(51, 65, 85, 0.5); /* slate-700 with opacity */
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            background: rgba(51, 65, 85, 0.7);
+            border-color: rgba(71, 85, 105, 0.8);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .tree ul {
+            position: relative; padding-top: 2rem; display: flex; justify-content: center; flex-wrap: wrap;
+        }
+        .tree li {
+            display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; padding: 1rem 0.5rem 0 0.5rem;
+        }
+        .tree li::before, .tree li::after {
+            content: ''; position: absolute; top: 0; right: 50%; border-top: 2px solid #94a3b8; width: 50%; height: 2rem;
+        }
+        .tree li::after {
+            right: auto; left: 50%; border-left: 2px solid #94a3b8;
+        }
+        .tree li:only-child::after, .tree li:only-child::before { display: none; }
+        .tree li:first-child::before, .tree li:last-child::after { border: 0 none; }
+        .tree li:last-child::before { border-right: 2px solid #94a3b8; border-bottom-right-radius: 0.5rem; }
+        .tree li:first-child::after { border-top-left-radius: 0.5rem; }
+        .tree > ul > li::before, .tree > ul > li::after { border-top: none; }
+
+        .tree-node:hover {
+            box-shadow: 0 0 15px rgba(var(--glow-color), 0.5);
+        }
+    </style>
+</head>
+<body class="bg-slate-900">
+
+    <!-- Header & Navigation -->
+    <header class="bg-slate-900/70 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-slate-800">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-white">
+                TEAM ASTRA <span class="text-cyan-400">|</span> ARTAMS
+            </div>
+            <div>
+                <a href="#overview" class="px-4 py-2 text-slate-300 font-semibold rounded-lg hover:bg-slate-700 hover:text-white transition-colors duration-300">Overview</a>
+                <a href="#milestone1" class="px-4 py-2 text-slate-300 font-semibold rounded-lg hover:bg-slate-700 hover:text-white transition-colors duration-300">Milestone 1</a>
+                <a href="#milestone2" class="px-4 py-2 text-slate-300 font-semibold rounded-lg hover:bg-slate-700 hover:text-white transition-colors duration-300">Milestone 2</a>
+                <a href="#repo" class="px-4 py-2 text-slate-300 font-semibold rounded-lg hover:bg-slate-700 hover:text-white transition-colors duration-300">Repo</a>
+                <a href="#roadmap" class="px-4 py-2 text-slate-300 font-semibold rounded-lg hover:bg-slate-700 hover:text-white transition-colors duration-300">Roadmap</a>
+                <a href="#team" class="px-4 py-2 text-slate-300 font-semibold rounded-lg hover:bg-slate-700 hover:text-white transition-colors duration-300">Team</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+        <!-- Hero Section -->
+        <section id="hero" class="text-center py-24 relative overflow-hidden rounded-3xl animated-gradient-bg my-8">
+             <div class="absolute inset-0 bg-grid-slate-800 [mask-image:linear-gradient(to_bottom,white,transparent)]"></div>
+            <div class="relative z-10">
+                <h1 class="text-6xl font-black text-white mb-4 tracking-tight">ARTAMS Project Hub</h1>
+                <h2 class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-6">AI-Powered Development</h2>
+                <p class="text-xl text-slate-300 max-w-3xl mx-auto">
+                    The ultimate guide for building our full-featured attendance system, from core logic to a live web dashboard.
+                </p>
+            </div>
+        </section>
+
+        <!-- Project Overview -->
+        <section id="overview" class="py-24">
+            <div class="text-center">
+                <h2 class="text-4xl font-black text-white mb-3">Project Overview</h2>
+                <p class="text-lg text-slate-400 mb-12">Solving real-world attendance challenges with smart technology.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="glass-card p-8 rounded-2xl">
+                     <h3 class="text-2xl font-bold text-red-400 mb-4 flex items-center"><i class="fas fa-exclamation-triangle mr-3"></i>The Problem</h3>
+                    <p class="text-slate-300">Traditional attendance methods are slow and vulnerable to "proxy attendance," wasting valuable class time and undermining academic integrity.</p>
+                </div>
+                <div class="glass-card p-8 rounded-2xl">
+                    <h3 class="text-2xl font-bold text-green-400 mb-4 flex items-center"><i class="fas fa-shield-alt mr-3"></i>Our Solution</h3>
+                    <p class="text-slate-300">ARTAMS uses dynamic QR codes and GPS verification, accessible from a web interface with a real-time dashboard and data export capabilities.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Milestone 1: Core Logic & CLI -->
+        <section id="milestone1" class="py-24 glass-card rounded-3xl">
+             <div class="text-center">
+                <h2 class="text-4xl font-black text-white mb-3">Milestone 1: Core Logic & CLI Demo</h2>
+                <p class="text-lg text-slate-400 mb-12">Building and perfecting the backend logic in a simulated CLI environment.</p>
+            </div>
+            <div class="max-w-3xl mx-auto">
+                 <div class="flex items-center p-4 mb-4">
+                    <div class="w-16 h-16 bg-slate-700 text-cyan-400 rounded-full flex items-center justify-center text-2xl shadow-lg shrink-0 border-2 border-slate-600"><i class="fas fa-window-maximize"></i></div>
+                    <div class="ml-6">
+                        <h4 class="text-xl font-bold text-white">1. The Two-Terminal Setup</h4>
+                        <p class="text-slate-400">Open two terminals: one for the **Teacher** and one for the **Student**. Run `./artams_cli` in each to simulate the real-time interaction.</p>
+                    </div>
+                </div>
+                <div class="text-slate-300 text-4xl my-2 text-center"><i class="fas fa-arrow-down"></i></div>
+
+                 <div class="flex items-center p-4 mb-4">
+                    <div class="w-16 h-16 bg-slate-700 text-cyan-400 rounded-full flex items-center justify-center text-2xl shadow-lg shrink-0 border-2 border-slate-600"><i class="fas fa-key"></i></div>
+                    <div class="ml-6">
+                        <h4 class="text-xl font-bold text-white">2. Teacher Generates a Dynamic Token</h4>
+                        <p class="text-slate-400">In the **Teacher's terminal**, start a session. The CLI displays a secure, expiring token, simulating the QR code.</p>
+                    </div>
+                </div>
+                <div class="text-slate-300 text-4xl my-2 text-center"><i class="fas fa-arrow-down"></i></div>
+
+                 <div class="flex items-center p-4 mb-4">
+                    <div class="w-16 h-16 bg-slate-700 text-cyan-400 rounded-full flex items-center justify-center text-2xl shadow-lg shrink-0 border-2 border-slate-600"><i class="fas fa-map-marker-alt"></i></div>
+                    <div class="ml-6">
+                        <h4 class="text-xl font-bold text-white">3. Student Enters Token & Location</h4>
+                        <p class="text-slate-400">In the **Student's terminal**, select "Mark Attendance" and enter Student ID, the token, and mock GPS coordinates.</p>
+                    </div>
+                </div>
+                <div class="text-slate-300 text-4xl my-2 text-center"><i class="fas fa-arrow-down"></i></div>
+
+                <div class="flex items-center p-4 mb-4">
+                    <div class="w-16 h-16 bg-slate-700 text-cyan-400 rounded-full flex items-center justify-center text-2xl shadow-lg shrink-0 border-2 border-slate-600"><i class="fas fa-check-double"></i></div>
+                    <div class="ml-6">
+                        <h4 class="text-xl font-bold text-white">4. Core Logic Validates Everything</h4>
+                        <p class="text-slate-400">The CLI validates the token, checks for duplicates, and verifies the coordinates. The result is printed in the student's terminal.</p>
+                    </div>
+                </div>
+                 <div class="text-slate-300 text-4xl my-2 text-center"><i class="fas fa-arrow-down"></i></div>
+
+                <div class="flex items-center p-4">
+                    <div class="w-16 h-16 bg-slate-700 text-cyan-400 rounded-full flex items-center justify-center text-2xl shadow-lg shrink-0 border-2 border-slate-600"><i class="fas fa-clipboard-list"></i></div>
+                    <div class="ml-6">
+                        <h4 class="text-xl font-bold text-white">5. Attendance is Logged & Viewable</h4>
+                        <p class="text-slate-400">On success, the teacher can select "View Log" in their terminal to see a real-time list of all marked students.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Milestone 2: Web App -->
+        <section id="milestone2" class="py-24">
+             <div class="text-center">
+                <h2 class="text-4xl font-black text-white mb-3">Milestone 2: Full-Featured Web Application</h2>
+                <p class="text-lg text-slate-400 mb-12">Connecting our core logic to the world with a FastCGI server and modern frontend.</p>
+            </div>
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div>
+                     <h3 class="text-2xl font-bold text-white mb-8 text-center">Final System Architecture</h3>
+                     <div class="tree">
+                        <ul>
+                            <li>
+                                <div class="group border border-slate-700 bg-slate-800 text-white rounded-lg p-4 min-w-[220px] cursor-pointer relative transition-all duration-300 hover:bg-slate-700 hover:border-cyan-400 hover:scale-105">📦 ARTAMS System</div>
+                                <ul>
+                                    <li><div class="group border border-slate-700 bg-slate-800 text-white rounded-lg p-4 min-w-[220px] cursor-pointer relative transition-all duration-300 hover:bg-slate-700 hover:border-cyan-400 hover:scale-105">⚙️ Core Engine (C)<div class="invisible opacity-0 group-hover:visible group-hover:opacity-100 absolute bg-slate-900 text-slate-200 text-sm rounded-lg p-3 shadow-xl w-72 left-1/2 -translate-x-1/2 bottom-full mb-3 transition-opacity duration-300 z-10 border border-slate-700">The heart of the system, written in C for performance. Contains all validation and DSA logic.</div></div></li>
+                                    <li><div class="group border border-slate-700 bg-slate-800 text-white rounded-lg p-4 min-w-[220px] cursor-pointer relative transition-all duration-300 hover:bg-slate-700 hover:border-cyan-400 hover:scale-105">🔌 Middleware (FastCGI)<div class="invisible opacity-0 group-hover:visible group-hover:opacity-100 absolute bg-slate-900 text-slate-200 text-sm rounded-lg p-3 shadow-xl w-72 left-1/2 -translate-x-1/2 bottom-full mb-3 transition-opacity duration-300 z-10 border border-slate-700">The bridge connecting our C backend to the web server, exposing it as APIs.</div></div></li>
+                                    <li><div class="group border border-slate-700 bg-slate-800 text-white rounded-lg p-4 min-w-[220px] cursor-pointer relative transition-all duration-300 hover:bg-slate-700 hover:border-cyan-400 hover:scale-105">🔥 Database (Firebase)<div class="invisible opacity-0 group-hover:visible group-hover:opacity-100 absolute bg-slate-900 text-slate-200 text-sm rounded-lg p-3 shadow-xl w-72 left-1/2 -translate-x-1/2 bottom-full mb-3 transition-opacity duration-300 z-10 border border-slate-700">Real-time NoSQL database for instant data sync and storage.</div></div></li>
+                                    <li>
+                                        <div class="group border border-slate-700 bg-slate-800 text-white rounded-lg p-4 min-w-[220px] cursor-pointer relative transition-all duration-300 hover:bg-slate-700 hover:border-cyan-400 hover:scale-105">🖥️ Frontend (HTML/JS)</div>
+                                        <ul>
+                                             <li><div class="group border border-slate-700 bg-slate-800 text-white rounded-lg p-4 min-w-[220px] cursor-pointer relative transition-all duration-300 hover:bg-slate-700 hover:border-cyan-400 hover:scale-105">Real-time Dashboard<div class="invisible opacity-0 group-hover:visible group-hover:opacity-100 absolute bg-slate-900 text-slate-200 text-sm rounded-lg p-3 shadow-xl w-72 left-1/2 -translate-x-1/2 bottom-full mb-3 transition-opacity duration-300 z-10 border border-slate-700">For teachers to see live updates of who has marked attendance.</div></div></li>
+                                             <li><div class="group border border-slate-700 bg-slate-800 text-white rounded-lg p-4 min-w-[220px] cursor-pointer relative transition-all duration-300 hover:bg-slate-700 hover:border-cyan-400 hover:scale-105">Data Export Module<div class="invisible opacity-0 group-hover:visible group-hover:opacity-100 absolute bg-slate-900 text-slate-200 text-sm rounded-lg p-3 shadow-xl w-72 left-1/2 -translate-x-1/2 bottom-full mb-3 transition-opacity duration-300 z-10 border border-slate-700">Allows teachers to download attendance reports in Excel format.</div></div></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold text-white mb-8 text-center">Web Application Workflow</h3>
+                     <div class="space-y-4">
+                        <div class="glass-card p-4"><strong>1. Teacher Starts Session:</strong> Clicks "Start Session" on the web dashboard to call the `/startSession` API.</div>
+                        <div class="glass-card p-4"><strong>2. Student Scans QR:</strong> The frontend displays a refreshing QR code. Student scans it, sending token and GPS data to the `/markAttendance` API.</div>
+                        <div class="glass-card p-4"><strong>3. Backend Validates:</strong> `server.c` uses core C functions to validate the token, location, and check for duplicates.</div>
+                        <div class="glass-card p-4"><strong>4. Live Dashboard Updates:</strong> On success, data is saved to Firebase, and the teacher's dashboard updates instantly.</div>
+                        <div class="glass-card p-4"><strong>5. Export Data:</strong> Teacher clicks "Export to Excel" to call a `/getReport` API and download a formatted sheet.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Repo & File Details -->
+        <section id="repo" class="py-24 glass-card rounded-3xl">
+            <div class="text-center">
+                <h2 class="text-4xl font-black text-white mb-3">Repository & AI Code Scaffolding</h2>
+                <p class="text-lg text-slate-400 mb-12">Generate boilerplate code for any file with a single click.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12 items-start">
+                <div>
+                     <h3 class="text-xl font-bold text-white mb-4 text-center">Repository Structure</h3>
+                     <div class="bg-slate-900 border border-slate-700 rounded-lg p-6 font-mono text-sm text-slate-300 overflow-x-auto">
+<pre>
+/artams-project/
+├── 📁 core/
+│   ├── student_db.c
+│   ├── attendance_log.c
+│   ├── token_manager.c
+│   └── location_validator.c
+├── 📁 fastcgi/
+│   └── server.c
+├── 📁 cli/
+│   └── main.c
+└── 📄 index.html
+</pre>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <h3 class="text-xl font-bold text-white mb-4 text-center">File Responsibilities</h3>
+                    <div class="glass-card p-4">
+                        <p><strong>`core/student_db.c`</strong>: Manages student data using a Hash Table. Functions: `addStudent()`, `findStudent()`.</p>
+                        <button class="mt-4 w-full relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500" onclick="generateCode('student_db.c')"><span class="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">✨ Generate Boilerplate</span></button>
+                    </div>
+                    <div class="glass-card p-4">
+                        <p><strong>`core/token_manager.c`</strong>: Creates and validates session tokens. Functions: `generateToken()`, `validateToken()`.</p>
+                        <button class="mt-4 w-full relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500" onclick="generateCode('token_manager.c')"><span class="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">✨ Generate Boilerplate</span></button>
+                    </div>
+                    <div class="glass-card p-4">
+                        <p><strong>`core/location_validator.c`</strong>: Validates GPS coordinates. Function: `isWithinRange()`.</p>
+                        <button class="mt-4 w-full relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500" onclick="generateCode('location_validator.c')"><span class="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">✨ Generate Boilerplate</span></button>
+                    </div>
+                     <div class="glass-card p-4">
+                        <p><strong>`fastcgi/server.c`</strong>: Main backend entry point. Listens for HTTP requests and calls core functions.</p>
+                        <button class="mt-4 w-full relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500" onclick="generateCode('server.c')"><span class="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">✨ Generate Boilerplate</span></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Roadmap -->
+        <section id="roadmap" class="py-24">
+            <div class="text-center">
+                <h2 class="text-4xl font-black text-white mb-3">Project Milestones & Roadmap</h2>
+                <p class="text-lg text-slate-400 mb-12">Our project is divided into two clear phases. First, we perfect the core logic, then we build the web interface.</p>
+            </div>
+            <div class="space-y-8 max-w-4xl mx-auto">
+                <div>
+                    <h3 class="text-2xl font-bold text-white mb-4"><span class="text-cyan-400">Milestone 1:</span> Core Logic & CLI  </h3>
+                    <div class="glass-card p-6">
+                        <p>Build and test the complete backend logic in a standalone Command-Line Interface application.</p>
+                        <span class="block text-sm text-slate-400 mt-2">Deliverable: A robust CLI application demonstrating all backend features including token and location validation.</span>
+                        <button class="mt-4 w-full relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500" onclick="breakDownTask('Day 1-5: Build & Test Core Logic via CLI, including location validation.')"><span class="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">✨ Break Down Task</span></button>
+                    </div>
+                </div>
+                 <div>
+                    <h3 class="text-2xl font-bold text-white mb-4"><span class="text-cyan-400">Milestone 2:</span> Web Integration & Deployment  </h3>
+                    <div class="space-y-6">
+                        <div class="glass-card p-6">
+                             <p><strong>Day 6-7:</strong> FastCGI & Firebase Integration.</p>
+                            <span class="block text-sm text-slate-400 mt-2">Deliverable: Working API endpoints that write to our Firebase database.</span>
+                             <button class="mt-4 w-full relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500" onclick="breakDownTask('Day 6-7: FastCGI & Firebase Integration')"><span class="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">✨ Break Down Task</span></button>
+                        </div>
+                        <div class="glass-card p-6">
+                            <p><strong>Day 8-9:</strong> Web Frontend with Dashboard & QR.</p>
+                            <span class="block text-sm text-slate-400 mt-2">Deliverable: A functional UI where the teacher can see the live dashboard and students can mark attendance.</span>
+                             <button class="mt-4 w-full relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500" onclick="breakDownTask('Day 8-9: Build Web Frontend with Live Dashboard')"><span class="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">✨ Break Down Task</span></button>
+                        </div>
+                         <div class="glass-card p-6">
+                            <p><strong>Day 10:</strong> Final Testing, Data Export & Demo Prep.</p>
+                            <span class="block text-sm text-slate-400 mt-2">Deliverable: A polished prototype with the Excel export feature working, and a demo script ready.</span>
+                             <button class="mt-4 w-full relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500" onclick="breakDownTask('Day 10: Final Testing, Data Export, and Demo Prep')"><span class="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">✨ Break Down Task</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Roles -->
+        <section id="team" class="py-24 glass-card rounded-3xl">
+            <div class="text-center">
+                <h2 class="text-4xl font-black text-white mb-3">Milestone 1: Team Responsibilities</h2>
+                <p class="text-lg text-slate-400 mb-12">A detailed breakdown of tasks for each team member for the first 5-day sprint.</p>
+            </div>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="glass-card p-6">
+                    <h3 class="text-xl font-bold text-white">Pawan Joshi (Lead)</h3>
+                    <p class="font-semibold text-cyan-400 mb-3">Integration & Core Logic</p>
+                    <ul class="text-left list-disc list-inside text-slate-300 space-y-2">
+                        <li>Lead the integration of all `core` modules within the `cli/main.c` application.</li>
+                        <li>Implement the `token_manager.c` module, including HMAC generation and expiry logic.</li>
+                        <li>Oversee the overall project structure and build process.</li>
+                    </ul>
+                </div>
+                <div class="glass-card p-6">
+                    <h3 class="text-xl font-bold text-white">Anushka</h3>
+                    <p class="font-semibold text-cyan-400 mb-3">Student DB & CLI</p>
+                    <ul class="text-left list-disc list-inside text-slate-300 space-y-2">
+                        <li>Implement the student database in `student_db.c` using a Hash Table.</li>
+                        <li>Develop the main user-facing CLI menu and input validation logic.</li>
+                        <li>Create the functions for adding and searching for students.</li>
+                    </ul>
+                </div>
+                <div class="glass-card p-6">
+                    <h3 class="text-xl font-bold text-white">Jasmine</h3>
+                    <p class="font-semibold text-cyan-400 mb-3">Logging & Data Structures</p>
+                    <ul class="text-left list-disc list-inside text-slate-300 space-y-2">
+                        <li>Implement the `attendance_log.c` module to handle in-memory logging of attendance records.</li>
+                        <li>Write the functions to display the attendance log in the teacher's CLI view.</li>
+                        <li>Assist with data structures for session management.</li>
+                    </ul>
+                </div>
+                <div class="glass-card p-6">
+                    <h3 class="text-xl font-bold text-white">Aaditya Uniyal</h3>
+                    <p class="font-semibold text-cyan-400 mb-3">Location Validation</p>
+                    <ul class="text-left list-disc list-inside text-slate-300 space-y-2">
+                        <li>Implement the `location_validator.c` module, including the Haversine formula logic.</li>
+                        <li>Create the CLI prompts for students to input mock GPS coordinates.</li>
+                        <li>Integrate the location check into the main validation workflow.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t border-slate-800 text-center py-8">
+        <p class="text-slate-400">Built by TEAM ASTRA for the ARTAMS Project</p>
+    </footer>
+
+    <!-- Gemini AI Modal -->
+    <div id="ai-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 hidden z-50">
+        <div class="bg-slate-800/80 backdrop-blur-xl border border-slate-700 rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] flex flex-col">
+            <div class="flex justify-between items-center p-4 border-b border-slate-700">
+                <h3 class="text-2xl font-bold text-white flex items-center"><i class="fas fa-robot mr-3 text-cyan-400"></i>Gemini AI Assistant</h3>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-red-400 text-2xl transition-colors">&times;</button>
+            </div>
+            <div id="modal-content" class="p-6 overflow-y-auto">
+                <div id="loading-spinner" class="text-center hidden">
+                    <i class="fas fa-spinner fa-spin text-4xl text-cyan-400"></i>
+                    <p class="mt-2 text-slate-400">Generating response...</p>
+                </div>
+                <div id="response-area"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('ai-modal');
+        const responseArea = document.getElementById('response-area');
+        const loadingSpinner = document.getElementById('loading-spinner');
+        const apiKey = "AIzaSyCdgYjvFRKo3jqFpEBRoUpHXWir4mVuaH0"; // Canvas will provide this
+
+        function openModal() {
+            modal.classList.remove('hidden');
+            responseArea.innerHTML = '';
+            loadingSpinner.classList.remove('hidden');
+        }
+
+        function closeModal() {
+            modal.classList.add('hidden');
+        }
+
+        async function callGemini(prompt) {
+             const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+                });
+                if (!response.ok) throw new Error(`API call failed: ${response.status}`);
+                const result = await response.json();
+                const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
+                return text || "Sorry, I couldn't generate a response.";
+            } catch (error) {
+                console.error('Gemini API call error:', error);
+                return `An error occurred: ${error.message}.`;
+            }
+        }
+
+        async function breakDownTask(taskDescription) {
+            openModal();
+            const prompt = `You are an expert project manager for a university-level software engineering project. Break down the following high-level task into smaller, actionable sub-tasks with estimated timeframes. Present the output in clean markdown format with headings and bullet points. Task: "${taskDescription}"`;
+            const result = await callGemini(prompt);
+            loadingSpinner.classList.add('hidden');
+            responseArea.innerHTML = `<div class="prose prose-invert max-w-none">${convertToHtml(result)}</div>`;
+        }
+        
+        const fileDetails = {
+            'student_db.c': "Manages student data using a Hash Table. Key functions should be: `addStudent()`, `findStudent()`, and `isMarked()` to check for duplicates in a session.",
+            'attendance_log.c': "Handles writing attendance records to Firebase. Key functions should be: `createLog()` to format the log entry and `saveToFirebase()` to handle the persistence logic (can be a placeholder function).",
+            'token_manager.c': "Creates and validates session tokens using HMAC, a Hash Set for active tokens, and a Min-Heap for expiry. Key functions: `generateToken()`, `validateToken()`, and `cleanupExpiredTokens()`.",
+            'location_validator.c': "Handles GPS coordinate validation. The key function, `isWithinRange()`, will take a student's latitude and longitude and check if it's within a predefined distance (using the Haversine formula) of the classroom's coordinates.",
+            'server.c': "The main FastCGI backend server. It should include the basic structure for a FastCGI loop, parsing environment variables to identify API routes like /startSession, /markAttendance, and /getReport, and calling placeholder functions for each."
+        };
+
+        async function generateCode(fileName) {
+            openModal();
+            const description = fileDetails[fileName];
+            const prompt = `You are an expert C programmer specializing in data structures and backend development. Generate well-commented, production-quality boilerplate C code for a file named "${fileName}".
+            File Description: "${description}"
+            The code should include necessary standard library headers, struct definitions, and clear function stubs for all described features. Add comments explaining the purpose of each function and struct. The code should be complete and ready to be compiled as a starting point.`;
+            const result = await callGemini(prompt);
+            loadingSpinner.classList.add('hidden');
+            const cleanCode = result.replace(/^```c\n|```c|```/gm, '').trim();
+            responseArea.innerHTML = `<pre><code class="language-c hljs">${hljs.highlight(cleanCode, {language: 'c'}).value}</code></pre>`;
+        }
+
+        function convertToHtml(text) {
+             return text
+                .replace(/^### (.*$)/gim, '<h3 class="text-xl font-bold mb-2 text-cyan-400">$1</h3>')
+                .replace(/^## (.*$)/gim, '<h2 class="text-2xl font-bold mb-3 text-white">$1</h2>')
+                .replace(/^# (.*$)/gim, '<h1 class="text-3xl font-bold mb-4 text-white">$1</h1>')
+                .replace(/\*\*(.*)\*\*/gim, '<strong class="text-white">$1</strong>')
+                .replace(/\*(.*)\*/gim, '<em>$1</em>')
+                .replace(/`(.*)`/gim, '<code class="bg-slate-700 text-cyan-300 rounded px-2 py-1 font-mono text-sm">$1</code>')
+                .replace(/^\* (.*$)/gim, '<li class="ml-6 mb-2 list-disc">$1</li>')
+                .replace(/\n/g, '<br>');
+        }
+    </script>
+
+</body>
+</html>
+
