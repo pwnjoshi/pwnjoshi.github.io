@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TEAM ASTRA - ARTAMS Project Hub v6.0 (Modern UI)</title>
+    <title>TEAM ASTRA - ARTAMS Project Hub v7.0 (Advanced AI)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -88,10 +88,9 @@
             </div>
             <div>
                 <a href="#overview" class="px-4 py-2 text-slate-300 font-semibold rounded-lg hover:bg-slate-700 hover:text-white transition-colors duration-300">Overview</a>
-                <a href="#milestone1" class="px-4 py-2 text-slate-300 font-semibold rounded-lg hover:bg-slate-700 hover:text-white transition-colors duration-300">Milestone 1</a>
-                <a href="#milestone2" class="px-4 py-2 text-slate-300 font-semibold rounded-lg hover:bg-slate-700 hover:text-white transition-colors duration-300">Milestone 2</a>
+                <a href="#milestones" class="px-4 py-2 text-slate-300 font-semibold rounded-lg hover:bg-slate-700 hover:text-white transition-colors duration-300">Milestones</a>
                 <a href="#repo" class="px-4 py-2 text-slate-300 font-semibold rounded-lg hover:bg-slate-700 hover:text-white transition-colors duration-300">Repo</a>
-                <a href="#roadmap" class="px-4 py-2 text-slate-300 font-semibold rounded-lg hover:bg-slate-700 hover:text-white transition-colors duration-300">Roadmap</a>
+                <a href="#debugger" class="px-4 py-2 text-slate-300 font-semibold rounded-lg hover:bg-slate-700 hover:text-white transition-colors duration-300">Debugger</a>
                 <a href="#team" class="px-4 py-2 text-slate-300 font-semibold rounded-lg hover:bg-slate-700 hover:text-white transition-colors duration-300">Team</a>
             </div>
         </nav>
@@ -103,8 +102,9 @@
              <div class="absolute inset-0 bg-grid-slate-800 [mask-image:linear-gradient(to_bottom,white,transparent)]"></div>
             <div class="relative z-10">
                 <h1 class="text-6xl font-black text-white mb-4 tracking-tight">ARTAMS Project Hub</h1>
+                <h2 class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-6">Your AI Co-Pilot for C Development</h2>
                 <p class="text-xl text-slate-300 max-w-3xl mx-auto">
-                    The ultimate guide for building our full-featured attendance system, from core logic to a live web dashboard.
+                    The ultimate guide for building our full-featured attendance system, supercharged with AI to help us plan, code, test, and debug.
                 </p>
             </div>
         </section>
@@ -127,96 +127,50 @@
             </div>
         </section>
 
-        <!-- Milestone 1: Core Logic & CLI -->
-        <section id="milestone1" class="py-24 glass-card rounded-3xl">
-             <div class="text-center">
-                <h2 class="text-4xl font-black text-white mb-3">Milestone 1: Core Logic & CLI Demo</h2>
-                <p class="text-lg text-slate-400 mb-12">Building and perfecting the backend logic in a simulated CLI environment.</p>
+        <!-- Milestones & Roadmap -->
+        <section id="milestones" class="py-24">
+            <div class="text-center">
+                <h2 class="text-4xl font-black text-white mb-3">Project Milestones & Roadmap</h2>
+                <p class="text-lg text-slate-400 mb-12">Our project is divided into two clear phases. First, we perfect the core logic, then we build the web interface.</p>
             </div>
-            <div class="max-w-3xl mx-auto">
-                 <div class="flex items-center p-4 mb-4">
-                    <div class="w-16 h-16 bg-slate-700 text-cyan-400 rounded-full flex items-center justify-center text-2xl shadow-lg shrink-0 border-2 border-slate-600"><i class="fas fa-window-maximize"></i></div>
-                    <div class="ml-6">
-                        <h4 class="text-xl font-bold text-white">1. The Two-Terminal Setup</h4>
-                        <p class="text-slate-400">Open two terminals: one for the **Teacher** and one for the **Student**. Run `./artams_cli` in each to simulate the real-time interaction.</p>
+            <div class="space-y-12">
+                <!-- Milestone 1 -->
+                <div id="milestone1" class="glass-card p-8 rounded-2xl">
+                    <h3 class="text-3xl font-bold text-white mb-4"><span class="text-cyan-400">Milestone 1:</span> Core Logic & CLI (Days 1-5)</h3>
+                    <p class="text-slate-300 mb-6">Build and test the complete backend logic in a standalone Command-Line Interface application. This proves our core features work before touching any web code.</p>
+                    <div class="max-w-3xl mx-auto bg-slate-900/50 p-6 rounded-xl border border-slate-700">
+                        <h4 class="text-xl font-bold text-white text-center mb-4">CLI Demo Workflow</h4>
+                         <div class="flex items-center p-4"><div class="w-16 h-16 bg-slate-700 text-cyan-400 rounded-full flex items-center justify-center text-2xl shadow-lg shrink-0 border-2 border-slate-600"><i class="fas fa-window-maximize"></i></div><div class="ml-6"><h5 class="font-bold text-white">1. Two-Terminal Setup</h5><p class="text-slate-400 text-sm">Open two terminals (Teacher & Student) and run `./artams_cli` in each.</p></div></div>
+                         <div class="text-slate-500 text-2xl my-2 text-center"><i class="fas fa-arrow-down"></i></div>
+                         <div class="flex items-center p-4"><div class="w-16 h-16 bg-slate-700 text-cyan-400 rounded-full flex items-center justify-center text-2xl shadow-lg shrink-0 border-2 border-slate-600"><i class="fas fa-key"></i></div><div class="ml-6"><h5 class="font-bold text-white">2. Teacher Generates Token</h5><p class="text-slate-400 text-sm">Teacher starts a session, displaying a secure token in their terminal.</p></div></div>
+                          <div class="text-slate-500 text-2xl my-2 text-center"><i class="fas fa-arrow-down"></i></div>
+                         <div class="flex items-center p-4"><div class="w-16 h-16 bg-slate-700 text-cyan-400 rounded-full flex items-center justify-center text-2xl shadow-lg shrink-0 border-2 border-slate-600"><i class="fas fa-map-marker-alt"></i></div><div class="ml-6"><h5 class="font-bold text-white">3. Student Enters Data</h5><p class="text-slate-400 text-sm">Student enters their ID, the token, and mock GPS coordinates.</p></div></div>
+                          <div class="text-slate-500 text-2xl my-2 text-center"><i class="fas fa-arrow-down"></i></div>
+                         <div class="flex items-center p-4"><div class="w-16 h-16 bg-slate-700 text-cyan-400 rounded-full flex items-center justify-center text-2xl shadow-lg shrink-0 border-2 border-slate-600"><i class="fas fa-check-double"></i></div><div class="ml-6"><h5 class="font-bold text-white">4. Core Logic Validates</h5><p class="text-slate-400 text-sm">The CLI validates the token, location, and checks for duplicates, printing the result.</p></div></div>
                     </div>
+                     <button class="mt-6 w-full relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500" onclick="breakDownTask('Milestone 1: Core Logic & CLI (Days 1-5)')"><span class="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">✨ Break Down Milestone 1 Tasks</span></button>
                 </div>
-                <div class="text-slate-300 text-4xl my-2 text-center"><i class="fas fa-arrow-down"></i></div>
 
-                 <div class="flex items-center p-4 mb-4">
-                    <div class="w-16 h-16 bg-slate-700 text-cyan-400 rounded-full flex items-center justify-center text-2xl shadow-lg shrink-0 border-2 border-slate-600"><i class="fas fa-key"></i></div>
-                    <div class="ml-6">
-                        <h4 class="text-xl font-bold text-white">2. Teacher Generates a Dynamic Token</h4>
-                        <p class="text-slate-400">In the **Teacher's terminal**, start a session. The CLI displays a secure, expiring token, simulating the QR code.</p>
-                    </div>
-                </div>
-                <div class="text-slate-300 text-4xl my-2 text-center"><i class="fas fa-arrow-down"></i></div>
-
-                 <div class="flex items-center p-4 mb-4">
-                    <div class="w-16 h-16 bg-slate-700 text-cyan-400 rounded-full flex items-center justify-center text-2xl shadow-lg shrink-0 border-2 border-slate-600"><i class="fas fa-map-marker-alt"></i></div>
-                    <div class="ml-6">
-                        <h4 class="text-xl font-bold text-white">3. Student Enters Token & Location</h4>
-                        <p class="text-slate-400">In the **Student's terminal**, select "Mark Attendance" and enter Student ID, the token, and mock GPS coordinates.</p>
-                    </div>
-                </div>
-                <div class="text-slate-300 text-4xl my-2 text-center"><i class="fas fa-arrow-down"></i></div>
-
-                <div class="flex items-center p-4 mb-4">
-                    <div class="w-16 h-16 bg-slate-700 text-cyan-400 rounded-full flex items-center justify-center text-2xl shadow-lg shrink-0 border-2 border-slate-600"><i class="fas fa-check-double"></i></div>
-                    <div class="ml-6">
-                        <h4 class="text-xl font-bold text-white">4. Core Logic Validates Everything</h4>
-                        <p class="text-slate-400">The CLI validates the token, checks for duplicates, and verifies the coordinates. The result is printed in the student's terminal.</p>
-                    </div>
-                </div>
-                 <div class="text-slate-300 text-4xl my-2 text-center"><i class="fas fa-arrow-down"></i></div>
-
-                <div class="flex items-center p-4">
-                    <div class="w-16 h-16 bg-slate-700 text-cyan-400 rounded-full flex items-center justify-center text-2xl shadow-lg shrink-0 border-2 border-slate-600"><i class="fas fa-clipboard-list"></i></div>
-                    <div class="ml-6">
-                        <h4 class="text-xl font-bold text-white">5. Attendance is Logged & Viewable</h4>
-                        <p class="text-slate-400">On success, the teacher can select "View Log" in their terminal to see a real-time list of all marked students.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Milestone 2: Web App -->
-        <section id="milestone2" class="py-24">
-             <div class="text-center">
-                <h2 class="text-4xl font-black text-white mb-3">Milestone 2: Full-Featured Web Application</h2>
-                <p class="text-lg text-slate-400 mb-12">Connecting our core logic to the world with a FastCGI server and modern frontend.</p>
-            </div>
-            <div class="grid lg:grid-cols-2 gap-12">
-                <div>
-                     <h3 class="text-2xl font-bold text-white mb-8 text-center">Final System Architecture</h3>
-                     <div class="tree">
-                        <ul>
-                            <li>
-                                <div class="group border border-slate-700 bg-slate-800 text-white rounded-lg p-4 min-w-[220px] cursor-pointer relative transition-all duration-300 hover:bg-slate-700 hover:border-cyan-400 hover:scale-105">📦 ARTAMS System</div>
-                                <ul>
-                                    <li><div class="group border border-slate-700 bg-slate-800 text-white rounded-lg p-4 min-w-[220px] cursor-pointer relative transition-all duration-300 hover:bg-slate-700 hover:border-cyan-400 hover:scale-105">⚙️ Core Engine (C)<div class="invisible opacity-0 group-hover:visible group-hover:opacity-100 absolute bg-slate-900 text-slate-200 text-sm rounded-lg p-3 shadow-xl w-72 left-1/2 -translate-x-1/2 bottom-full mb-3 transition-opacity duration-300 z-10 border border-slate-700">The heart of the system, written in C for performance. Contains all validation and DSA logic.</div></div></li>
-                                    <li><div class="group border border-slate-700 bg-slate-800 text-white rounded-lg p-4 min-w-[220px] cursor-pointer relative transition-all duration-300 hover:bg-slate-700 hover:border-cyan-400 hover:scale-105">🔌 Middleware (FastCGI)<div class="invisible opacity-0 group-hover:visible group-hover:opacity-100 absolute bg-slate-900 text-slate-200 text-sm rounded-lg p-3 shadow-xl w-72 left-1/2 -translate-x-1/2 bottom-full mb-3 transition-opacity duration-300 z-10 border border-slate-700">The bridge connecting our C backend to the web server, exposing it as APIs.</div></div></li>
-                                    <li><div class="group border border-slate-700 bg-slate-800 text-white rounded-lg p-4 min-w-[220px] cursor-pointer relative transition-all duration-300 hover:bg-slate-700 hover:border-cyan-400 hover:scale-105">🔥 Database (Firebase)<div class="invisible opacity-0 group-hover:visible group-hover:opacity-100 absolute bg-slate-900 text-slate-200 text-sm rounded-lg p-3 shadow-xl w-72 left-1/2 -translate-x-1/2 bottom-full mb-3 transition-opacity duration-300 z-10 border border-slate-700">Real-time NoSQL database for instant data sync and storage.</div></div></li>
-                                    <li>
-                                        <div class="group border border-slate-700 bg-slate-800 text-white rounded-lg p-4 min-w-[220px] cursor-pointer relative transition-all duration-300 hover:bg-slate-700 hover:border-cyan-400 hover:scale-105">🖥️ Frontend (HTML/JS)</div>
-                                        <ul>
-                                             <li><div class="group border border-slate-700 bg-slate-800 text-white rounded-lg p-4 min-w-[220px] cursor-pointer relative transition-all duration-300 hover:bg-slate-700 hover:border-cyan-400 hover:scale-105">Real-time Dashboard<div class="invisible opacity-0 group-hover:visible group-hover:opacity-100 absolute bg-slate-900 text-slate-200 text-sm rounded-lg p-3 shadow-xl w-72 left-1/2 -translate-x-1/2 bottom-full mb-3 transition-opacity duration-300 z-10 border border-slate-700">For teachers to see live updates of who has marked attendance.</div></div></li>
-                                             <li><div class="group border border-slate-700 bg-slate-800 text-white rounded-lg p-4 min-w-[220px] cursor-pointer relative transition-all duration-300 hover:bg-slate-700 hover:border-cyan-400 hover:scale-105">Data Export Module<div class="invisible opacity-0 group-hover:visible group-hover:opacity-100 absolute bg-slate-900 text-slate-200 text-sm rounded-lg p-3 shadow-xl w-72 left-1/2 -translate-x-1/2 bottom-full mb-3 transition-opacity duration-300 z-10 border border-slate-700">Allows teachers to download attendance reports in Excel format.</div></div></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div>
-                    <h3 class="text-2xl font-bold text-white mb-8 text-center">Web Application Workflow</h3>
-                     <div class="space-y-4">
-                        <div class="glass-card p-4"><strong>1. Teacher Starts Session:</strong> Clicks "Start Session" on the web dashboard to call the `/startSession` API.</div>
-                        <div class="glass-card p-4"><strong>2. Student Scans QR:</strong> The frontend displays a refreshing QR code. Student scans it, sending token and GPS data to the `/markAttendance` API.</div>
-                        <div class="glass-card p-4"><strong>3. Backend Validates:</strong> `server.c` uses core C functions to validate the token, location, and check for duplicates.</div>
-                        <div class="glass-card p-4"><strong>4. Live Dashboard Updates:</strong> On success, data is saved to Firebase, and the teacher's dashboard updates instantly.</div>
-                        <div class="glass-card p-4"><strong>5. Export Data:</strong> Teacher clicks "Export to Excel" to call a `/getReport` API and download a formatted sheet.</div>
+                <!-- Milestone 2 -->
+                 <div id="milestone2" class="glass-card p-8 rounded-2xl">
+                    <h3 class="text-3xl font-bold text-white mb-4"><span class="text-cyan-400">Milestone 2:</span> Web App & Deployment (Days 6-10)</h3>
+                     <p class="text-slate-300 mb-6">After the core logic is proven, we connect it to the web with a FastCGI server and build the full user interface with all features.</p>
+                     <div class="space-y-6">
+                        <div class="glass-card p-6 bg-slate-900/50">
+                             <p><strong>Day 6-7:</strong> FastCGI & Firebase Integration.</p>
+                            <span class="block text-sm text-slate-400 mt-2">Deliverable: Working API endpoints that write to our Firebase database.</span>
+                             <button class="mt-4 w-full relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500" onclick="breakDownTask('Day 6-7: FastCGI & Firebase Integration')"><span class="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">✨ Break Down Task</span></button>
+                        </div>
+                        <div class="glass-card p-6 bg-slate-900/50">
+                            <p><strong>Day 8-9:</strong> Web Frontend with Dashboard & QR.</p>
+                            <span class="block text-sm text-slate-400 mt-2">Deliverable: A functional UI where the teacher can see the live dashboard and students can mark attendance.</span>
+                             <button class="mt-4 w-full relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500" onclick="breakDownTask('Day 8-9: Build Web Frontend with Live Dashboard')"><span class="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">✨ Break Down Task</span></button>
+                        </div>
+                         <div class="glass-card p-6 bg-slate-900/50">
+                            <p><strong>Day 10:</strong> Final Testing, Data Export & Demo Prep.</p>
+                            <span class="block text-sm text-slate-400 mt-2">Deliverable: A polished prototype with the Excel export feature working, and a demo script ready.</span>
+                             <button class="mt-4 w-full relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500" onclick="breakDownTask('Day 10: Final Testing, Data Export, and Demo Prep')"><span class="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">✨ Break Down Task</span></button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -225,8 +179,8 @@
         <!-- Repo & File Details -->
         <section id="repo" class="py-24 glass-card rounded-3xl">
             <div class="text-center">
-                <h2 class="text-4xl font-black text-white mb-3">Repository & AI Code Scaffolding</h2>
-                <p class="text-lg text-slate-400 mb-12">Generate boilerplate code for any file with a single click.</p>
+                <h2 class="text-4xl font-black text-white mb-3">Repository & AI Development Tools</h2>
+                <p class="text-lg text-slate-400 mb-12">Generate code, create test cases, and get explanations for any file.</p>
             </div>
             <div class="grid md:grid-cols-2 gap-12 items-start">
                 <div>
@@ -236,7 +190,6 @@
 /artams-project/
 ├── 📁 core/
 │   ├── student_db.c
-│   ├── attendance_log.c
 │   ├── token_manager.c
 │   └── location_validator.c
 ├── 📁 fastcgi/
@@ -248,62 +201,45 @@
                     </div>
                 </div>
                 <div class="space-y-4">
-                    <h3 class="text-xl font-bold text-white mb-4 text-center">File Responsibilities</h3>
+                    <h3 class="text-xl font-bold text-white mb-4 text-center">Core Logic Files</h3>
                     <div class="glass-card p-4">
-                        <p><strong>`core/student_db.c`</strong>: Manages student data using a Hash Table. Functions: `addStudent()`, `findStudent()`.</p>
-                        <button class="mt-4 w-full relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500" onclick="generateCode('student_db.c')"><span class="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">✨ Generate Boilerplate</span></button>
+                        <p><strong>`core/student_db.c`</strong>: Manages student data using a Hash Table.</p>
+                        <div class="flex space-x-2 mt-3"><button class="w-1/2 relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500" onclick="generateCode('student_db.c')"><span class="w-full relative px-4 py-2 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">Generate Code</span></button><button class="w-1/2 relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600" onclick="generateTestCases('student_db.c')"><span class="w-full relative px-4 py-2 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">Suggest Tests</span></button></div>
                     </div>
                     <div class="glass-card p-4">
-                        <p><strong>`core/token_manager.c`</strong>: Creates and validates session tokens. Functions: `generateToken()`, `validateToken()`.</p>
-                        <button class="mt-4 w-full relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500" onclick="generateCode('token_manager.c')"><span class="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">✨ Generate Boilerplate</span></button>
+                        <p><strong>`core/token_manager.c`</strong>: Creates and validates session tokens.</p>
+                         <div class="flex space-x-2 mt-3"><button class="w-1/2 relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500" onclick="generateCode('token_manager.c')"><span class="w-full relative px-4 py-2 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">Generate Code</span></button><button class="w-1/2 relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600" onclick="generateTestCases('token_manager.c')"><span class="w-full relative px-4 py-2 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">Suggest Tests</span></button></div>
                     </div>
                     <div class="glass-card p-4">
-                        <p><strong>`core/location_validator.c`</strong>: Validates GPS coordinates. Function: `isWithinRange()`.</p>
-                        <button class="mt-4 w-full relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500" onclick="generateCode('location_validator.c')"><span class="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">✨ Generate Boilerplate</span></button>
-                    </div>
-                     <div class="glass-card p-4">
-                        <p><strong>`fastcgi/server.c`</strong>: Main backend entry point. Listens for HTTP requests and calls core functions.</p>
-                        <button class="mt-4 w-full relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500" onclick="generateCode('server.c')"><span class="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">✨ Generate Boilerplate</span></button>
+                        <p><strong>`core/location_validator.c`</strong>: Validates GPS coordinates.</p>
+                        <div class="flex space-x-2 mt-3"><button class="w-1/2 relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500" onclick="generateCode('location_validator.c')"><span class="w-full relative px-4 py-2 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">Generate Code</span></button><button class="w-1/2 relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600" onclick="generateTestCases('location_validator.c')"><span class="w-full relative px-4 py-2 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">Suggest Tests</span></button></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Roadmap -->
-        <section id="roadmap" class="py-24">
+        <!-- AI Debugger -->
+        <section id="debugger" class="py-24">
             <div class="text-center">
-                <h2 class="text-4xl font-black text-white mb-3">Project Milestones & Roadmap</h2>
-                <p class="text-lg text-slate-400 mb-12">Our project is divided into two clear phases. First, we perfect the core logic, then we build the web interface.</p>
+                <h2 class="text-4xl font-black text-white mb-3">AI Debugging Assistant</h2>
+                <p class="text-lg text-slate-400 mb-12">Stuck on a bug? Paste your code and error message here to get help from the AI.</p>
             </div>
-            <div class="space-y-8 max-w-4xl mx-auto">
-                <div>
-                    <h3 class="text-2xl font-bold text-white mb-4"><span class="text-cyan-400">Milestone 1:</span> Core Logic & CLI  </h3>
-                    <div class="glass-card p-6">
-                        <p>Build and test the complete backend logic in a standalone Command-Line Interface application.</p>
-                        <span class="block text-sm text-slate-400 mt-2">Deliverable: A robust CLI application demonstrating all backend features including token and location validation.</span>
-                        <button class="mt-4 w-full relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500" onclick="breakDownTask('Day 1-5: Build & Test Core Logic via CLI, including location validation.')"><span class="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">✨ Break Down Task</span></button>
+            <div class="glass-card p-8 rounded-2xl max-w-4xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="code-input" class="block text-sm font-medium text-slate-300 mb-2">C Code Snippet</label>
+                        <textarea id="code-input" rows="10" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-sm font-mono focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 outline-none" placeholder="Paste your C code here..."></textarea>
+                    </div>
+                    <div>
+                        <label for="error-input" class="block text-sm font-medium text-slate-300 mb-2">Error Message or Problem</label>
+                        <textarea id="error-input" rows="10" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-sm font-mono focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 outline-none" placeholder="Paste your compiler error or describe the bug..."></textarea>
                     </div>
                 </div>
-                 <div>
-                    <h3 class="text-2xl font-bold text-white mb-4"><span class="text-cyan-400">Milestone 2:</span> Web Integration & Deployment  </h3>
-                    <div class="space-y-6">
-                        <div class="glass-card p-6">
-                             <p><strong>Day 6-7:</strong> FastCGI & Firebase Integration.</p>
-                            <span class="block text-sm text-slate-400 mt-2">Deliverable: Working API endpoints that write to our Firebase database.</span>
-                             <button class="mt-4 w-full relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500" onclick="breakDownTask('Day 6-7: FastCGI & Firebase Integration')"><span class="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">✨ Break Down Task</span></button>
-                        </div>
-                        <div class="glass-card p-6">
-                            <p><strong>Day 8-9:</strong> Web Frontend with Dashboard & QR.</p>
-                            <span class="block text-sm text-slate-400 mt-2">Deliverable: A functional UI where the teacher can see the live dashboard and students can mark attendance.</span>
-                             <button class="mt-4 w-full relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500" onclick="breakDownTask('Day 8-9: Build Web Frontend with Live Dashboard')"><span class="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">✨ Break Down Task</span></button>
-                        </div>
-                         <div class="glass-card p-6">
-                            <p><strong>Day 10:</strong> Final Testing, Data Export & Demo Prep.</p>
-                            <span class="block text-sm text-slate-400 mt-2">Deliverable: A polished prototype with the Excel export feature working, and a demo script ready.</span>
-                             <button class="mt-4 w-full relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500" onclick="breakDownTask('Day 10: Final Testing, Data Export, and Demo Prep')"><span class="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">✨ Break Down Task</span></button>
-                        </div>
-                    </div>
-                </div>
+                <button class="mt-6 w-full relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-red-500 to-orange-400" onclick="debugCode()">
+                    <span class="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">
+                        <i class="fas fa-bug mr-2"></i> Find & Fix Bug
+                    </span>
+                </button>
             </div>
         </section>
 
@@ -314,7 +250,7 @@
                 <p class="text-lg text-slate-400 mb-12">A detailed breakdown of tasks for each team member for the first 5-day sprint.</p>
             </div>
             <div class="grid sm:grid-cols-2 lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <div class="glass-card p-6">
+                <div class="glass-card p-6 bg-slate-900/50">
                     <h3 class="text-xl font-bold text-white">Pawan Joshi (Lead)</h3>
                     <p class="font-semibold text-cyan-400 mb-3">Integration & Core Logic</p>
                     <ul class="text-left list-disc list-inside text-slate-300 space-y-2">
@@ -323,7 +259,7 @@
                         <li>Oversee the overall project structure and build process.</li>
                     </ul>
                 </div>
-                <div class="glass-card p-6">
+                <div class="glass-card p-6 bg-slate-900/50">
                     <h3 class="text-xl font-bold text-white">Anushka</h3>
                     <p class="font-semibold text-cyan-400 mb-3">Student DB & CLI</p>
                     <ul class="text-left list-disc list-inside text-slate-300 space-y-2">
@@ -332,7 +268,7 @@
                         <li>Create the functions for adding and searching for students.</li>
                     </ul>
                 </div>
-                <div class="glass-card p-6">
+                <div class="glass-card p-6 bg-slate-900/50">
                     <h3 class="text-xl font-bold text-white">Jasmine</h3>
                     <p class="font-semibold text-cyan-400 mb-3">Logging & Data Structures</p>
                     <ul class="text-left list-disc list-inside text-slate-300 space-y-2">
@@ -341,7 +277,7 @@
                         <li>Assist with data structures for session management.</li>
                     </ul>
                 </div>
-                <div class="glass-card p-6">
+                <div class="glass-card p-6 bg-slate-900/50">
                     <h3 class="text-xl font-bold text-white">Aaditya Uniyal</h3>
                     <p class="font-semibold text-cyan-400 mb-3">Location Validation</p>
                     <ul class="text-left list-disc list-inside text-slate-300 space-y-2">
@@ -362,7 +298,7 @@
     <div id="ai-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 hidden z-50">
         <div class="bg-slate-800/80 backdrop-blur-xl border border-slate-700 rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] flex flex-col">
             <div class="flex justify-between items-center p-4 border-b border-slate-700">
-                <h3 class="text-2xl font-bold text-white flex items-center"><i class="fas fa-robot mr-3 text-cyan-400"></i>Gemini AI Assistant</h3>
+                <h3 id="modal-title" class="text-2xl font-bold text-white flex items-center"><i class="fas fa-robot mr-3 text-cyan-400"></i>Gemini AI Assistant</h3>
                 <button onclick="closeModal()" class="text-slate-400 hover:text-red-400 text-2xl transition-colors">&times;</button>
             </div>
             <div id="modal-content" class="p-6 overflow-y-auto">
@@ -371,19 +307,26 @@
                     <p class="mt-2 text-slate-400">Generating response...</p>
                 </div>
                 <div id="response-area"></div>
+                 <div id="modal-actions" class="mt-4 hidden"></div>
             </div>
         </div>
     </div>
 
     <script>
         const modal = document.getElementById('ai-modal');
+        const modalTitle = document.getElementById('modal-title');
         const responseArea = document.getElementById('response-area');
         const loadingSpinner = document.getElementById('loading-spinner');
-        const apiKey = "AIzaSyCdgYjvFRKo3jqFpEBRoUpHXWir4mVuaH0"; // Canvas will provide this
+        const modalActions = document.getElementById('modal-actions');
+        const apiKey = "AIzaSyCdgYjvFRKo3jqFpEBRoUpHXWir4mVuaH0";
+        let lastGeneratedCode = "";
 
-        function openModal() {
+        function openModal(title) {
             modal.classList.remove('hidden');
             responseArea.innerHTML = '';
+            modalActions.innerHTML = '';
+            modalActions.classList.add('hidden');
+            modalTitle.innerHTML = `<i class="fas fa-robot mr-3 text-cyan-400"></i> ${title}`;
             loadingSpinner.classList.remove('hidden');
         }
 
@@ -391,60 +334,162 @@
             modal.classList.add('hidden');
         }
 
-        async function callGemini(prompt) {
-             const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-            try {
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
-                });
-                if (!response.ok) throw new Error(`API call failed: ${response.status}`);
-                const result = await response.json();
-                const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
-                return text || "Sorry, I couldn't generate a response.";
-            } catch (error) {
-                console.error('Gemini API call error:', error);
-                return `An error occurred: ${error.message}.`;
+        async function callGeminiWithRetry(prompt, retries = 3, timeout = 10000) {
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+            let lastError = null;
+
+            for (let i = 0; i < retries; i++) {
+                try {
+                    const controller = new AbortController();
+                    const id = setTimeout(() => controller.abort(), timeout);
+
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] }),
+                        signal: controller.signal,
+                    });
+
+                    clearTimeout(id);
+
+                    if (!response.ok) {
+                        throw new Error(`API call failed with status: ${response.status}`);
+                    }
+
+                    const result = await response.json();
+                    const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
+                    
+                    if (text) {
+                        return text;
+                    } else {
+                        throw new Error("Invalid response structure from API.");
+                    }
+
+                } catch (error) {
+                    lastError = error;
+                    if (i < retries - 1) {
+                        const delay = Math.pow(2, i) * 1000; 
+                        await new Promise(resolve => setTimeout(resolve, delay));
+                    }
+                }
             }
+            
+            console.error('Gemini API call failed after multiple retries:', lastError);
+            return `An error occurred after multiple retries: ${lastError.message}.`;
         }
 
-        async function breakDownTask(taskDescription) {
-            openModal();
-            const prompt = `You are an expert project manager for a university-level software engineering project. Break down the following high-level task into smaller, actionable sub-tasks with estimated timeframes. Present the output in clean markdown format with headings and bullet points. Task: "${taskDescription}"`;
-            const result = await callGemini(prompt);
+        async function breakDownTask(milestoneDescription) {
+            openModal('Task Breakdown');
+            const prompt = `You are the lead project manager for Team Astra, guiding them in building the ARTAMS attendance system. Your goal is to break down the following milestone into a detailed, actionable plan for the student developers. Provide a step-by-step guide with sub-tasks and realistic time estimates (within the given days). Milestone: "${milestoneDescription}"`;
+            const result = await callGeminiWithRetry(prompt);
             loadingSpinner.classList.add('hidden');
             responseArea.innerHTML = `<div class="prose prose-invert max-w-none">${convertToHtml(result)}</div>`;
         }
         
         const fileDetails = {
-            'student_db.c': "Manages student data using a Hash Table. Key functions should be: `addStudent()`, `findStudent()`, and `isMarked()` to check for duplicates in a session.",
-            'attendance_log.c': "Handles writing attendance records to Firebase. Key functions should be: `createLog()` to format the log entry and `saveToFirebase()` to handle the persistence logic (can be a placeholder function).",
-            'token_manager.c': "Creates and validates session tokens using HMAC, a Hash Set for active tokens, and a Min-Heap for expiry. Key functions: `generateToken()`, `validateToken()`, and `cleanupExpiredTokens()`.",
-            'location_validator.c': "Handles GPS coordinate validation. The key function, `isWithinRange()`, will take a student's latitude and longitude and check if it's within a predefined distance (using the Haversine formula) of the classroom's coordinates.",
-            'server.c': "The main FastCGI backend server. It should include the basic structure for a FastCGI loop, parsing environment variables to identify API routes like /startSession, /markAttendance, and /getReport, and calling placeholder functions for each."
+            'student_db.c': "Manages student data using a Hash Table to prevent proxy attendance. Key functions: `createStudentDB()`, `addStudent()`, `findStudentByID()`, `markStudentAsPresent()`.",
+            'token_manager.c': "Creates secure, expiring session tokens. Key functions: `generateToken()`, `validateToken()`, and a mechanism to handle expired tokens.",
+            'location_validator.c': "Validates GPS coordinates to ensure students are physically present. Key function: `isWithinRange()`, which uses the Haversine formula to check if a student's coordinates are within a set radius of the classroom.",
+            'server.c': "The main FastCGI backend server for the ARTAMS web app. It should handle API routes like `/startSession` and `/markAttendance`, parse incoming data, and call the respective core logic functions."
         };
 
         async function generateCode(fileName) {
-            openModal();
+            openModal(`Boilerplate for ${fileName}`);
             const description = fileDetails[fileName];
-            const prompt = `You are an expert C programmer specializing in data structures and backend development. Generate well-commented, production-quality boilerplate C code for a file named "${fileName}".
-            File Description: "${description}"
-            The code should include necessary standard library headers, struct definitions, and clear function stubs for all described features. Add comments explaining the purpose of each function and struct. The code should be complete and ready to be compiled as a starting point.`;
-            const result = await callGemini(prompt);
+            const prompt = `You are an expert C programmer building the ARTAMS (Advanced Real Time Attendance Management System). Your task is to generate the boilerplate code for \`${fileName}\`.
+            
+            **File Purpose:** ${description}
+
+            Generate clean, production-quality, and well-commented C code. It must include necessary headers (e.g., <stdio.h>, <stdlib.h>, <string.h>), relevant struct definitions, and all the key function stubs mentioned in the purpose. Ensure the code is a complete, compilable starting point for a student developer.`;
+            
+            const result = await callGeminiWithRetry(prompt);
             loadingSpinner.classList.add('hidden');
-            const cleanCode = result.replace(/^```c\n|```c|```/gm, '').trim();
-            responseArea.innerHTML = `<pre><code class="language-c hljs">${hljs.highlight(cleanCode, {language: 'c'}).value}</code></pre>`;
+            lastGeneratedCode = result.replace(/^```c\n|```c|```/gm, '').trim();
+            responseArea.innerHTML = `<pre><code class="language-c hljs">${hljs.highlight(lastGeneratedCode, {language: 'c'}).value}</code></pre>`;
+            
+            modalActions.innerHTML = `<button class="w-full relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500" onclick="explainCode()"><span class="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">Explain This Code</span></button>`;
+            modalActions.classList.remove('hidden');
+        }
+
+        async function generateTestCases(fileName) {
+            openModal(`Test Cases for ${fileName}`);
+            const description = fileDetails[fileName];
+            const prompt = `You are a Quality Assurance (QA) engineer for the ARTAMS project. Your task is to create a set of unit test cases for the C file \`${fileName}\`.
+            
+            **File Purpose:** ${description}
+
+            Provide a list of test cases in markdown format. Include:
+            1.  **Happy Path Tests** (successful, expected outcomes).
+            2.  **Edge Cases** (e.g., empty inputs, boundary values).
+            3.  **Invalid Input Tests** (e.g., NULL pointers, incorrect data formats).`;
+
+            const result = await callGeminiWithRetry(prompt);
+            loadingSpinner.classList.add('hidden');
+            responseArea.innerHTML = `<div class="prose prose-invert max-w-none">${convertToHtml(result)}</div>`;
+        }
+
+        async function explainCode() {
+            openModal('Code Explanation');
+            const prompt = `You are a C programming tutor for Team Astra. The following C code has been generated for the ARTAMS project. Explain this code snippet in detail, block-by-block. Clarify the purpose of the structs, the function signatures, memory allocation, and any complex logic. The goal is to help a university student understand it completely.
+            
+            **Code:**
+            \`\`\`c
+            ${lastGeneratedCode}
+            \`\`\``;
+            const result = await callGeminiWithRetry(prompt);
+            loadingSpinner.classList.add('hidden');
+            responseArea.innerHTML = `<div class="prose prose-invert max-w-none">${convertToHtml(result)}</div>`;
+        }
+
+        async function debugCode() {
+            const userCode = document.getElementById('code-input').value;
+            const userError = document.getElementById('error-input').value;
+
+            if (!userCode.trim() || !userError.trim()) {
+                alert("Please provide both a code snippet and an error message.");
+                return;
+            }
+
+            openModal('Debugging Assistant');
+            const prompt = `You are an expert C debugger assisting Team Astra with their ARTAMS attendance system. A student developer is facing an issue.
+            
+            **Code Snippet:**
+            \`\`\`c
+            ${userCode}
+            \`\`\`
+            
+            **Error Message / Problem Description:**
+            "${userError}"
+
+            Your task is to:
+            1.  Identify the potential cause of the error.
+            2.  Explain the bug in simple, clear terms.
+            3.  Provide a corrected version of the code snippet with comments on the changes.
+            4.  Offer advice on how to avoid this type of bug in the future.
+            
+            Format your response clearly using markdown.`;
+
+            const result = await callGeminiWithRetry(prompt);
+            loadingSpinner.classList.add('hidden');
+            responseArea.innerHTML = `<div class="prose prose-invert max-w-none">${convertToHtml(result)}</div>`;
+             hljs.highlightAll();
         }
 
         function convertToHtml(text) {
-             return text
+            if (!text) return '';
+            // Handle code blocks first to prevent inner markdown from being processed
+            text = text.replace(/```c\n([\s\S]+?)```/g, (match, p1) => {
+                const highlightedCode = hljs.highlight(p1.trim(), {language: 'c'}).value;
+                return `<pre><code class="language-c hljs">${highlightedCode}</code></pre>`;
+            });
+
+            return text
                 .replace(/^### (.*$)/gim, '<h3 class="text-xl font-bold mb-2 text-cyan-400">$1</h3>')
                 .replace(/^## (.*$)/gim, '<h2 class="text-2xl font-bold mb-3 text-white">$1</h2>')
                 .replace(/^# (.*$)/gim, '<h1 class="text-3xl font-bold mb-4 text-white">$1</h1>')
-                .replace(/\*\*(.*)\*\*/gim, '<strong class="text-white">$1</strong>')
-                .replace(/\*(.*)\*/gim, '<em>$1</em>')
-                .replace(/`(.*)`/gim, '<code class="bg-slate-700 text-cyan-300 rounded px-2 py-1 font-mono text-sm">$1</code>')
+                .replace(/\*\*(.*?)\*\*/gim, '<strong class="text-white">$1</strong>')
+                .replace(/\*(.*?)\*/gim, '<em>$1</em>')
+                .replace(/`(.*?)`/g, '<code class="bg-slate-700 text-cyan-300 rounded px-2 py-1 font-mono text-sm">$1</code>')
                 .replace(/^\* (.*$)/gim, '<li class="ml-6 mb-2 list-disc">$1</li>')
                 .replace(/\n/g, '<br>');
         }
