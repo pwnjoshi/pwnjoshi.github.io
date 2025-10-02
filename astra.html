@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TEAM ASTRA - ARTAMS Project Hub v7.0 (Advanced AI)</title>
+    <title>TEAM ASTRA - ARTAMS Project Hub v8.0 (CLI-Focused)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -30,21 +30,16 @@
         }
 
         .animated-gradient-bg {
-            background: linear-gradient(
-                90deg,
-                rgb(var(--background-start-rgb)),
-                rgb(var(--background-end-rgb)),
-                rgb(var(--background-start-rgb))
-            );
+            background: linear-gradient(90deg, rgb(var(--background-start-rgb)), rgb(var(--background-end-rgb)), rgb(var(--background-start-rgb)));
             background-size: 200% auto;
             animation: background-pan 15s linear infinite;
         }
 
         .glass-card {
-            background: rgba(30, 41, 59, 0.5); /* slate-800 with opacity */
+            background: rgba(30, 41, 59, 0.5);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(51, 65, 85, 0.5); /* slate-700 with opacity */
+            border: 1px solid rgba(51, 65, 85, 0.5);
             transition: all 0.3s ease;
         }
 
@@ -54,38 +49,13 @@
             transform: translateY(-8px) scale(1.02);
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
-        
-        .tree ul {
-            position: relative; padding-top: 2rem; display: flex; justify-content: center; flex-wrap: wrap;
-        }
-        .tree li {
-            display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; padding: 1rem 0.5rem 0 0.5rem;
-        }
-        .tree li::before, .tree li::after {
-            content: ''; position: absolute; top: 0; right: 50%; border-top: 2px solid #94a3b8; width: 50%; height: 2rem;
-        }
-        .tree li::after {
-            right: auto; left: 50%; border-left: 2px solid #94a3b8;
-        }
-        .tree li:only-child::after, .tree li:only-child::before { display: none; }
-        .tree li:first-child::before, .tree li:last-child::after { border: 0 none; }
-        .tree li:last-child::before { border-right: 2px solid #94a3b8; border-bottom-right-radius: 0.5rem; }
-        .tree li:first-child::after { border-top-left-radius: 0.5rem; }
-        .tree > ul > li::before, .tree > ul > li::after { border-top: none; }
-
-        .tree-node:hover {
-            box-shadow: 0 0 15px rgba(var(--glow-color), 0.5);
-        }
     </style>
 </head>
 <body class="bg-slate-900">
 
-    <!-- Header & Navigation -->
     <header class="bg-slate-900/70 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-slate-800">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-2xl font-bold text-white">
-                TEAM ASTRA <span class="text-cyan-400">|</span> ARTAMS
-            </div>
+            <div class="text-2xl font-bold text-white">TEAM ASTRA <span class="text-cyan-400">|</span> ARTAMS</div>
             <div>
                 <a href="#overview" class="px-4 py-2 text-slate-300 font-semibold rounded-lg hover:bg-slate-700 hover:text-white transition-colors duration-300">Overview</a>
                 <a href="#milestones" class="px-4 py-2 text-slate-300 font-semibold rounded-lg hover:bg-slate-700 hover:text-white transition-colors duration-300">Milestones</a>
@@ -97,128 +67,89 @@
     </header>
 
     <main class="container mx-auto px-6 py-12">
-        <!-- Hero Section -->
         <section id="hero" class="text-center py-24 relative overflow-hidden rounded-3xl animated-gradient-bg my-8">
-             <div class="absolute inset-0 bg-grid-slate-800 [mask-image:linear-gradient(to_bottom,white,transparent)]"></div>
+            <div class="absolute inset-0 bg-grid-slate-800 [mask-image:linear-gradient(to_bottom,white,transparent)]"></div>
             <div class="relative z-10">
                 <h1 class="text-6xl font-black text-white mb-4 tracking-tight">ARTAMS Project Hub</h1>
                 <h2 class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-6">Your AI Co-Pilot for C Development</h2>
-                <p class="text-xl text-slate-300 max-w-3xl mx-auto">
-                    The ultimate guide for building our full-featured attendance system, supercharged with AI to help us plan, code, test, and debug.
-                </p>
+                <p class="text-xl text-slate-300 max-w-3xl mx-auto">The ultimate guide for building our full-featured attendance system, supercharged with AI to help us plan, code, test, and debug.</p>
             </div>
         </section>
 
-        <!-- Project Overview -->
         <section id="overview" class="py-24">
             <div class="text-center">
                 <h2 class="text-4xl font-black text-white mb-3">Project Overview</h2>
                 <p class="text-lg text-slate-400 mb-12">Solving real-world attendance challenges with smart technology.</p>
             </div>
             <div class="grid md:grid-cols-2 gap-8 items-center">
-                <div class="glass-card p-8 rounded-2xl">
-                     <h3 class="text-2xl font-bold text-red-400 mb-4 flex items-center"><i class="fas fa-exclamation-triangle mr-3"></i>The Problem</h3>
-                    <p class="text-slate-300">Traditional attendance methods are slow and vulnerable to "proxy attendance," wasting valuable class time and undermining academic integrity.</p>
-                </div>
-                <div class="glass-card p-8 rounded-2xl">
-                    <h3 class="text-2xl font-bold text-green-400 mb-4 flex items-center"><i class="fas fa-shield-alt mr-3"></i>Our Solution</h3>
-                    <p class="text-slate-300">ARTAMS uses dynamic QR codes and GPS verification, accessible from a web interface with a real-time dashboard and data export capabilities.</p>
-                </div>
+                <div class="glass-card p-8 rounded-2xl"><h3 class="text-2xl font-bold text-red-400 mb-4 flex items-center"><i class="fas fa-exclamation-triangle mr-3"></i>The Problem</h3><p class="text-slate-300">Traditional attendance methods are slow and vulnerable to "proxy attendance," wasting valuable class time and undermining academic integrity.</p></div>
+                <div class="glass-card p-8 rounded-2xl"><h3 class="text-2xl font-bold text-green-400 mb-4 flex items-center"><i class="fas fa-shield-alt mr-3"></i>Our Solution</h3><p class="text-slate-300">ARTAMS uses dynamic QR codes and GPS verification, accessible from a web interface with a real-time dashboard and data export capabilities.</p></div>
             </div>
         </section>
 
-        <!-- Milestones & Roadmap -->
         <section id="milestones" class="py-24">
             <div class="text-center">
                 <h2 class="text-4xl font-black text-white mb-3">Project Milestones & Roadmap</h2>
-                <p class="text-lg text-slate-400 mb-12">Our project is divided into two clear phases. First, we perfect the core logic, then we build the web interface.</p>
+                <p class="text-lg text-slate-400 mb-12">A clear, phased approach to development. First, we perfect the core logic, then we build the web interface.</p>
             </div>
             <div class="space-y-12">
-                <!-- Milestone 1 -->
                 <div id="milestone1" class="glass-card p-8 rounded-2xl">
-                    <h3 class="text-3xl font-bold text-white mb-4"><span class="text-cyan-400">Milestone 1:</span> Core Logic & CLI</h3>
-                    <p class="text-slate-300 mb-6">Build and test the complete backend logic in a standalone Command-Line Interface application. This proves our core features work before touching any web code.</p>
+                    <h3 class="text-3xl font-bold text-white mb-4"><span class="text-cyan-400">Milestone 1:</span> File-Based CLI Application</h3>
+                    <p class="text-slate-300 mb-6">Our first goal is to build a robust, standalone Command-Line Interface application. This version uses simple text files (`.txt`) as its database, allowing us to prove all core logic works flawlessly before moving to more complex systems.</p>
                     <div class="max-w-3xl mx-auto bg-slate-900/50 p-6 rounded-xl border border-slate-700">
                         <h4 class="text-xl font-bold text-white text-center mb-4">CLI Demo Workflow</h4>
-                         <div class="flex items-center p-4"><div class="w-16 h-16 bg-slate-700 text-cyan-400 rounded-full flex items-center justify-center text-2xl shadow-lg shrink-0 border-2 border-slate-600"><i class="fas fa-window-maximize"></i></div><div class="ml-6"><h5 class="font-bold text-white">1. Two-Terminal Setup</h5><p class="text-slate-400 text-sm">Open two terminals (Teacher & Student) and run `./artams_cli` in each.</p></div></div>
-                         <div class="text-slate-500 text-2xl my-2 text-center"><i class="fas fa-arrow-down"></i></div>
-                         <div class="flex items-center p-4"><div class="w-16 h-16 bg-slate-700 text-cyan-400 rounded-full flex items-center justify-center text-2xl shadow-lg shrink-0 border-2 border-slate-600"><i class="fas fa-key"></i></div><div class="ml-6"><h5 class="font-bold text-white">2. Teacher Generates Token</h5><p class="text-slate-400 text-sm">Teacher starts a session, displaying a secure token in their terminal.</p></div></div>
-                          <div class="text-slate-500 text-2xl my-2 text-center"><i class="fas fa-arrow-down"></i></div>
-                         <div class="flex items-center p-4"><div class="w-16 h-16 bg-slate-700 text-cyan-400 rounded-full flex items-center justify-center text-2xl shadow-lg shrink-0 border-2 border-slate-600"><i class="fas fa-map-marker-alt"></i></div><div class="ml-6"><h5 class="font-bold text-white">3. Student Enters Data</h5><p class="text-slate-400 text-sm">Student enters their ID, the token, and mock GPS coordinates.</p></div></div>
-                          <div class="text-slate-500 text-2xl my-2 text-center"><i class="fas fa-arrow-down"></i></div>
-                         <div class="flex items-center p-4"><div class="w-16 h-16 bg-slate-700 text-cyan-400 rounded-full flex items-center justify-center text-2xl shadow-lg shrink-0 border-2 border-slate-600"><i class="fas fa-check-double"></i></div><div class="ml-6"><h5 class="font-bold text-white">4. Core Logic Validates</h5><p class="text-slate-400 text-sm">The CLI validates the token, location, and checks for duplicates, printing the result.</p></div></div>
+                        <div class="flex items-center p-4"><div class="w-16 h-16 bg-slate-700 text-cyan-400 rounded-full flex items-center justify-center text-2xl shadow-lg shrink-0 border-2 border-slate-600"><i class="fas fa-terminal"></i></div><div class="ml-6"><h5 class="font-bold text-white">1. Build with Make</h5><p class="text-slate-400 text-sm">Run `make` in the terminal to compile all `.c` files into the `artams_cli` executable.</p></div></div>
+                        <div class="text-slate-500 text-2xl my-2 text-center"><i class="fas fa-arrow-down"></i></div>
+                        <div class="flex items-center p-4"><div class="w-16 h-16 bg-slate-700 text-cyan-400 rounded-full flex items-center justify-center text-2xl shadow-lg shrink-0 border-2 border-slate-600"><i class="fas fa-key"></i></div><div class="ml-6"><h5 class="font-bold text-white">2. Teacher Starts Session</h5><p class="text-slate-400 text-sm">Teacher runs `./artams_cli`, chooses Teacher Mode, and starts a session. A token is generated and saved to `data/sessions.txt`.</p></div></div>
+                        <div class="text-slate-500 text-2xl my-2 text-center"><i class="fas fa-arrow-down"></i></div>
+                        <div class="flex items-center p-4"><div class="w-16 h-16 bg-slate-700 text-cyan-400 rounded-full flex items-center justify-center text-2xl shadow-lg shrink-0 border-2 border-slate-600"><i class="fas fa-map-marker-alt"></i></div><div class="ml-6"><h5 class="font-bold text-white">3. Student Marks Attendance</h5><p class="text-slate-400 text-sm">In a separate terminal, the student runs `./artams_cli`, enters their roll number, the token, and mock coordinates.</p></div></div>
+                        <div class="text-slate-500 text-2xl my-2 text-center"><i class="fas fa-arrow-down"></i></div>
+                        <div class="flex items-center p-4"><div class="w-16 h-16 bg-slate-700 text-cyan-400 rounded-full flex items-center justify-center text-2xl shadow-lg shrink-0 border-2 border-slate-600"><i class="fas fa-check-double"></i></div><div class="ml-6"><h5 class="font-bold text-white">4. Validation and Logging</h5><p class="text-slate-400 text-sm">The system validates all data against the `.txt` files and, if successful, appends a new entry to `data/attendance_log.txt`.</p></div></div>
                     </div>
-                     <button class="mt-6 w-full relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500" onclick="breakDownTask('Milestone 1: Core Logic & CLI (Days 1-5)')"><span class="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">✨ Break Down Milestone 1 Tasks</span></button>
                 </div>
-
-                <!-- Milestone 2 -->
-                 <div id="milestone2" class="glass-card p-8 rounded-2xl">
-                    <h3 class="text-3xl font-bold text-white mb-4"><span class="text-cyan-400">Milestone 2:</span> Web App & Deployment </h3>
-                     <p class="text-slate-300 mb-6">After the core logic is proven, we connect it to the web with a FastCGI server and build the full user interface with all features.</p>
-                     <div class="space-y-6">
-                        <div class="glass-card p-6 bg-slate-900/50">
-                             <p><strong>Day 6-7:</strong> FastCGI & Firebase Integration.</p>
-                            <span class="block text-sm text-slate-400 mt-2">Deliverable: Working API endpoints that write to our Firebase database.</span>
-                             <button class="mt-4 w-full relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500" onclick="breakDownTask('Day 6-7: FastCGI & Firebase Integration')"><span class="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">✨ Break Down Task</span></button>
-                        </div>
-                        <div class="glass-card p-6 bg-slate-900/50">
-                            <p><strong>Day 8-9:</strong> Web Frontend with Dashboard & QR.</p>
-                            <span class="block text-sm text-slate-400 mt-2">Deliverable: A functional UI where the teacher can see the live dashboard and students can mark attendance.</span>
-                             <button class="mt-4 w-full relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500" onclick="breakDownTask('Day 8-9: Build Web Frontend with Live Dashboard')"><span class="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">✨ Break Down Task</span></button>
-                        </div>
-                         <div class="glass-card p-6 bg-slate-900/50">
-                            <p><strong>Day 10:</strong> Final Testing, Data Export & Demo Prep.</p>
-                            <span class="block text-sm text-slate-400 mt-2">Deliverable: A polished prototype with the Excel export feature working, and a demo script ready.</span>
-                             <button class="mt-4 w-full relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500" onclick="breakDownTask('Day 10: Final Testing, Data Export, and Demo Prep')"><span class="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">✨ Break Down Task</span></button>
-                        </div>
-                    </div>
+                <div id="milestone2" class="glass-card p-8 rounded-2xl">
+                    <h3 class="text-3xl font-bold text-white mb-4"><span class="text-cyan-400">Milestone 2:</span> Web App & Deployment</h3>
+                    <p class="text-slate-300">In the second phase, we will replace the file-based system with a FastCGI server and Firebase database, and build the final web interface.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Repo & File Details -->
         <section id="repo" class="py-24 glass-card rounded-3xl">
             <div class="text-center">
                 <h2 class="text-4xl font-black text-white mb-3">Repository & AI Development Tools</h2>
-                <p class="text-lg text-slate-400 mb-12">Generate code, create test cases, and get explanations for any file.</p>
+                <p class="text-lg text-slate-400 mb-12">Generate code, create test cases, and get explanations for any file in our new CLI structure.</p>
             </div>
             <div class="grid md:grid-cols-2 gap-12 items-start">
                 <div>
-                     <h3 class="text-xl font-bold text-white mb-4 text-center">Repository Structure</h3>
-                     <div class="bg-slate-900 border border-slate-700 rounded-lg p-6 font-mono text-sm text-slate-300 overflow-x-auto">
+                    <h3 class="text-xl font-bold text-white mb-4 text-center">CLI Project Structure</h3>
+                    <div class="bg-slate-900 border border-slate-700 rounded-lg p-6 font-mono text-sm text-slate-300 overflow-x-auto">
 <pre>
-/artams-project/
-├── 📁 core/
-│   ├── student_db.c
-│   ├── token_manager.c
-│   └── location_validator.c
-├── 📁 fastcgi/
-│   └── server.c
-├── 📁 cli/
+/artams-cli/
+├── core/
+│   ├── student_db.c / .h
+│   ├── token_manager.c / .h
+│   ├── location_validator.c / .h
+│   ├── log_manager.c / .h
+│   └── utils.c / .h
+├── cli/
 │   └── main.c
-└── 📄 index.html
+├── data/
+│   ├── students.txt
+│   ├── sessions.txt
+│   └── attendance_log.txt
+└── Makefile
 </pre>
                     </div>
                 </div>
                 <div class="space-y-4">
                     <h3 class="text-xl font-bold text-white mb-4 text-center">Core Logic Files</h3>
-                    <div class="glass-card p-4">
-                        <p><strong>`core/student_db.c`</strong>: Manages student data using a Hash Table.</p>
-                        <div class="flex space-x-2 mt-3"><button class="w-1/2 relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500" onclick="generateCode('student_db.c')"><span class="w-full relative px-4 py-2 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">Generate Code</span></button><button class="w-1/2 relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600" onclick="generateTestCases('student_db.c')"><span class="w-full relative px-4 py-2 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">Suggest Tests</span></button></div>
-                    </div>
-                    <div class="glass-card p-4">
-                        <p><strong>`core/token_manager.c`</strong>: Creates and validates session tokens.</p>
-                         <div class="flex space-x-2 mt-3"><button class="w-1/2 relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500" onclick="generateCode('token_manager.c')"><span class="w-full relative px-4 py-2 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">Generate Code</span></button><button class="w-1/2 relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600" onclick="generateTestCases('token_manager.c')"><span class="w-full relative px-4 py-2 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">Suggest Tests</span></button></div>
-                    </div>
-                    <div class="glass-card p-4">
-                        <p><strong>`core/location_validator.c`</strong>: Validates GPS coordinates.</p>
-                        <div class="flex space-x-2 mt-3"><button class="w-1/2 relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500" onclick="generateCode('location_validator.c')"><span class="w-full relative px-4 py-2 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">Generate Code</span></button><button class="w-1/2 relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600" onclick="generateTestCases('location_validator.c')"><span class="w-full relative px-4 py-2 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">Suggest Tests</span></button></div>
-                    </div>
+                    <div class="glass-card p-4"><p><strong>`core/student_db.c`</strong>: Manages student data, loading from `students.txt` into a Hash Table.</p><div class="flex space-x-2 mt-3"><button class="w-1/2 relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500" onclick="generateCode('student_db.c')"><span class="w-full relative px-4 py-2 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">Generate Code</span></button><button class="w-1/2 relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600" onclick="generateTestCases('student_db.c')"><span class="w-full relative px-4 py-2 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">Suggest Tests</span></button></div></div>
+                    <div class="glass-card p-4"><p><strong>`core/token_manager.c`</strong>: Generates tokens and manages them in `sessions.txt`.</p><div class="flex space-x-2 mt-3"><button class="w-1/2 relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500" onclick="generateCode('token_manager.c')"><span class="w-full relative px-4 py-2 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">Generate Code</span></button><button class="w-1/2 relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600" onclick="generateTestCases('token_manager.c')"><span class="w-full relative px-4 py-2 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">Suggest Tests</span></button></div></div>
+                    <div class="glass-card p-4"><p><strong>`core/log_manager.c`</strong>: Appends verified attendance to `attendance_log.txt`.</p><div class="flex space-x-2 mt-3"><button class="w-1/2 relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500" onclick="generateCode('log_manager.c')"><span class="w-full relative px-4 py-2 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">Generate Code</span></button><button class="w-1/2 relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600" onclick="generateTestCases('log_manager.c')"><span class="w-full relative px-4 py-2 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">Suggest Tests</span></button></div></div>
                 </div>
             </div>
         </section>
 
-        <!-- AI Debugger -->
         <section id="debugger" class="py-24">
             <div class="text-center">
                 <h2 class="text-4xl font-black text-white mb-3">AI Debugging Assistant</h2>
@@ -226,88 +157,36 @@
             </div>
             <div class="glass-card p-8 rounded-2xl max-w-4xl mx-auto">
                 <div class="grid md:grid-cols-2 gap-6">
-                    <div>
-                        <label for="code-input" class="block text-sm font-medium text-slate-300 mb-2">C Code Snippet</label>
-                        <textarea id="code-input" rows="10" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-sm font-mono focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 outline-none" placeholder="Paste your C code here..."></textarea>
-                    </div>
-                    <div>
-                        <label for="error-input" class="block text-sm font-medium text-slate-300 mb-2">Error Message or Problem</label>
-                        <textarea id="error-input" rows="10" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-sm font-mono focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 outline-none" placeholder="Paste your compiler error or describe the bug..."></textarea>
-                    </div>
+                    <div><label for="code-input" class="block text-sm font-medium text-slate-300 mb-2">C Code Snippet</label><textarea id="code-input" rows="10" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-sm font-mono focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 outline-none" placeholder="Paste your C code here..."></textarea></div>
+                    <div><label for="error-input" class="block text-sm font-medium text-slate-300 mb-2">Error Message or Problem</label><textarea id="error-input" rows="10" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-sm font-mono focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 outline-none" placeholder="Paste your compiler error or describe the bug..."></textarea></div>
                 </div>
-                <button class="mt-6 w-full relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-red-500 to-orange-400" onclick="debugCode()">
-                    <span class="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">
-                        <i class="fas fa-bug mr-2"></i> Find & Fix Bug
-                    </span>
-                </button>
+                <button class="mt-6 w-full relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-red-500 to-orange-400" onclick="debugCode()"><span class="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0"><i class="fas fa-bug mr-2"></i> Find & Fix Bug</span></button>
             </div>
         </section>
 
-        <!-- Team Roles -->
         <section id="team" class="py-24 glass-card rounded-3xl">
             <div class="text-center">
                 <h2 class="text-4xl font-black text-white mb-3">Milestone 1: Team Responsibilities</h2>
-                <p class="text-lg text-slate-400 mb-12">A detailed breakdown of tasks for each team member for the first 5-day sprint.</p>
+                <p class="text-lg text-slate-400 mb-12">A detailed breakdown of tasks for each team member for the 10-day CLI sprint.</p>
             </div>
-            <div class="grid sm:grid-cols-2 lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <div class="glass-card p-6 bg-slate-900/50">
-                    <h3 class="text-xl font-bold text-white">Pawan Joshi (Lead)</h3>
-                    <p class="font-semibold text-cyan-400 mb-3">Integration & Core Logic</p>
-                    <ul class="text-left list-disc list-inside text-slate-300 space-y-2">
-                        <li>Lead the integration of all `core` modules within the `cli/main.c` application.</li>
-                        <li>Implement the `token_manager.c` module, including HMAC generation and expiry logic.</li>
-                        <li>Oversee the overall project structure and build process.</li>
-                    </ul>
-                </div>
-                <div class="glass-card p-6 bg-slate-900/50">
-                    <h3 class="text-xl font-bold text-white">Anushka</h3>
-                    <p class="font-semibold text-cyan-400 mb-3">Student DB & CLI</p>
-                    <ul class="text-left list-disc list-inside text-slate-300 space-y-2">
-                        <li>Implement the student database in `student_db.c` using a Hash Table.</li>
-                        <li>Develop the main user-facing CLI menu and input validation logic.</li>
-                        <li>Create the functions for adding and searching for students.</li>
-                    </ul>
-                </div>
-                <div class="glass-card p-6 bg-slate-900/50">
-                    <h3 class="text-xl font-bold text-white">Jasmine</h3>
-                    <p class="font-semibold text-cyan-400 mb-3">Logging & Data Structures</p>
-                    <ul class="text-left list-disc list-inside text-slate-300 space-y-2">
-                        <li>Implement the `attendance_log.c` module to handle in-memory logging of attendance records.</li>
-                        <li>Write the functions to display the attendance log in the teacher's CLI view.</li>
-                        <li>Assist with data structures for session management.</li>
-                    </ul>
-                </div>
-                <div class="glass-card p-6 bg-slate-900/50">
-                    <h3 class="text-xl font-bold text-white">Aaditya Uniyal</h3>
-                    <p class="font-semibold text-cyan-400 mb-3">Location Validation</p>
-                    <ul class="text-left list-disc list-inside text-slate-300 space-y-2">
-                        <li>Implement the `location_validator.c` module, including the Haversine formula logic.</li>
-                        <li>Create the CLI prompts for students to input mock GPS coordinates.</li>
-                        <li>Integrate the location check into the main validation workflow.</li>
-                    </ul>
-                </div>
+            <div class="grid sm:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="glass-card p-6 bg-slate-900/50"><h3 class="text-xl font-bold text-white">Pawan Joshi (Lead)</h3><p class="font-semibold text-cyan-400 mb-3">Integration & Core Logic</p><ul class="text-left list-disc list-inside text-slate-300 space-y-2"><li>Implement `token_manager.c` and `utils.c`.</li><li>Integrate all core modules in `cli/main.c`.</li><li>Set up and manage the `Makefile`.</li></ul></div>
+                <div class="glass-card p-6 bg-slate-900/50"><h3 class="text-xl font-bold text-white">Anushka</h3><p class="font-semibold text-cyan-400 mb-3">Student DB & CLI</p><ul class="text-left list-disc list-inside text-slate-300 space-y-2"><li>Implement `student_db.c` (Hash Table) to load from `students.txt`.</li><li>Develop the main CLI menu and input validation.</li></ul></div>
+                <div class="glass-card p-6 bg-slate-900/50"><h3 class="text-xl font-bold text-white">Jasmine</h3><p class="font-semibold text-cyan-400 mb-3">Logging & Session Management</p><ul class="text-left list-disc list-inside text-slate-300 space-y-2"><li>Implement `log_manager.c` to read/write to `attendance_log.txt`.</li><li>Handle file-based session logic in `token_manager.c`.</li></ul></div>
+                <div class="glass-card p-6 bg-slate-900/50"><h3 class="text-xl font-bold text-white">Aaditya Uniyal</h3><p class="font-semibold text-cyan-400 mb-3">Location Validation</p><ul class="text-left list-disc list-inside text-slate-300 space-y-2"><li>Implement `location_validator.c` with the Haversine formula.</li><li>Integrate the location check into the main validation workflow.</li></ul></div>
             </div>
         </section>
     </main>
 
-    <footer class="border-t border-slate-800 text-center py-8">
-        <p class="text-slate-400">Built by TEAM ASTRA for the ARTAMS Project</p>
-    </footer>
+    <footer class="border-t border-slate-800 text-center py-8"><p class="text-slate-400">Built by TEAM ASTRA for the ARTAMS Project</p></footer>
 
-    <!-- Gemini AI Modal -->
     <div id="ai-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 hidden z-50">
         <div class="bg-slate-800/80 backdrop-blur-xl border border-slate-700 rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] flex flex-col">
-            <div class="flex justify-between items-center p-4 border-b border-slate-700">
-                <h3 id="modal-title" class="text-2xl font-bold text-white flex items-center"><i class="fas fa-robot mr-3 text-cyan-400"></i>Gemini AI Assistant</h3>
-                <button onclick="closeModal()" class="text-slate-400 hover:text-red-400 text-2xl transition-colors">&times;</button>
-            </div>
+            <div class="flex justify-between items-center p-4 border-b border-slate-700"><h3 id="modal-title" class="text-2xl font-bold text-white flex items-center"><i class="fas fa-robot mr-3 text-cyan-400"></i>Gemini AI Assistant</h3><button onclick="closeModal()" class="text-slate-400 hover:text-red-400 text-2xl transition-colors">&times;</button></div>
             <div id="modal-content" class="p-6 overflow-y-auto">
-                <div id="loading-spinner" class="text-center hidden">
-                    <i class="fas fa-spinner fa-spin text-4xl text-cyan-400"></i>
-                    <p class="mt-2 text-slate-400">Generating response...</p>
-                </div>
+                <div id="loading-spinner" class="text-center hidden"><i class="fas fa-spinner fa-spin text-4xl text-cyan-400"></i><p class="mt-2 text-slate-400">Generating response...</p></div>
                 <div id="response-area"></div>
-                 <div id="modal-actions" class="mt-4 hidden"></div>
+                <div id="modal-actions" class="mt-4 hidden"></div>
             </div>
         </div>
     </div>
@@ -318,7 +197,7 @@
         const responseArea = document.getElementById('response-area');
         const loadingSpinner = document.getElementById('loading-spinner');
         const modalActions = document.getElementById('modal-actions');
-        const apiKey = "AIzaSyCdgYjvFRKo3jqFpEBRoUpHXWir4mVuaH0";
+        const apiKey = ""; // Canvas will provide this
         let lastGeneratedCode = "";
 
         function openModal(title) {
@@ -335,78 +214,58 @@
         }
 
         async function callGeminiWithRetry(prompt, retries = 3, timeout = 10000) {
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
             let lastError = null;
-
             for (let i = 0; i < retries; i++) {
                 try {
                     const controller = new AbortController();
                     const id = setTimeout(() => controller.abort(), timeout);
-
                     const response = await fetch(apiUrl, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] }),
                         signal: controller.signal,
                     });
-
                     clearTimeout(id);
-
-                    if (!response.ok) {
-                        throw new Error(`API call failed with status: ${response.status}`);
-                    }
-
+                    if (!response.ok) throw new Error(`API call failed with status: ${response.status}`);
                     const result = await response.json();
                     const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
-                    
-                    if (text) {
-                        return text;
-                    } else {
-                        throw new Error("Invalid response structure from API.");
-                    }
-
+                    if (text) return text;
+                    else throw new Error("Invalid response structure from API.");
                 } catch (error) {
                     lastError = error;
                     if (i < retries - 1) {
-                        const delay = Math.pow(2, i) * 1000; 
+                        const delay = Math.pow(2, i) * 1000;
                         await new Promise(resolve => setTimeout(resolve, delay));
                     }
                 }
             }
-            
             console.error('Gemini API call failed after multiple retries:', lastError);
             return `An error occurred after multiple retries: ${lastError.message}.`;
         }
 
-        async function breakDownTask(milestoneDescription) {
-            openModal('Task Breakdown');
-            const prompt = `You are the lead project manager for Team Astra, guiding them in building the ARTAMS attendance system. Your goal is to break down the following milestone into a detailed, actionable plan for the student developers. Provide a step-by-step guide with sub-tasks and realistic time estimates (within the given days). Milestone: "${milestoneDescription}"`;
-            const result = await callGeminiWithRetry(prompt);
-            loadingSpinner.classList.add('hidden');
-            responseArea.innerHTML = `<div class="prose prose-invert max-w-none">${convertToHtml(result)}</div>`;
-        }
-        
         const fileDetails = {
-            'student_db.c': "Manages student data using a Hash Table to prevent proxy attendance. Key functions: `createStudentDB()`, `addStudent()`, `findStudentByID()`, `markStudentAsPresent()`.",
-            'token_manager.c': "Creates secure, expiring session tokens. Key functions: `generateToken()`, `validateToken()`, and a mechanism to handle expired tokens.",
-            'location_validator.c': "Validates GPS coordinates to ensure students are physically present. Key function: `isWithinRange()`, which uses the Haversine formula to check if a student's coordinates are within a set radius of the classroom.",
-            'server.c': "The main FastCGI backend server for the ARTAMS web app. It should handle API routes like `/startSession` and `/markAttendance`, parse incoming data, and call the respective core logic functions."
+            'student_db.c': "Manages student data for the ARTAMS CLI. It loads student records from `data/students.txt` into a Hash Table for fast lookups. Key functions: `load_students()`, `find_student()`.",
+            'token_manager.c': "Generates and validates session tokens, using `data/sessions.txt` for storage. Key functions: `generate_token()`, `validate_token()`.",
+            'location_validator.c': "Validates mock GPS coordinates using the Haversine formula. Key function: `validate_location()`.",
+            'log_manager.c': "Handles reading from and writing to the `data/attendance_log.txt` file. Key functions: `mark_attendance()`, `show_attendance()`.",
+            'utils.c': "Contains helper functions used across the ARTAMS project, such as string manipulation and time functions."
         };
 
         async function generateCode(fileName) {
             openModal(`Boilerplate for ${fileName}`);
             const description = fileDetails[fileName];
-            const prompt = `You are an expert C programmer building the ARTAMS (Advanced Real Time Attendance Management System). Your task is to generate the boilerplate code for \`${fileName}\`.
+            const prompt = `You are an expert C programmer building the ARTAMS (Advanced Real Time Attendance Management System) CLI. Your task is to generate the boilerplate code for \`${fileName}\`, including its corresponding header file content.
             
             **File Purpose:** ${description}
 
-            Generate clean, production-quality, and well-commented C code. It must include necessary headers (e.g., <stdio.h>, <stdlib.h>, <string.h>), relevant struct definitions, and all the key function stubs mentioned in the purpose. Ensure the code is a complete, compilable starting point for a student developer.`;
+            Generate clean, production-quality, and well-commented C code. It must include necessary headers, relevant struct definitions, and all the key function stubs. Provide the content for both the \`.c\` file and the \`.h\` file, clearly separated by comments.`;
             
             const result = await callGeminiWithRetry(prompt);
             loadingSpinner.classList.add('hidden');
-            lastGeneratedCode = result.replace(/^```c\n|```c|```/gm, '').trim();
-            responseArea.innerHTML = `<pre><code class="language-c hljs">${hljs.highlight(lastGeneratedCode, {language: 'c'}).value}</code></pre>`;
-            
+            lastGeneratedCode = result;
+            responseArea.innerHTML = `<div class="prose prose-invert max-w-none">${convertToHtml(result)}</div>`;
+            hljs.highlightAll();
             modalActions.innerHTML = `<button class="w-full relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500" onclick="explainCode()"><span class="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">Explain This Code</span></button>`;
             modalActions.classList.remove('hidden');
         }
@@ -414,75 +273,54 @@
         async function generateTestCases(fileName) {
             openModal(`Test Cases for ${fileName}`);
             const description = fileDetails[fileName];
-            const prompt = `You are a Quality Assurance (QA) engineer for the ARTAMS project. Your task is to create a set of unit test cases for the C file \`${fileName}\`.
+            const prompt = `You are a QA engineer for the ARTAMS CLI project. Create a set of unit test cases for \`${fileName}\`.
             
             **File Purpose:** ${description}
 
-            Provide a list of test cases in markdown format. Include:
-            1.  **Happy Path Tests** (successful, expected outcomes).
-            2.  **Edge Cases** (e.g., empty inputs, boundary values).
-            3.  **Invalid Input Tests** (e.g., NULL pointers, incorrect data formats).`;
-
+            Provide a list of test cases in markdown. Include happy paths, edge cases (e.g., file not found, empty files), and invalid inputs.`;
             const result = await callGeminiWithRetry(prompt);
             loadingSpinner.classList.add('hidden');
             responseArea.innerHTML = `<div class="prose prose-invert max-w-none">${convertToHtml(result)}</div>`;
         }
-
+        
         async function explainCode() {
             openModal('Code Explanation');
-            const prompt = `You are a C programming tutor for Team Astra. The following C code has been generated for the ARTAMS project. Explain this code snippet in detail, block-by-block. Clarify the purpose of the structs, the function signatures, memory allocation, and any complex logic. The goal is to help a university student understand it completely.
+            const prompt = `You are a C programming tutor for Team Astra. Explain the following code for the ARTAMS project in detail. Clarify the purpose of the structs, functions, and any complex logic for a university student.
             
-            **Code:**
-            \`\`\`c
-            ${lastGeneratedCode}
-            \`\`\``;
-            const result = await callGeminiWithRetry(prompt);
-            loadingSpinner.classList.add('hidden');
-            responseArea.innerHTML = `<div class="prose prose-invert max-w-none">${convertToHtml(result)}</div>`;
-        }
-
-        async function debugCode() {
-            const userCode = document.getElementById('code-input').value;
-            const userError = document.getElementById('error-input').value;
-
-            if (!userCode.trim() || !userError.trim()) {
-                alert("Please provide both a code snippet and an error message.");
-                return;
-            }
-
-            openModal('Debugging Assistant');
-            const prompt = `You are an expert C debugger assisting Team Astra with their ARTAMS attendance system. A student developer is facing an issue.
-            
-            **Code Snippet:**
-            \`\`\`c
-            ${userCode}
-            \`\`\`
-            
-            **Error Message / Problem Description:**
-            "${userError}"
-
-            Your task is to:
-            1.  Identify the potential cause of the error.
-            2.  Explain the bug in simple, clear terms.
-            3.  Provide a corrected version of the code snippet with comments on the changes.
-            4.  Offer advice on how to avoid this type of bug in the future.
-            
-            Format your response clearly using markdown.`;
-
+            **Code:**\n${lastGeneratedCode}`;
             const result = await callGeminiWithRetry(prompt);
             loadingSpinner.classList.add('hidden');
             responseArea.innerHTML = `<div class="prose prose-invert max-w-none">${convertToHtml(result)}</div>`;
              hljs.highlightAll();
         }
 
+        async function debugCode() {
+            const userCode = document.getElementById('code-input').value;
+            const userError = document.getElementById('error-input').value;
+            if (!userCode.trim() || !userError.trim()) {
+                alert("Please provide both a code snippet and an error message.");
+                return;
+            }
+            openModal('Debugging Assistant');
+            const prompt = `You are an expert C debugger assisting Team Astra. A developer is facing an issue with their ARTAMS CLI code.
+            
+            **Code Snippet:**\n\`\`\`c\n${userCode}\n\`\`\`
+            **Error/Problem:** "${userError}"
+
+            Your task: 1. Identify the bug. 2. Explain it simply. 3. Provide the corrected code with comments. 4. Offer advice to avoid it. Format your response in clear markdown.`;
+            const result = await callGeminiWithRetry(prompt);
+            loadingSpinner.classList.add('hidden');
+            responseArea.innerHTML = `<div class="prose prose-invert max-w-none">${convertToHtml(result)}</div>`;
+            hljs.highlightAll();
+        }
+
         function convertToHtml(text) {
             if (!text) return '';
-            // Handle code blocks first to prevent inner markdown from being processed
-            text = text.replace(/```c\n([\s\S]+?)```/g, (match, p1) => {
-                const highlightedCode = hljs.highlight(p1.trim(), {language: 'c'}).value;
+            text = text.replace(/```c\n([\s\S]+?)```|```c ([\s\S]+?)```/g, (match, p1, p2) => {
+                const code = p1 || p2;
+                const highlightedCode = hljs.highlight(code.trim(), {language: 'c'}).value;
                 return `<pre><code class="language-c hljs">${highlightedCode}</code></pre>`;
             });
-
             return text
                 .replace(/^### (.*$)/gim, '<h3 class="text-xl font-bold mb-2 text-cyan-400">$1</h3>')
                 .replace(/^## (.*$)/gim, '<h2 class="text-2xl font-bold mb-3 text-white">$1</h2>')
