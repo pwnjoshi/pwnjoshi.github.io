@@ -217,8 +217,8 @@
         }
 
         async function callAIWithRetry(prompt, retries = 3, timeout = 15000) {
-            const apiUrl = `https://api.aimlapi.com/v1/chat/completions`;
-            const apiKey = "731e60edb5cc422993ca0cd4fbaae0f1";
+            const apiKey = "AIzaSyCkfQmFRHaMi4GX2waJ_3TdPV6jvWA2ExU";
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
             let lastError = null;
 
             for (let i = 0; i < retries; i++) {
@@ -230,14 +230,9 @@
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${apiKey}`
                         },
                         body: JSON.stringify({
-                            model: "google/gemma-3n-e4b-it",
-                            messages: [{ role: "user", content: prompt }],
-                            temperature: 0.7,
-                            top_p: 0.7,
-                            max_tokens: 1536,
+                            contents: [{ parts: [{ text: prompt }] }]
                         }),
                         signal: controller.signal,
                     });
@@ -246,7 +241,7 @@
                     if (!response.ok) throw new Error(`API call failed: ${response.status}`);
                     
                     const result = await response.json();
-                    const text = result.choices?.[0]?.message?.content;
+                    const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
                     
                     if (text) return text;
                     else {
@@ -269,27 +264,27 @@
 
         async function breakDownTask(phase) {
             openModal(`Task Breakdown for ${phase}`);
-            const prompt = `You are the project lead for Nexora, an AI interview prep tool. Break down the tasks for "${phase}" into a detailed, actionable plan for your team of student developers. Use markdown formatting.`;
+            const prompt = `You are the project lead for Nexora, an AI interview prep tool. Your team is building a Django application. Break down the tasks for "${phase}" into a detailed, actionable plan for your student developers. Be specific about Django apps, models, views, and templates. Use markdown formatting.`;
             const result = await callAIWithRetry(prompt);
             loadingSpinner.classList.add('hidden');
             responseArea.innerHTML = `<div class="prose prose-invert max-w-none">${convertToHtml(result)}</div>`;
         }
         
         const fileDetails = {
-            'views.py': "This is the core of our Django app. It needs functions to handle: 1. `upload_resume`: A view that processes the POST request from a file upload form. It should save the file, call the parser, and then redirect to the questions view. 2. `show_questions`: A view that gets the parsed skills, selects questions from `question_bank.json`, and displays them. 3. `submit_answers`: A view to process the submitted answers and redirect to feedback.",
-            'resume_parser.py': "This file will contain functions to extract text from resumes. It needs: 1. `parse_pdf(file_path)`: Uses the PyPDF2 library to read text from a PDF. 2. `parse_docx(file_path)`: Uses the python-docx library to read text from a DOCX file. 3. A main function `extract_text(file_path)` that checks the file extension and calls the appropriate parser.",
-            'upload.html': "A simple HTML form for the user to upload their resume. It should contain a `<form>` with `enctype='multipart/form-data'`, a file `<input>`, and a submit button. Use Django template tags."
+            'views.py': "This is the core of our Django `interview` app. It needs functions to handle: 1. `upload_resume`: A view that processes the POST request from a file upload form. It should save the file, call the resume_parser, store the extracted text in the session, and then redirect to the questions view. 2. `show_questions`: A view that gets the parsed skills from the session, selects relevant questions from `data/question_bank.json`, and displays them in a template. 3. `submit_answers`: A view to process the submitted answers from the form and redirect to the feedback page.",
+            'resume_parser.py': "This Python script contains functions to extract text from resumes for our Nexora project. It needs: 1. `parse_pdf(file_path)`: Uses the PyPDF2 library. 2. `parse_docx(file_path)`: Uses the python-docx library. 3. A main function `extract_text(file_path)` that checks the file extension and calls the appropriate parser.",
+            'upload.html': "A simple Django template for the user to upload their resume. It should contain a `<form>` with `method='POST'` and `enctype='multipart/form-data'`, a file `<input>`, a CSRF token, and a submit button."
         };
 
         async function generateCode(fileName) {
             openModal(`Boilerplate for ${fileName}`);
             const description = fileDetails[fileName];
             const language = fileName.endsWith('.py') ? 'python' : 'html';
-            const prompt = `You are an expert Python/Django developer building the Nexora project. Generate boilerplate ${language} code for the file \`${fileName}\`.
+            const prompt = `You are an expert Python/Django developer building the Nexora project, an AI-powered interview preparation tool. Generate boilerplate ${language} code for the file \`${fileName}\`.
             
-            **File Purpose:** ${description}
+            **Project Context & File Purpose:** ${description}
 
-            Generate clean, well-commented code that is ready to be used in a Django project.`;
+            Generate clean, well-commented, and functional code that is ready to be used in our Django project. For Python files, include necessary imports. For HTML, include standard Django template syntax like CSRF tokens where needed.`;
             
             const result = await callAIWithRetry(prompt);
             loadingSpinner.classList.add('hidden');
@@ -304,7 +299,7 @@
                 return;
             }
             openModal(`Questions for ${skill}`);
-            const prompt = `You are an expert technical interviewer. Generate 5-7 relevant interview questions for the following skill/technology: "${skill}". The questions should range from basic to intermediate difficulty. Format the response as a JSON array of strings.`;
+            const prompt = `You are an AI assistant for Nexora, an interview prep tool. Generate 5-7 relevant interview questions for the following skill/technology: "${skill}". The questions should be suitable for a candidate who has this skill on their resume, ranging from basic to intermediate difficulty. Format the response as a JSON array of strings, ready to be copied into our 'question_bank.json'.`;
             
             const result = await callAIWithRetry(prompt);
             loadingSpinner.classList.add('hidden');
@@ -320,12 +315,12 @@
                 return;
             }
             openModal('Debugging Assistant');
-            const prompt = `You are an expert Python/Django debugger. A developer on the Nexora team is facing an issue.
+            const prompt = `You are an expert Python/Django debugger for the Nexora project. A developer is facing an issue.
             
             **Code:**\n\`\`\`python\n${userCode}\n\`\`\`
             **Error/Problem:** "${userError}"
 
-            Your task: 1. Identify the bug. 2. Explain it. 3. Provide the corrected code. 4. Offer advice. Format in clear markdown.`;
+            Your task is to: 1. Identify the bug in the context of a Django application. 2. Explain it clearly. 3. Provide the corrected Python code. 4. Offer advice to avoid this issue. Format in clear markdown.`;
             const result = await callAIWithRetry(prompt);
             loadingSpinner.classList.add('hidden');
             responseArea.innerHTML = `<div class="prose prose-invert max-w-none">${convertToHtml(result)}</div>`;
@@ -336,9 +331,9 @@
 
         function convertToHtml(text) {
             if (!text) return '';
-            text = text.replace(/```python\n([\s\S]+?)```/g, (match, p1) => {
-                const highlightedCode = hljs.highlight(p1.trim(), {language: 'python'}).value;
-                return `<pre><code class="language-python hljs">${highlightedCode}</code></pre>`;
+            text = text.replace(/```(python|html|json)\n([\s\S]+?)```/g, (match, lang, code) => {
+                const highlightedCode = hljs.highlight(code.trim(), {language: lang}).value;
+                return `<pre><code class="language-${lang} hljs">${highlightedCode}</code></pre>`;
             });
             return text
                 .replace(/^### (.*$)/gim, '<h3 class="text-xl font-bold mb-2 text-violet-400">$1</h3>')
