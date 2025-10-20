@@ -398,6 +398,58 @@ body {
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
+/* --- Shared Page Styles (moved from nexora.html & astra.html) --- */
+:root {
+    --bg-start: #0f172a;
+    --bg-end: #1f2a44;
+    --muted: #94a3b8;
+    --soft-white: #e6eef8;
+    --accent-violet: #7c3aed;
+    --accent-cyan: #06b6d4;
+    --page-glass-bg: rgba(18,23,33,0.55);
+    --page-glass-border: rgba(79,70,229,0.06);
+    --page-max-width: 1100px;
+}
+
+/* Page container helpers */
+.page-container { max-width: var(--page-max-width); margin: 0 auto; padding: 0 1rem; }
+
+/* Subtle animated gradient used in project heroes */
+@keyframes shared-background-pan { from { background-position: 0% center; } to { background-position: -200% center; } }
+.animated-gradient-bg { background: linear-gradient(90deg, rgba(124,58,237,0.18), rgba(236,72,153,0.12), rgba(124,58,237,0.18)); background-size: 200% auto; animation: shared-background-pan 20s linear infinite; }
+
+/* Glass card used across pages */
+.glass-card { background: var(--page-glass-bg); border: 1px solid var(--page-glass-border); padding: 1.25rem; border-radius: 1rem; transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease; }
+.glass-card:hover { transform: translateY(-8px); box-shadow: 0 24px 48px rgba(2,6,23,0.6); border-color: rgba(255,255,255,0.04); }
+
+/* Reusable button classes */
+.btn { display: inline-flex; align-items: center; gap: .6rem; padding: .6rem 1rem; border-radius: .65rem; font-weight: 600; cursor: pointer; border: 0; }
+.btn-primary { background: linear-gradient(90deg,var(--accent-violet),#ec4899); color: white; box-shadow: 0 8px 20px rgba(124,58,237,0.12); }
+.btn-ghost { background: transparent; color: var(--soft-white); border: 1px solid rgba(255,255,255,0.04); }
+.btn:focus { outline: 3px solid rgba(124,58,237,0.12); }
+
+/* Hero helpers */
+#hero { padding: 4.5rem 1.5rem; border-radius: 1.25rem; overflow: hidden; }
+#hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.03; margin: 0 0 0.5rem; }
+#hero h2 { font-size: clamp(1.25rem, 3vw, 2rem); margin: 0 0 1rem; font-weight: 700; }
+#hero p { color: var(--muted); max-width: 70ch; margin: 0 auto; }
+
+/* Grid helpers used by pages */
+.grid { gap: 1.5rem; }
+@media (min-width: 768px) { .grid.md\:grid-cols-2 { display: grid; grid-template-columns: repeat(2, 1fr); } }
+
+/* Utility text colors */
+.muted-text { color: var(--muted); }
+.soft-white { color: var(--soft-white); }
+
+/* Footer spacing helper */
+footer.page-footer { color: var(--muted); padding: 2rem 0; }
+
+/* Page-specific responsive container padding */
+@media (min-width: 768px) { .page-container { padding: 0 2rem; } }
+
+/* End shared styles */
+
 .stats-title, .connect-title {
     font-size: 1.25rem;
     font-weight: 600;
