@@ -35,7 +35,9 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
     margin: 0;
-    overflow: hidden;
+    /* Allow normal page scrolling so long pages like project hubs can scroll */
+    overflow: auto;
+    min-height: 100vh;
     transition: background-color 0.3s, color 0.3s;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -421,6 +423,16 @@ body {
 /* Glass card used across pages */
 .glass-card { background: var(--page-glass-bg); border: 1px solid var(--page-glass-border); padding: 1.25rem; border-radius: 1rem; transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease; }
 .glass-card:hover { transform: translateY(-8px); box-shadow: 0 24px 48px rgba(2,6,23,0.6); border-color: rgba(255,255,255,0.04); }
+
+/* Ensure readable text on glass cards */
+.glass-card, .glass-card * {
+    color: #ffffff !important;
+}
+
+/* Allow long content containers to scroll if needed */
+.page-container, .about-container, main {
+    overflow-y: auto;
+}
 
 /* Reusable button classes */
 .btn { display: inline-flex; align-items: center; gap: .6rem; padding: .6rem 1rem; border-radius: .65rem; font-weight: 600; cursor: pointer; border: 0; }
