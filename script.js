@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
             loginScreen.style.opacity = '1';
             loginScreen.style.pointerEvents = 'auto';
             new Typewriter(document.getElementById('login-user-typewriter'), {
-                strings: ['Pawan Joshi', 'AI/ML Developer', 'Full-Stack Engineer'],
+                strings: ['Pawan Joshi', 'Full-Stack Developer', 'CTO & Co-Founder'],
                 autoStart: true,
                 loop: true,
             });

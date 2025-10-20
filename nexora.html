@@ -12,42 +12,92 @@
 
     <style>
         :root {
-            --background-start-rgb: 15, 23, 42;
-            --background-end-rgb: 51, 65, 85;
-            --glow-color: 139, 92, 246; /* Violet */
+            --bg-start: #0f172a; /* slate-900 */
+            --bg-end: #1f2a44; /* slightly lighter */
+            --muted: #94a3b8; /* slate-400 */
+            --text: #e6eef8; /* soft white */
+            --accent-violet: #7c3aed;
+            --accent-cyan: #06b6d4;
+            --glass-bg: rgba(18, 23, 33, 0.55);
+            --glass-border: rgba(79, 70, 229, 0.06);
+            --max-width: 1100px;
         }
 
-        body {
-            font-family: 'Inter', sans-serif;
+        /* Base reset & typography */
+        html,body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background: linear-gradient(180deg, var(--bg-start) 0%, var(--bg-end) 100%);
+            color: var(--text);
             scroll-behavior: smooth;
-            background-color: #0f172a; /* slate-900 */
-            color: #e2e8f0; /* slate-200 */
         }
 
+        /* subtle animated gradient band used in hero */
         @keyframes background-pan {
             from { background-position: 0% center; }
             to { background-position: -200% center; }
         }
-
         .animated-gradient-bg {
-            background: linear-gradient(90deg, rgb(var(--background-start-rgb)), rgb(var(--background-end-rgb)), rgb(var(--background-start-rgb)));
+            background: linear-gradient(90deg, rgba(124,58,237,0.18), rgba(236,72,153,0.12), rgba(124,58,237,0.18));
             background-size: 200% auto;
-            animation: background-pan 15s linear infinite;
+            animation: background-pan 20s linear infinite;
         }
 
+        /* Layout helpers */
+        .container { max-width: var(--max-width); margin: 0 auto; }
+        header nav a { color: var(--muted); }
+        header nav a:hover { color: var(--text); }
+
+        /* Header */
+        header { background: linear-gradient(180deg, rgba(15,23,42,0.6), rgba(15,23,42,0.4)); backdrop-filter: blur(6px); }
+        header .brand { font-weight: 700; letter-spacing: -0.5px; }
+
+        /* Hero */
+        #hero { padding: 4.5rem 1.5rem; border-radius: 1.25rem; overflow: hidden; }
+        #hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.03; margin: 0 0 0.5rem; }
+        #hero h2 { font-size: clamp(1.25rem, 3vw, 2rem); margin: 0 0 1rem; font-weight: 700; }
+        #hero p { color: var(--muted); max-width: 70ch; margin: 0 auto; }
+
+        /* Glass cards */
         .glass-card {
-            background: rgba(30, 41, 59, 0.5);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(51, 65, 85, 0.5);
-            transition: all 0.3s ease;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 1.25rem;
+            border-radius: 1rem;
+            transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+        }
+        .glass-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 24px 48px rgba(2,6,23,0.6);
+            border-color: rgba(255,255,255,0.04);
         }
 
-        .glass-card:hover {
-            background: rgba(51, 65, 85, 0.7);
-            border-color: rgba(71, 85, 105, 0.8);
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        /* Buttons */
+        .btn { display: inline-flex; align-items: center; gap: .6rem; padding: .6rem 1rem; border-radius: .65rem; font-weight: 600; cursor: pointer; border: 0; }
+        .btn-primary { background: linear-gradient(90deg,var(--accent-violet),#ec4899); color: white; box-shadow: 0 8px 20px rgba(124,58,237,0.12); }
+        .btn-ghost { background: transparent; color: var(--text); border: 1px solid rgba(255,255,255,0.04); }
+        .btn:focus { outline: 3px solid rgba(124,58,237,0.12); }
+
+        /* Repo code block */
+        pre { background: #020617; padding: .75rem; border-radius: .5rem; color: #cbd5e1; }
+
+        /* Cards grid */
+        .grid { gap: 1.5rem; }
+
+        /* Footer */
+        footer { color: var(--muted); padding: 2rem 0; }
+
+        /* Responsiveness tweaks */
+        @media (min-width: 768px) {
+            .grid.md\:grid-cols-2 { display: grid; grid-template-columns: repeat(2, 1fr); }
+            .container { padding: 0 2rem; }
+        }
+        @media (max-width: 767px) {
+            #hero { padding: 3rem 1rem; }
         }
     </style>
 </head>
@@ -60,7 +110,6 @@
                 <a href="#overview" class="px-4 py-2 text-slate-300 font-semibold rounded-lg hover:bg-slate-700 hover:text-white transition-colors duration-300">Overview</a>
                 <a href="#milestones" class="px-4 py-2 text-slate-300 font-semibold rounded-lg hover:bg-slate-700 hover:text-white transition-colors duration-300">Milestones</a>
                 <a href="#repo" class="px-4 py-2 text-slate-300 font-semibold rounded-lg hover:bg-slate-700 hover:text-white transition-colors duration-300">Repo</a>
-                <a href="#ai-tools" class="px-4 py-2 text-slate-300 font-semibold rounded-lg hover:bg-slate-700 hover:text-white transition-colors duration-300">AI Tools</a>
                 <a href="#team" class="px-4 py-2 text-slate-300 font-semibold rounded-lg hover:bg-slate-700 hover:text-white transition-colors duration-300">Team</a>
             </div>
         </nav>
@@ -71,8 +120,8 @@
             <div class="absolute inset-0 bg-grid-slate-800 [mask-image:linear-gradient(to_bottom,white,transparent)]"></div>
             <div class="relative z-10">
                 <h1 class="text-6xl font-black text-white mb-4 tracking-tight">Nexora Project Hub</h1>
-                <h2 class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-pink-500 mb-6">Your AI Co-Pilot for Interview Success</h2>
-                <p class="text-xl text-slate-300 max-w-3xl mx-auto">The complete guide for building our AI-powered interview preparation system, from MVP to a full-featured platform.</p>
+                <h2 class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-pink-500 mb-6">Nexora — Interview Preparation Platform</h2>
+                <p class="text-xl text-slate-300 max-w-3xl mx-auto">A focused guide for building a tailored interview preparation system, from MVP to a full-featured platform.</p>
             </div>
         </section>
 
@@ -83,7 +132,7 @@
             </div>
             <div class="grid md:grid-cols-2 gap-8 items-center">
                 <div class="glass-card p-8 rounded-2xl"><h3 class="text-2xl font-bold text-red-400 mb-4 flex items-center"><i class="fas fa-exclamation-triangle mr-3"></i>The Problem</h3><p class="text-slate-300">Interview prep is often generic and fails to target a candidate's specific skills and weaknesses, leading to stress and missed opportunities.</p></div>
-                <div class="glass-card p-8 rounded-2xl"><h3 class="text-2xl font-bold text-green-400 mb-4 flex items-center"><i class="fas fa-shield-alt mr-3"></i>Our Solution</h3><p class="text-slate-300">Nexora personalizes interview practice by generating questions directly from a user's resume and providing AI-driven feedback on their answers.</p></div>
+                <div class="glass-card p-8 rounded-2xl"><h3 class="text-2xl font-bold text-green-400 mb-4 flex items-center"><i class="fas fa-shield-alt mr-3"></i>Our Solution</h3><p class="text-slate-300">Nexora personalizes interview practice by generating questions directly from a user's resume and providing tailored feedback on their answers.</p></div>
             </div>
         </section>
 
@@ -96,20 +145,20 @@
                 <div id="milestone1" class="glass-card p-8 rounded-2xl">
                     <h3 class="text-3xl font-bold text-white mb-4"><span class="text-violet-400">Phase 1:</span> MVP (2-Day Sprint)</h3>
                     <p class="text-slate-300 mb-6">Build a core, functional web system demonstrating the primary user flow: resume upload → tailored questions → text interview → basic feedback.</p>
-                    <button class="w-full relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-violet-500 to-pink-500" onclick="breakDownTask('Phase 1 MVP')"><span class="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">✨ Break Down Phase 1 Tasks</span></button>
+                    <button class="btn btn-primary w-full" onclick="breakDownTask('Phase 1 MVP')">✨ Break Down Phase 1 Tasks</button>
                 </div>
                 <div id="milestone2" class="glass-card p-8 rounded-2xl">
-                    <h3 class="text-3xl font-bold text-white mb-4"><span class="text-violet-400">Phase 2:</span> Full-Featured AI System</h3>
-                     <p class="text-slate-300 mb-6">Transform the MVP into a smart, scalable platform with dynamic AI question generation, semantic answer analysis, user dashboards, and advanced reporting.</p>
-                    <button class="w-full relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-violet-500 to-pink-500" onclick="breakDownTask('Phase 2 Full AI System')"><span class="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">✨ Break Down Phase 2 Tasks</span></button>
+                    <h3 class="text-3xl font-bold text-white mb-4"><span class="text-violet-400">Phase 2:</span> Full-Featured System</h3>
+                         <p class="text-slate-300 mb-6">Transform the MVP into a smart, scalable platform with dynamic question generation, semantic answer analysis, user dashboards, and advanced reporting.</p>
+                        <button class="btn btn-ghost w-full" onclick="alert('Detailed breakdown coming soon.')">✨ Break Down Phase 2 Tasks</button>
                 </div>
             </div>
         </section>
 
         <section id="repo" class="py-24 glass-card rounded-3xl">
             <div class="text-center">
-                <h2 class="text-4xl font-black text-white mb-3">Phase 1: Project Structure & AI Tools</h2>
-                <p class="text-lg text-slate-400 mb-12">Generate boilerplate code for our Django MVP with a single click.</p>
+                <h2 class="text-4xl font-black text-white mb-3">Phase 1: Project Structure & Development Resources</h2>
+                <p class="text-lg text-slate-400 mb-12">Guidance and boilerplate to jumpstart the Django MVP.</p>
             </div>
             <div class="grid md:grid-cols-2 gap-12 items-start">
                 <div>
@@ -133,45 +182,13 @@
                 </div>
                 <div class="space-y-4">
                     <h3 class="text-xl font-bold text-white mb-4 text-center">Key Files</h3>
-                    <div class="glass-card p-4"><p><strong>`interview/views.py`</strong>: Handles the main logic for file upload, question selection, and feedback.</p><button class="mt-3 w-full relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500" onclick="generateCode('views.py')"><span class="w-full relative px-4 py-2 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">Generate Code</span></button></div>
-                    <div class="glass-card p-4"><p><strong>`interview/resume_parser.py`</strong>: Contains functions to extract text from PDF/DOCX files.</p><button class="mt-3 w-full relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500" onclick="generateCode('resume_parser.py')"><span class="w-full relative px-4 py-2 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">Generate Code</span></button></div>
-                    <div class="glass-card p-4"><p><strong>`templates/upload.html`</strong>: The user-facing page for uploading a resume.</p><button class="mt-3 w-full relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500" onclick="generateCode('upload.html')"><span class="w-full relative px-4 py-2 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">Generate Code</span></button></div>
+                    <div class="glass-card p-4"><p><strong>`interview/views.py`</strong>: Handles the main logic for file upload, question selection, and feedback.</p><div class="mt-3 w-full relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-500"><span class="w-full relative px-4 py-2 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md">Boilerplate available in the repository</span></div></div>
+                    <div class="glass-card p-4"><p><strong>`interview/resume_parser.py`</strong>: Contains functions to extract text from PDF/DOCX files.</p><div class="mt-3 w-full relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-500"><span class="w-full relative px-4 py-2 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md">Boilerplate available in the repository</span></div></div>
+                    <div class="glass-card p-4"><p><strong>`templates/upload.html`</strong>: The user-facing page for uploading a resume.</p><div class="mt-3 w-full relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-500"><span class="w-full relative px-4 py-2 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md">Boilerplate available in the repository</span></div></div>
                 </div>
             </div>
         </section>
-
-        <section id="ai-tools" class="py-24">
-            <div class="text-center">
-                <h2 class="text-4xl font-black text-white mb-3">AI Development Assistants</h2>
-                <p class="text-lg text-slate-400 mb-12">Specialized tools to accelerate our development process.</p>
-            </div>
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- AI Question Generator -->
-                <div class="glass-card p-8 rounded-2xl">
-                    <h3 class="text-2xl font-bold text-white mb-4">AI Question Bank Helper</h3>
-                    <p class="text-slate-400 mb-4">Enter a skill or technology to generate relevant interview questions for our `question_bank.json`.</p>
-                    <div>
-                        <label for="skill-input" class="block text-sm font-medium text-slate-300 mb-2">Skill / Technology</label>
-                        <input id="skill-input" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-sm focus:ring-2 focus:ring-violet-500 focus:border-violet-500 outline-none" placeholder="e.g., Python Decorators, Django ORM...">
-                    </div>
-                     <button class="mt-6 w-full relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600" onclick="generateQuestions()">
-                        <span class="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0">
-                           <i class="fas fa-question-circle mr-2"></i> Generate Questions
-                        </span>
-                    </button>
-                </div>
-                <!-- AI Debugger -->
-                <div class="glass-card p-8 rounded-2xl">
-                    <h3 class="text-2xl font-bold text-white mb-4">AI Debugging Assistant</h3>
-                     <p class="text-slate-400 mb-4">Stuck on a bug? Paste your Python code and error message to get instant help.</p>
-                    <div class="grid grid-cols-2 gap-4">
-                         <div><label for="code-input" class="block text-sm font-medium text-slate-300 mb-2">Python Code</label><textarea id="code-input" rows="5" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-sm font-mono focus:ring-2 focus:ring-violet-500 focus:border-violet-500 outline-none" placeholder="Code..."></textarea></div>
-                         <div><label for="error-input" class="block text-sm font-medium text-slate-300 mb-2">Error / Problem</label><textarea id="error-input" rows="5" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-sm font-mono focus:ring-2 focus:ring-violet-500 focus:border-violet-500 outline-none" placeholder="Error..."></textarea></div>
-                    </div>
-                    <button class="mt-6 w-full relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-red-500 to-orange-400" onclick="debugCode()"><span class="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-slate-900 text-white rounded-md group-hover:bg-opacity-0"><i class="fas fa-bug mr-2"></i> Find & Fix Bug</span></button>
-                </div>
-            </div>
-        </section>
+        <!-- AI/tooling sections removed to keep the site professional and focused -->
 
         <section id="team" class="py-24 glass-card rounded-3xl">
             <div class="text-center">
@@ -188,164 +205,6 @@
     </main>
 
     <footer class="border-t border-slate-800 text-center py-8"><p class="text-slate-400">Built by TEAM NEXORA for the Nexora Project</p></footer>
-
-    <div id="ai-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 hidden z-50">
-        <div class="bg-slate-800/80 backdrop-blur-xl border border-slate-700 rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] flex flex-col">
-            <div class="flex justify-between items-center p-4 border-b border-slate-700"><h3 id="modal-title" class="text-2xl font-bold text-white flex items-center"><i class="fas fa-robot mr-3 text-violet-400"></i>Nexora AI Assistant</h3><button onclick="closeModal()" class="text-slate-400 hover:text-red-400 text-2xl transition-colors">&times;</button></div>
-            <div id="modal-content" class="p-6 overflow-y-auto">
-                <div id="loading-spinner" class="text-center hidden"><i class="fas fa-spinner fa-spin text-4xl text-violet-400"></i><p class="mt-2 text-slate-400">Generating response...</p></div>
-                <div id="response-area"></div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        const modal = document.getElementById('ai-modal');
-        const modalTitle = document.getElementById('modal-title');
-        const responseArea = document.getElementById('response-area');
-        const loadingSpinner = document.getElementById('loading-spinner');
-
-        function openModal(title) {
-            modal.classList.remove('hidden');
-            responseArea.innerHTML = '';
-            modalTitle.innerHTML = `<i class="fas fa-robot mr-3 text-violet-400"></i> ${title}`;
-            loadingSpinner.classList.remove('hidden');
-        }
-
-        function closeModal() {
-            modal.classList.add('hidden');
-        }
-
-        async function callAIWithRetry(prompt, retries = 3, timeout = 15000) {
-            const apiKey = "AIzaSyCkfQmFRHaMi4GX2waJ_3TdPV6jvWA2ExU";
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
-            let lastError = null;
-
-            for (let i = 0; i < retries; i++) {
-                try {
-                    const controller = new AbortController();
-                    const id = setTimeout(() => controller.abort(), timeout);
-
-                    const response = await fetch(apiUrl, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            contents: [{ parts: [{ text: prompt }] }]
-                        }),
-                        signal: controller.signal,
-                    });
-
-                    clearTimeout(id);
-                    if (!response.ok) throw new Error(`API call failed: ${response.status}`);
-                    
-                    const result = await response.json();
-                    const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
-                    
-                    if (text) return text;
-                    else {
-                        console.error("Invalid response structure:", result);
-                        throw new Error("Invalid API response structure.");
-                    }
-
-                } catch (error) {
-                    lastError = error;
-                    if (i < retries - 1) {
-                        const delay = Math.pow(2, i) * 1000; 
-                        await new Promise(resolve => setTimeout(resolve, delay));
-                    }
-                }
-            }
-            
-            console.error('API call failed after retries:', lastError);
-            return `An error occurred: ${lastError.message}.`;
-        }
-
-        async function breakDownTask(phase) {
-            openModal(`Task Breakdown for ${phase}`);
-            const prompt = `You are the project lead for Nexora, an AI interview prep tool. Your team is building a Django application. Break down the tasks for "${phase}" into a detailed, actionable plan for your student developers. Be specific about Django apps, models, views, and templates. Use markdown formatting.`;
-            const result = await callAIWithRetry(prompt);
-            loadingSpinner.classList.add('hidden');
-            responseArea.innerHTML = `<div class="prose prose-invert max-w-none">${convertToHtml(result)}</div>`;
-        }
-        
-        const fileDetails = {
-            'views.py': "This is the core of our Django `interview` app. It needs functions to handle: 1. `upload_resume`: A view that processes the POST request from a file upload form. It should save the file, call the resume_parser, store the extracted text in the session, and then redirect to the questions view. 2. `show_questions`: A view that gets the parsed skills from the session, selects relevant questions from `data/question_bank.json`, and displays them in a template. 3. `submit_answers`: A view to process the submitted answers from the form and redirect to the feedback page.",
-            'resume_parser.py': "This Python script contains functions to extract text from resumes for our Nexora project. It needs: 1. `parse_pdf(file_path)`: Uses the PyPDF2 library. 2. `parse_docx(file_path)`: Uses the python-docx library. 3. A main function `extract_text(file_path)` that checks the file extension and calls the appropriate parser.",
-            'upload.html': "A simple Django template for the user to upload their resume. It should contain a `<form>` with `method='POST'` and `enctype='multipart/form-data'`, a file `<input>`, a CSRF token, and a submit button."
-        };
-
-        async function generateCode(fileName) {
-            openModal(`Boilerplate for ${fileName}`);
-            const description = fileDetails[fileName];
-            const language = fileName.endsWith('.py') ? 'python' : 'html';
-            const prompt = `You are an expert Python/Django developer building the Nexora project, an AI-powered interview preparation tool. Generate boilerplate ${language} code for the file \`${fileName}\`.
-            
-            **Project Context & File Purpose:** ${description}
-
-            Generate clean, well-commented, and functional code that is ready to be used in our Django project. For Python files, include necessary imports. For HTML, include standard Django template syntax like CSRF tokens where needed.`;
-            
-            const result = await callAIWithRetry(prompt);
-            loadingSpinner.classList.add('hidden');
-            const cleanCode = result.replace(new RegExp(`^\`\`\`${language}\\n|\\\`\`\``, "gm"), '').trim();
-            responseArea.innerHTML = `<pre><code class="language-${language} hljs">${hljs.highlight(cleanCode, {language}).value}</code></pre>`;
-        }
-
-        async function generateQuestions() {
-            const skill = document.getElementById('skill-input').value;
-            if (!skill.trim()) {
-                alert("Please enter a skill.");
-                return;
-            }
-            openModal(`Questions for ${skill}`);
-            const prompt = `You are an AI assistant for Nexora, an interview prep tool. Generate 5-7 relevant interview questions for the following skill/technology: "${skill}". The questions should be suitable for a candidate who has this skill on their resume, ranging from basic to intermediate difficulty. Format the response as a JSON array of strings, ready to be copied into our 'question_bank.json'.`;
-            
-            const result = await callAIWithRetry(prompt);
-            loadingSpinner.classList.add('hidden');
-            const cleanJson = result.replace(/```json\n|```/gm, '').trim();
-            responseArea.innerHTML = `<p class="text-slate-400 mb-4">Here are some questions for your \`question_bank.json\`. You can copy the array directly.</p><pre><code class="language-json hljs">${hljs.highlight(cleanJson, {language: 'json'}).value}</code></pre>`;
-        }
-
-        async function debugCode() {
-            const userCode = document.getElementById('code-input').value;
-            const userError = document.getElementById('error-input').value;
-            if (!userCode.trim() || !userError.trim()) {
-                alert("Please provide both code and an error message.");
-                return;
-            }
-            openModal('Debugging Assistant');
-            const prompt = `You are an expert Python/Django debugger for the Nexora project. A developer is facing an issue.
-            
-            **Code:**\n\`\`\`python\n${userCode}\n\`\`\`
-            **Error/Problem:** "${userError}"
-
-            Your task is to: 1. Identify the bug in the context of a Django application. 2. Explain it clearly. 3. Provide the corrected Python code. 4. Offer advice to avoid this issue. Format in clear markdown.`;
-            const result = await callAIWithRetry(prompt);
-            loadingSpinner.classList.add('hidden');
-            responseArea.innerHTML = `<div class="prose prose-invert max-w-none">${convertToHtml(result)}</div>`;
-            document.querySelectorAll('#response-area pre code').forEach((block) => {
-                hljs.highlightBlock(block);
-            });
-        }
-
-        function convertToHtml(text) {
-            if (!text) return '';
-            text = text.replace(/```(python|html|json)\n([\s\S]+?)```/g, (match, lang, code) => {
-                const highlightedCode = hljs.highlight(code.trim(), {language: lang}).value;
-                return `<pre><code class="language-${lang} hljs">${highlightedCode}</code></pre>`;
-            });
-            return text
-                .replace(/^### (.*$)/gim, '<h3 class="text-xl font-bold mb-2 text-violet-400">$1</h3>')
-                .replace(/^## (.*$)/gim, '<h2 class="text-2xl font-bold mb-3 text-white">$1</h2>')
-                .replace(/^# (.*$)/gim, '<h1 class="text-3xl font-bold mb-4 text-white">$1</h1>')
-                .replace(/\*\*(.*?)\*\*/gim, '<strong class="text-white">$1</strong>')
-                .replace(/\*(.*?)\*/gim, '<em>$1</em>')
-                .replace(/`(.*?)`/g, '<code class="bg-slate-700 text-violet-300 rounded px-2 py-1 font-mono text-sm">$1</code>')
-                .replace(/^\* (.*$)/gim, '<li class="ml-6 mb-2 list-disc">$1</li>')
-                .replace(/\n/g, '<br>');
-        }
-    </script>
 
 </body>
 </html>

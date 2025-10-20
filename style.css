@@ -1294,18 +1294,7 @@ body {
 .snap-indicator { position: fixed; background: rgba(0, 240, 255, 0.3); border: 2px solid var(--accent-primary); z-index: 5; opacity: 0; transition: opacity 0.2s; pointer-events: none; }
 .snap-indicator.show { opacity: 1; }
 @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
-#chatbot-container { display: none; position: fixed; bottom: 100px; right: 20px; width: 350px; height: 500px; background: var(--glass-bg); backdrop-filter: blur(15px); border-radius: 1rem; border: 1px solid var(--border-color); box-shadow: 0 10px 30px rgba(0,0,0,0.2); flex-direction: column; overflow: hidden; z-index: 99; animation: slideInUp 0.5s; }
-#chatbot-header { padding: 1rem; background: rgba(0,0,0,0.2); font-weight: 600; }
-#chatbot-messages { flex-grow: 1; padding: 1rem; overflow-y: auto; }
-.chat-message { margin-bottom: 1rem; display: flex; flex-direction: column; }
-.chat-message.user { align-items: flex-end; }
-.chat-message.bot { align-items: flex-start; }
-.message-bubble { max-width: 80%; padding: 0.75rem; border-radius: 1rem; }
-.user .message-bubble { background: var(--accent-primary); color: #0F0F0F; border-bottom-right-radius: 0.25rem; }
-.bot .message-bubble { background: var(--widget-bg); border-bottom-left-radius: 0.25rem; }
-#chatbot-input-form { display: flex; border-top: 1px solid var(--border-color); }
-#chatbot-input { flex-grow: 1; background: transparent; border: none; padding: 1rem; color: var(--text-color); outline: none; }
-#chatbot-send { background: var(--accent-primary); border: none; color: #0F0F0F; padding: 1rem; cursor: pointer; }
+/* Chatbot UI removed to keep site professional and focused */
 
 /* Start Menu */
 #start-menu { 
@@ -1806,7 +1795,7 @@ body {
     .dock-item { padding: 0.6rem; }
     #desktop-widgets { display: none; }
     #welcome-widget { display: none !important; }
-    #chatbot-container { width: 90vw; height: 70vh; right: 5vw; bottom: 90px; }
+    /* Chatbot responsive rules removed */
     #start-menu { width: 90vw; }
     
     .settings-section {
