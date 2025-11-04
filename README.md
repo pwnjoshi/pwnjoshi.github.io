@@ -1,10 +1,10 @@
-# 🖥️ Pawan Joshi | Interactive Portfolio
+# �‍💻 Pawan Joshi | Developer Portfolio
 [![Website](https://img.shields.io/badge/Website-iampawan.me-blue?style=for-the-badge&logo=google-chrome)](https://iampawan.me)
 [![GitHub Pages](https://img.shields.io/badge/Live-Demo-black?style=for-the-badge&logo=github)](https://pwnjoshi.github.io)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Pawan%20Joshi-0A66C2?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/pawan-joshi)
 [![Stars](https://img.shields.io/github/stars/pwnjoshi/pwnjoshi.github.io?style=for-the-badge&logo=github)](https://github.com/pwnjoshi/pwnjoshi.github.io/stargazers)
 
-An interactive, OS-inspired developer portfolio built with **HTML, CSS, and JavaScript** that mimics a retro desktop environment.
+A clean, minimal developer portfolio inspired by GitHub's profile design. Features a professional layout showcasing projects, experience, education, skills, and achievements.
 
 ---
 
@@ -15,36 +15,37 @@ An interactive, OS-inspired developer portfolio built with **HTML, CSS, and Java
 ---
 
 ## ✨ Features
-- 🖥️ **OS-Inspired UI** – Retro desktop-style interface across all devices.
-- 🪟 **Interactive Windows** – Draggable & resizable windows for *About, Projects, Skills*.
-- 👨‍💻 **Functional Terminal** – Commands like `help`, `neofetch`, and `open projects`.
-- 📱 **Responsive Design** – Optimized for both mobile and desktop.
-- ⚡ **Lightweight & Fast** – Pure HTML, CSS, and JS, no heavy frameworks.
+- 🎨 **GitHub-Inspired Design** – Clean, minimal layout inspired by GitHub profiles.
+- 📱 **Fully Responsive** – Perfect viewing experience on mobile, tablet, and desktop.
+- 🚀 **Fast & Lightweight** – Zero dependencies, self-contained HTML/CSS.
+- 🎯 **Professional Layout** – Organized sections for projects, experience, education, skills, and certificates.
+- � **Project Hubs** – Dedicated pages for major projects (Nexora, ARTAMS) with detailed documentation.
+- ⚡ **Optimized Performance** – Minimal CSS, no JavaScript required for main portfolio.
 
 ---
 
 ## 💻 Tech Stack
 | Technology       | Purpose |
 |------------------|---------|
-| **HTML5**        | Core structure and markup |
-| **CSS3**         | Styling, retro OS theme, window UI, animations |
-| **JavaScript (ES6+)** | Interactivity, window management, terminal logic |
-| **Font Awesome** | Icons for a polished look |
-| **GitHub Pages** | Hosting the live portfolio |
+| **HTML5**        | Semantic markup and structure |
+| **CSS3**         | Styling with dark theme, responsive design, animations |
+| **Tailwind CSS** | Utility-first styling for project pages |
+| **Font Awesome** | Icons for visual enhancement |
+| **GitHub Pages** | Free hosting and deployment |
 
 ---
 
-## 👨‍💻 Terminal Commands
-| Command          | Description |
-|------------------|-------------|
-| `help`           | Lists all available commands |
-| `about`          | Shows a short bio about the developer |
-| `projects`       | Displays key projects |
-| `skills`         | Lists technical skills and tools |
-| `contact`        | Provides contact links |
-| `open <section>` | Opens a specific window (e.g., `open projects`) |
-| `neofetch`       | Shows an OS-style developer summary |
-| `clear`          | Clears the terminal screen |
+## � Key Projects
+
+### 1. **Nexora** - Django Interview Prep Platform
+A comprehensive Django interview preparation system with curated questions, detailed explanations, and performance tracking.
+- 🔗 [View Project Hub](https://pwnjoshi.github.io/nexora.html)
+- 📂 [GitHub Repository](https://github.com/pwnjoshi/Nexora)
+
+### 2. **ARTAMS** - Attendance & Record Tracking System
+A robust C-based CLI attendance management system with student record tracking and report generation.
+- 🔗 [View Project Hub](https://pwnjoshi.github.io/astra.html)
+- 📂 [GitHub Repository](https://github.com/pwnjoshi/ARTAMS)
 
 ---
 
@@ -60,27 +61,52 @@ open index.html   # or just double-click index.html
 ## 📁 Project Structure
 ```
 pwnjoshi.github.io/
-├── index.html      # Main entry point for the portfolio
-├── style.css       # Desktop-style UI & animations
-├── script.js       # Terminal logic & interactivity
-├── manifest.json   # Web app manifest for PWA features
-└── README.md       # Documentation
+├── index.html      # Main portfolio (GitHub-style design)
+├── nexora.html     # Nexora project hub with detailed documentation
+├── astra.html      # ARTAMS project hub with detailed documentation
+├── style.css       # Shared styles for project pages
+├── CNAME           # Custom domain configuration
+└── README.md       # Project documentation
 ```
 
 ---
 
-## 🎯 Roadmap & Future Enhancements
-- 🔧 More terminal commands & features.
-- 📂 File system simulation.
-- 🖼️ Additional "desktop apps".
-- 🔊 Interactive sound effects.
-- 🎨 Theme customization & UI personalization.
+## 👨‍💼 About Me
+I'm a Computer Science student at **Graphic Era University** with expertise in:
+- **Languages:** C/C++, Python, JavaScript, SQL
+- **Frameworks:** Django, Firebase, Git
+- **Databases:** MongoDB, MySQL
+- **Cloud:** AWS (4x AWS Certified)
+
+### Current Roles:
+- 🌩️ **AWS Cloud Club Captain** at Graphic Era (Nov 2025 - 2026)
+- 🎓 **Graphic Era Student Ambassador** (2024 - Present)
+- 🌐 **Google Student Ambassador** (Oct 2025 - Present)
+- �️ **Building Tech Sangi** (Oct 2024 - Present)
+- ☁️ **Google Cloud Arcade Mentor** (Aug - Sept 2025)
+
+---
+
+## 🎯 Portfolio Highlights
+- ✅ **8.84 CGPA** at Graphic Era University
+- ✅ **4 AWS Certifications** (Solutions Architect, Developer, SysOps, Cloud Practitioner)
+- ✅ **Graph-E-Thon Finalist** - Graphic Era Ideathon 2024
+- ✅ Multiple leadership roles in tech communities
 
 ---
 
 ## 📞 Contact
-- 🌐 **Portfolio:** [pwnjoshi.github.io](https://pwnjoshi.github.io)
-- 🐙 **GitHub:** [@pwnjoshi](https://github.com/pwnjoshi)
+- 🌐 **Portfolio:** [pwnjoshi.github.io](https://pwnjoshi.github.io) | [iampawan.me](https://iampawan.me)
+- � **Email:** [me@joshipawan.com.np](mailto:me@joshipawan.com.np)
+- �🐙 **GitHub:** [@pwnjoshi](https://github.com/pwnjoshi)
 - 💼 **LinkedIn:** [Pawan Joshi](https://linkedin.com/in/pawan-joshi)
+- 📍 **Location:** Dehradun, Uttarakhand, India
 
-⭐ *If you found this project useful or inspiring, give it a star!*
+---
+
+⭐ *If you found this portfolio useful or inspiring, give it a star!*
+
+---
+
+## 📄 License
+This project is open source and available for personal use. Feel free to fork and customize for your own portfolio!
