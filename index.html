@@ -1,694 +1,657 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>PawanOS - A Futuristic Portfolio Experience</title>
-    <meta name="description" content="Welcome to PawanOS. Explore the projects, skills, and journey of Pawan Joshi, a Full-Stack Developer.">
-    <meta name="keywords" content="Pawan Joshi, Full-Stack Developer, React Native, Python, Firebase, Portfolio, Web Developer, Computer Science, Graph-E-Thon 2025, Zenari App">
-    <meta name="author" content="Pawan Joshi">
-    <meta name="robots" content="index, follow">
-    <meta name="googlebot" content="index, follow">
-    <link rel="canonical" href="https://iampawan.me">
-    
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Pawan Joshi - Full-Stack Developer | Graphic Era Student">
-    <meta property="og:description" content="Portfolio of Pawan Joshi, Computer Science student at Graphic Era University, CTO & Co-Founder of Tech Sangi Pvt. Ltd. Top 35 finalist at Graph-E-Thon 2025. Specializes in React Native, Firebase, and full-stack development.">
-    <meta property="og:image" content="https://placehold.co/1200x630/0F0F0F/00f0ff?text=Pawan+Joshi">
-    <meta property="og:url" content="https://iampawan.me">
-    <meta property="og:site_name" content="Pawan Joshi Portfolio">
-    
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Pawan Joshi - Full-Stack Developer">
-    <meta name="twitter:description" content="Computer Science student, CTO & Co-Founder, Graph-E-Thon 2025 finalist. Expert in React Native, Firebase, and full-stack development.">
-    <meta name="twitter:image" content="https://placehold.co/1200x630/0F0F0F/00f0ff?text=Pawan+Joshi">
-    
-    <meta property="article:author" content="Pawan Joshi">
-    <meta property="profile:first_name" content="Pawan">
-    <meta property="profile:last_name" content="Joshi">
-    <meta property="profile:username" content="pawan-joshi">
-    
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Pawan Joshi",
-      "alternateName": ["Pawan Joshi Graphic Era Student", "Pawan Joshi CTO Tech Sangi"],
-    "jobTitle": ["Full-Stack Developer", "CTO & Co-Founder"],
-    "description": "Computer Science student at Graphic Era University, CTO & Co-Founder of Tech Sangi Pvt. Ltd. Top 35 finalist at Graph-E-Thon 2025. Specializes in React Native, Firebase, and full-stack development.",
-      "url": "https://iampawan.me",
-      "image": "https://placehold.co/400x400/0F0F0F/00f0ff?text=PJ",
-      "sameAs": [
-        "https://www.linkedin.com/in/pwnjoshi/",
-        "https://github.com/pwnjoshi",
-        "https://twitter.com/pawan_joshi"
-      ],
-      "worksFor": {
-        "@type": "Organization",
-        "name": "Tech Sangi Pvt. Ltd.",
-        "url": "https://techsangi.com"
-      },
-      "alumniOf": {
-        "@type": "EducationalOrganization",
-        "name": "Graphic Era University",
-        "url": "https://geu.ac.in"
-      },
-      "knowsAbout": [
-        "Artificial Intelligence",
-        "Machine Learning",
-        "React Native",
-        "Firebase",
-        "Full-Stack Development",
-        "Python",
-        "JavaScript",
-        "Computer Science"
-      ],
-      "award": "Top 35 Finalist - Graph-E-Thon 2025",
-      "hasOccupation": {
-        "@type": "Occupation",
-        "name": "Software Developer",
-        "description": "AI/ML and Full-Stack Developer specializing in mobile and web applications"
-      }
-    }
-    </script>
-
-    <link rel="icon" href="https://placehold.co/32x32/0F0F0F/00f0ff?text=PJ" type="image/png">
-    <link rel="manifest" href="manifest.json">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pawan Joshi - Full-Stack Developer</title>
+    <meta name="description" content="Portfolio of Pawan Joshi, Computer Science student at Graphic Era University, Google Student Ambassador, Co-Founder of Tech Sangi.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Sora:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
-    
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js"></script>
-    <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <link rel="stylesheet" href="style.css">
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0d1117;
+            color: #c9d1d9;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        /* Header */
+        header {
+            background: #161b22;
+            border-bottom: 1px solid #30363d;
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 600;
+            color: #58a6ff;
+            text-decoration: none;
+        }
+
+        nav {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: #c9d1d9;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: #58a6ff;
+        }
+
+        /* Profile Section */
+        .profile-section {
+            padding: 48px 0;
+        }
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 32px;
+        }
+
+        .profile-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .profile-avatar {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            border: 1px solid #30363d;
+            object-fit: cover;
+        }
+
+        .profile-name {
+            font-size: 26px;
+            font-weight: 600;
+            color: #c9d1d9;
+            margin-bottom: 4px;
+        }
+
+        .profile-username {
+            font-size: 20px;
+            font-weight: 300;
+            color: #8b949e;
+        }
+
+        .profile-bio {
+            font-size: 14px;
+            color: #c9d1d9;
+            margin: 16px 0;
+        }
+
+        .profile-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 14px;
+            color: #8b949e;
+        }
+
+        .profile-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .profile-meta-item svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            color: #8b949e;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .social-link:hover {
+            color: #58a6ff;
+            border-color: #58a6ff;
+        }
+
+        /* Main Content */
+        .profile-main {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .section-card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            padding: 24px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #c9d1d9;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #21262d;
+        }
+
+        .experience-item,
+        .education-item,
+        .project-item {
+            margin-bottom: 24px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid #21262d;
+        }
+
+        .experience-item:last-child,
+        .education-item:last-child,
+        .project-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .item-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #58a6ff;
+        }
+
+        .item-date {
+            font-size: 14px;
+            color: #8b949e;
+        }
+
+        .item-subtitle {
+            font-size: 14px;
+            color: #8b949e;
+            margin-bottom: 8px;
+        }
+
+        .item-description {
+            font-size: 14px;
+            color: #c9d1d9;
+            line-height: 1.6;
+        }
+
+        .item-description ul {
+            margin: 8px 0;
+            padding-left: 20px;
+        }
+
+        .item-description li {
+            margin: 4px 0;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+        }
+
+        .skill-category {
+            background: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            padding: 16px;
+        }
+
+        .skill-category-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #8b949e;
+            margin-bottom: 12px;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            background: #21262d;
+            color: #58a6ff;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        /* Certificates */
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+        }
+
+        .certificate-item {
+            background: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            padding: 16px;
+            transition: all 0.2s;
+        }
+
+        .certificate-item:hover {
+            border-color: #58a6ff;
+            transform: translateY(-2px);
+        }
+
+        .certificate-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #c9d1d9;
+        }
+
+        /* Pinned Projects */
+        .pinned-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 16px;
+        }
+
+        .pinned-repo {
+            background: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            padding: 16px;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: block;
+        }
+
+        .pinned-repo:hover {
+            border-color: #58a6ff;
+        }
+
+        .repo-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #58a6ff;
+            margin-bottom: 8px;
+        }
+
+        .repo-description {
+            font-size: 12px;
+            color: #8b949e;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .repo-meta {
+            display: flex;
+            gap: 16px;
+            font-size: 12px;
+            color: #8b949e;
+        }
+
+        .repo-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 48px 0;
+            color: #8b949e;
+            font-size: 14px;
+            border-top: 1px solid #21262d;
+            margin-top: 48px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .profile-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-sidebar {
+                text-align: center;
+                align-items: center;
+            }
+
+            .profile-avatar {
+                max-width: 200px;
+            }
+
+            .item-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div id="loading-screen" class="fullscreen-overlay">
-        <div class="boot-logo">PawanOS</div>
-        <div class="progress-bar"><div class="progress-bar-inner"></div></div>
-    </div>
-    <div id="login-screen" class="fullscreen-overlay">
-        <div class="login-box">
-            <img src="https://placehold.co/100x100/0F0F0F/00f0ff?text=PJ" alt="Avatar" class="login-avatar">
-            <div id="login-user-typewriter" class="login-user"></div>
-            <button id="login-btn" class="login-btn">Enter as Guest</button>
-        </div>
-    </div>
-
-    <div id="particles-js"></div>
-    <div class="os-container">
-        <div id="desktop"></div>
-        <div id="desktop-widgets">
-            <div id="clock-widget" class="desktop-widget">
-                <div class="time"></div>
-                <div class="date"></div>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">Pawan Joshi</a>
+                <nav>
+                    <a href="#about">About</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#certificates">Certificates</a>
+                </nav>
             </div>
         </div>
-        <div id="welcome-widget" class="desktop-widget">
-            <i data-lucide="x" class="close-widget"></i>
-            <h3>Welcome to PawanOS</h3>
-            <p id="welcome-text">This is the portfolio of Pawan Joshi, a Full-Stack & AI/ML Developer. Double-click icons to explore.</p>
-        </div>
-        <nav id="dock" class="dock"></nav>
-        <div id="os-widgets">
-            <button id="theme-toggle" class="widget-btn" title="Toggle Theme"><i data-lucide="sun"></i></button>
-        </div>
-        <div id="notification-center"></div>
-        <div id="context-menu"></div>
-        <div id="start-menu">
-            <div class="start-menu-grid"></div>
-        </div>
-    </div>
-    
-    <div id="app-templates" style="display: none;">
-        <div id="about-content" class="about-container">
-            <div class="about-hero">
-                <div class="hero-content">
-                    <div class="profile-section">
-                        <div class="profile-image-container">
-                            <img src="https://media.licdn.com/dms/image/v2/D5603AQGQAi62iRw1xA/profile-displayphoto-shrink_800_800/B56ZcX1WnDGsAg-/0/1748451552389?e=1762387200&v=beta&t=uyk18aUlmX_ARjUOhILWr36sZE1lDYTgy1pnpkngH1o" 
-                                 alt="Pawan Joshi - Professional headshot photo from LinkedIn profile" 
-                                 class="profile-image">
-                            <div class="profile-status"></div>
+    </header>
+
+    <main class="container">
+        <section class="profile-section" id="about">
+            <div class="profile-grid">
+                <div class="profile-sidebar">
+                    <img src="https://github.com/pwnjoshi.png" alt="Pawan Joshi" class="profile-avatar" onerror="this.src='https://ui-avatars.com/api/?name=Pawan+Joshi&size=300&background=0d1117&color=58a6ff'">
+                    
+                    <div>
+                        <h1 class="profile-name">Pawan Joshi</h1>
+                        <p class="profile-username">pwnjoshi</p>
+                    </div>
+
+                    <p class="profile-bio">
+                        Computer Science student at Graphic Era University. Google Student Ambassador. Co-Founder & Tech Lead at Tech Sangi Pvt. Ltd. Passionate about AI, Full-Stack Development, and building products that solve real problems.
+                    </p>
+
+                    <div class="profile-meta">
+                        <div class="profile-meta-item">
+                            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+                            <a href="https://github.com/pwnjoshi" style="color: #58a6ff; text-decoration: none;">github.com/pwnjoshi</a>
                         </div>
-                        <div class="profile-info">
-                            <h1 class="profile-name">Pawan Joshi</h1>
-                            <p class="profile-title">Full-Stack Developer</p>
-                            <p class="profile-subtitle">Computer Science Student | CTO & Co-Founder</p>
-                            <div class="profile-badges">
-                                <span class="badge badge-primary">🏆 Top 35 Finalist</span>
-                                <span class="badge badge-secondary">🚀 CTO & Co-Founder</span>
-                            </div>
+                        <div class="profile-meta-item">
+                            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"></path></svg>
+                            <a href="https://www.linkedin.com/in/pwnjoshi" style="color: #58a6ff; text-decoration: none;">linkedin.com/in/pwnjoshi</a>
+                        </div>
+                        <div class="profile-meta-item">
+                            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M1.75 2h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0 1 14.25 14H1.75A1.75 1.75 0 0 1 0 12.25v-8.5C0 2.784.784 2 1.75 2ZM1.5 12.251c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V5.809L8.38 9.397a.75.75 0 0 1-.76 0L1.5 5.809v6.442Zm13-8.181v-.32a.25.25 0 0 0-.25-.25H1.75a.25.25 0 0 0-.25.25v.32L8 7.88Z"></path></svg>
+                            joshipawan2021@gmail.com
+                        </div>
+                        <div class="profile-meta-item">
+                            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M1.5 3.25c0-.966.784-1.75 1.75-1.75h9.5c.966 0 1.75.784 1.75 1.75v8.5a1.75 1.75 0 0 1-1.75 1.75h-9.5A1.75 1.75 0 0 1 1.5 11.75Zm1.75-.25a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h9.5a.25.25 0 0 0 .25-.25v-8.5a.25.25 0 0 0-.25-.25Z"></path><path d="M5 5.75A.75.75 0 0 1 5.75 5h4.5a.75.75 0 0 1 0 1.5h-4.5A.75.75 0 0 1 5 5.75Zm0 2.5A.75.75 0 0 1 5.75 7.5h2.5a.75.75 0 0 1 0 1.5h-2.5A.75.75 0 0 1 5 8.25Z"></path></svg>
+                            +91-7818975366
+                        </div>
+                        <div class="profile-meta-item">
+                            <svg viewBox="0 0 16 16" fill="currentColor"><path d="m8 14.25.345.666a.75.75 0 0 1-.69 0l-.008-.004-.018-.01a7.152 7.152 0 0 1-.31-.17 22.055 22.055 0 0 1-3.434-2.414C2.045 10.731 0 8.35 0 5.5 0 2.836 2.086 1 4.25 1 5.797 1 7.153 1.802 8 3.02 8.847 1.802 10.203 1 11.75 1 13.914 1 16 2.836 16 5.5c0 2.85-2.045 5.231-3.885 6.818a22.066 22.066 0 0 1-3.744 2.584l-.018.01-.006.003h-.002ZM4.25 2.5c-1.336 0-2.75 1.164-2.75 3 0 2.15 1.58 4.144 3.365 5.682A20.58 20.58 0 0 0 8 13.393a20.58 20.58 0 0 0 3.135-2.211C12.92 9.644 14.5 7.65 14.5 5.5c0-1.836-1.414-3-2.75-3-1.373 0-2.609.986-3.029 2.456a.749.749 0 0 1-1.442 0C6.859 3.486 5.623 2.5 4.25 2.5Z"></path></svg>
+                            Dehradun, Uttarakhand, India
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="about-main">
-                <div class="about-grid">
-                    <div class="about-story">
-                        <div class="section-header">
-                            <h2 class="section-title">About Me</h2>
-                            <div class="section-divider"></div>
-                        </div>
-                        <div class="story-content">
-                            <p class="story-text">Hi! I'm Pawan, a highly motivated Computer Science undergraduate at <strong>Graphic Era University</strong> and <strong>CTO & Co-Founder of Tech Sangi Pvt. Ltd.</strong></p>
-                            <p class="story-text">My journey is driven by the desire to build technology that solves real-world problems—especially through machine learning and full-stack development.</p>
+                <div class="profile-main">
+                    <!-- Pinned Projects -->
+                    <div class="section-card">
+                        <h2 class="section-title">📌 Pinned Projects</h2>
+                        <div class="pinned-grid">
+                            <a href="https://github.com/pwnjoshi" class="pinned-repo">
+                                <div class="repo-title">AI-Powered Interview System</div>
+                                <div class="repo-description">AI-driven interview evaluation system using Google Gemini API for resume analysis and automated question generation.</div>
+                                <div class="repo-meta">
+                                    <div class="repo-meta-item">
+                                        <span style="background: #3572A5; width: 12px; height: 12px; border-radius: 50%; display: inline-block;"></span>
+                                        Python
+                                    </div>
+                                    <div class="repo-meta-item">Django</div>
+                                </div>
+                            </a>
                             
-                            <div class="achievements-section">
-                                <h3 class="achievements-title">Key Achievements</h3>
-                                <div class="achievements-grid">
-                                    <div class="achievement-card">
-                                        <div class="achievement-icon">🏆</div>
-                                        <div class="achievement-content">
-                                            <h4>Graph-E-Thon 2025</h4>
-                                            <p>Top 35 Finalist</p>
-                                        </div>
+                            <a href="https://github.com/pwnjoshi" class="pinned-repo">
+                                <div class="repo-title">Hybrid Attendance Management</div>
+                                <div class="repo-description">Hybrid attendance platform with QR code scanning and location verification built with C backend.</div>
+                                <div class="repo-meta">
+                                    <div class="repo-meta-item">
+                                        <span style="background: #555555; width: 12px; height: 12px; border-radius: 50%; display: inline-block;"></span>
+                                        C
                                     </div>
-                                    <div class="achievement-card">
-                                        <div class="achievement-icon">🚀</div>
-                                        <div class="achievement-content">
-                                            <h4>Tech Sangi Pvt. Ltd.</h4>
-                                            <p>CTO & Co-Founder</p>
-                                        </div>
+                                    <div class="repo-meta-item">HTML/CSS/JS</div>
+                                </div>
+                            </a>
+                            
+                            <a href="https://github.com/pwnjoshi" class="pinned-repo">
+                                <div class="repo-title">Cafeteria Billing System</div>
+                                <div class="repo-description">Menu and billing management system for cafeteria operations using C with file handling and data structures.</div>
+                                <div class="repo-meta">
+                                    <div class="repo-meta-item">
+                                        <span style="background: #555555; width: 12px; height: 12px; border-radius: 50%; display: inline-block;"></span>
+                                        C
                                     </div>
-                                    <div class="achievement-card">
-                                        <div class="achievement-icon">🧠</div>
-                                        <div class="achievement-content">
-                                            <h4>Zenari App</h4>
-                                            <p>Built in 48 hours</p>
-                                        </div>
-                                    </div>
-                                    <div class="achievement-card">
-                                        <div class="achievement-icon">💻</div>
-                                        <div class="achievement-content">
-                                            <h4>Tech Stack</h4>
-                                            <p>React Native, Firebase, AI/ML</p>
-                                        </div>
-                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Experience -->
+                    <div class="section-card" id="experience">
+                        <h2 class="section-title">💼 Experience</h2>
+                        
+                        <div class="experience-item">
+                            <div class="item-header">
+                                <div>
+                                    <div class="item-title">Google Student Ambassador</div>
+                                    <div class="item-subtitle">Google | Dehradun, Uttarakhand, India</div>
+                                </div>
+                                <div class="item-date">October 2025 – Present</div>
+                            </div>
+                            <div class="item-description">
+                                <ul>
+                                    <li>Representing Google Gemini and promoting AI awareness on campus</li>
+                                    <li>Hosting peer learning sessions and hands-on workshops</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="experience-item">
+                            <div class="item-header">
+                                <div>
+                                    <div class="item-title">Co-Founder and Tech Lead</div>
+                                    <div class="item-subtitle">Tech Sangi Pvt. Ltd. | Mahendranagar, Nepal</div>
+                                </div>
+                                <div class="item-date">October 2024 – Present</div>
+                            </div>
+                            <div class="item-description">
+                                <ul>
+                                    <li>Co-founded Tech Sangi, a growing technology startup focused on building web and mobile solutions for businesses</li>
+                                    <li>Lead the technical direction and architecture of products, ensuring scalable, secure, and user-friendly systems</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="experience-item">
+                            <div class="item-header">
+                                <div>
+                                    <div class="item-title">Google Cloud Arcade Mentor</div>
+                                    <div class="item-subtitle">Google Cloud Skills Boost</div>
+                                </div>
+                                <div class="item-date">August 2025 – September 2025</div>
+                            </div>
+                            <div class="item-description">
+                                <ul>
+                                    <li>Mentored students in the Google Cloud Arcade program</li>
+                                    <li>Guided participants through hands-on labs and Google Cloud tools</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Education -->
+                    <div class="section-card">
+                        <h2 class="section-title">🎓 Education</h2>
+                        
+                        <div class="education-item">
+                            <div class="item-header">
+                                <div>
+                                    <div class="item-title">Graphic Era Deemed to be University</div>
+                                    <div class="item-subtitle">B. Tech in Computer Science and Engineering</div>
+                                </div>
+                                <div class="item-date">2024 – Present</div>
+                            </div>
+                            <div class="item-description">
+                                CGPA: 8.84/10
+                            </div>
+                        </div>
+
+                        <div class="education-item">
+                            <div class="item-header">
+                                <div>
+                                    <div class="item-title">Radiant Secondary School</div>
+                                    <div class="item-subtitle">12th, Nepal Educational Board</div>
+                                </div>
+                                <div class="item-date">2023</div>
+                            </div>
+                            <div class="item-description">
+                                GPA: 3/4
+                            </div>
+                        </div>
+
+                        <div class="education-item">
+                            <div class="item-header">
+                                <div>
+                                    <div class="item-title">Global Academy School</div>
+                                    <div class="item-subtitle">10th, Secondary Education Examination</div>
+                                </div>
+                                <div class="item-date">2021</div>
+                            </div>
+                            <div class="item-description">
+                                GPA: 3.9/4
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Skills -->
+                    <div class="section-card" id="skills">
+                        <h2 class="section-title">🛠️ Technical Skills</h2>
+                        <div class="skills-grid">
+                            <div class="skill-category">
+                                <div class="skill-category-title">Languages</div>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">C</span>
+                                    <span class="skill-tag">C++</span>
+                                    <span class="skill-tag">Python</span>
+                                    <span class="skill-tag">JavaScript</span>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-category">
+                                <div class="skill-category-title">Frameworks & Tools</div>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Django</span>
+                                    <span class="skill-tag">Firebase</span>
+                                    <span class="skill-tag">Git</span>
+                                    <span class="skill-tag">VS Code</span>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-category">
+                                <div class="skill-category-title">Database</div>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">MongoDB</span>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-category">
+                                <div class="skill-category-title">Areas of Interest</div>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Full-Stack Development</span>
+                                    <span class="skill-tag">Artificial Intelligence</span>
+                                    <span class="skill-tag">NLP</span>
+                                    <span class="skill-tag">Machine Learning</span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="about-sidebar">
-                        <div class="stats-card">
-                            <h3 class="stats-title">Quick Stats</h3>
-                            <div class="stats-list">
-                                <div class="stat-item">
-                                    <span class="stat-label">🎓 University</span>
-                                    <span class="stat-value">Graphic Era</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span class="stat-label">💼 Role</span>
-                                    <span class="stat-value">CTO</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span class="stat-label">⏱️ Experience</span>
-                                    <span class="stat-value">3+ Years</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span class="stat-label">🎯 Focus</span>
-                                    <span class="stat-value">Software Development</span>
-                                </div>
+                    <!-- Certificates -->
+                    <div class="section-card" id="certificates">
+                        <h2 class="section-title">🏆 Certificates & Achievements</h2>
+                        <div class="certificates-grid">
+                            <div class="certificate-item">
+                                <div class="certificate-title">AWS Educate Machine Learning Foundations</div>
                             </div>
-                        </div>
-
-                        <div class="connect-card">
-                            <h3 class="connect-title">Connect with me</h3>
-                            <div class="social-links">
-                                <a href="https://www.linkedin.com/in/pwnjoshi/" target="_blank" rel="noopener noreferrer" class="social-link linkedin">
-                                    <i data-lucide="linkedin"></i>
-                                    <span>LinkedIn</span>
-                                </a>
-                                <a href="https://github.com/pwnjoshi" target="_blank" rel="noopener noreferrer" class="social-link github">
-                                    <i data-lucide="github"></i>
-                                    <span>GitHub</span>
-                                </a>
-                                <a href="mailto:me@joshipawan.com.np" class="social-link email">
-                                    <i data-lucide="mail"></i>
-                                    <span>Email</span>
-                                </a>
-                                <a href="https://twitter.com/pwnjoshidev" target="_blank" rel="noopener noreferrer" class="social-link twitter">
-                                    <i data-lucide="twitter"></i>
-                                    <span>Twitter</span>
-                                </a>
+                            <div class="certificate-item">
+                                <div class="certificate-title">Graph-E-Thon 2.0 Hackathon Finalist</div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="skills-section">
-                <div class="section-header">
-                    <h2 class="section-title">Technical Skills</h2>
-                    <div class="section-divider"></div>
-                </div>
-                
-                <div class="skills-content">
-                    <div class="skills-grid">
-                        <div class="skill-category">
-                            <h3 class="category-title">
-                                <i data-lucide="industry" class="category-icon"></i>
-                                Industry Knowledge
-                            </h3>
-                            <div class="skills-list">
-                                <div class="skill-item">
-                                    <div class="skill-info">
-                                        <span class="skill-name">JavaScript</span>
-                                        <span class="skill-level">90%</span>
-                                    </div>
-                                    <div class="skill-bar">
-                                        <div class="skill-progress" data-width="90"></div>
-                                    </div>
-                                </div>
-                                <div class="skill-item">
-                                    <div class="skill-info">
-                                        <span class="skill-name">C (Programming Language)</span>
-                                        <span class="skill-level">80%</span>
-                                    </div>
-                                    <div class="skill-bar">
-                                        <div class="skill-progress" data-width="80"></div>
-                                    </div>
-                                </div>
-                                <div class="skill-item">
-                                    <div class="skill-info">
-                                        <span class="skill-name">C++</span>
-                                        <span class="skill-level">85%</span>
-                                    </div>
-                                    <div class="skill-bar">
-                                        <div class="skill-progress" data-width="85"></div>
-                                    </div>
-                                </div>
-                                <div class="skill-item">
-                                    <div class="skill-info">
-                                        <span class="skill-name">Python (Programming Language)</span>
-                                        <span class="skill-level">88%</span>
-                                    </div>
-                                    <div class="skill-bar">
-                                        <div class="skill-progress" data-width="88"></div>
-                                    </div>
-                                </div>
-                                <div class="skill-item">
-                                    <div class="skill-info">
-                                        <span class="skill-name">Machine Learning</span>
-                                        <span class="skill-level">82%</span>
-                                    </div>
-                                    <div class="skill-bar">
-                                        <div class="skill-progress" data-width="82"></div>
-                                    </div>
-                                </div>
+                            <div class="certificate-item">
+                                <div class="certificate-title">AWS Cloud Practitioner Essentials</div>
                             </div>
-                        </div>
-
-                        <div class="skill-category">
-                            <h3 class="category-title">
-                                <i data-lucide="settings" class="category-icon"></i>
-                                Tools & Technologies
-                            </h3>
-                            <div class="skills-list">
-                                <div class="skill-item">
-                                    <div class="skill-info">
-                                        <span class="skill-name">React Native</span>
-                                        <span class="skill-level">90%</span>
-                                    </div>
-                                    <div class="skill-bar">
-                                        <div class="skill-progress" data-width="90"></div>
-                                    </div>
-                                </div>
-                                <div class="skill-item">
-                                    <div class="skill-info">
-                                        <span class="skill-name">Firebase</span>
-                                        <span class="skill-level">92%</span>
-                                    </div>
-                                    <div class="skill-bar">
-                                        <div class="skill-progress" data-width="92"></div>
-                                    </div>
-                                </div>
-                                <div class="skill-item">
-                                    <div class="skill-info">
-                                        <span class="skill-name">Node.js</span>
-                                        <span class="skill-level">85%</span>
-                                    </div>
-                                    <div class="skill-bar">
-                                        <div class="skill-progress" data-width="85"></div>
-                                    </div>
-                                </div>
-                                <div class="skill-item">
-                                    <div class="skill-info">
-                                        <span class="skill-name">WordPress (Passed LinkedIn Skill Assessment)</span>
-                                        <span class="skill-level">78%</span>
-                                    </div>
-                                    <div class="skill-bar">
-                                        <div class="skill-progress" data-width="78"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="skill-category">
-                            <h3 class="category-title">
-                                <i data-lucide="users" class="category-icon"></i>
-                                Interpersonal Skills
-                            </h3>
-                            <div class="skills-list">
-                                <div class="skill-item">
-                                    <div class="skill-info">
-                                        <span class="skill-name">Leadership</span>
-                                        <span class="skill-level">88%</span>
-                                    </div>
-                                    <div class="skill-bar">
-                                        <div class="skill-progress" data-width="88"></div>
-                                    </div>
-                                </div>
-                                <div class="skill-item">
-                                    <div class="skill-info">
-                                        <span class="skill-name">Public Speaking</span>
-                                        <span class="skill-level">82%</span>
-                                    </div>
-                                    <div class="skill-bar">
-                                        <div class="skill-progress" data-width="82"></div>
-                                    </div>
-                                </div>
-                                <div class="skill-item">
-                                    <div class="skill-info">
-                                        <span class="skill-name">Creativity</span>
-                                        <span class="skill-level">90%</span>
-                                    </div>
-                                    <div class="skill-bar">
-                                        <div class="skill-progress" data-width="90"></div>
-                                    </div>
-                                </div>
-                                <div class="skill-item">
-                                    <div class="skill-info">
-                                        <span class="skill-name">Team Collaboration</span>
-                                        <span class="skill-level">92%</span>
-                                    </div>
-                                    <div class="skill-bar">
-                                        <div class="skill-progress" data-width="92"></div>
-                                    </div>
-                                </div>
-                                <div class="skill-item">
-                                    <div class="skill-info">
-                                        <span class="skill-name">Graphic Design</span>
-                                        <span class="skill-level">78%</span>
-                                    </div>
-                                    <div class="skill-bar">
-                                        <div class="skill-progress" data-width="78"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="skills-summary">
-                        <div class="summary-card">
-                            <div class="summary-icon">🚀</div>
-                            <div class="summary-content">
-                                <h4>Primary Focus</h4>
-                                <p>Full-Stack Development with AI/ML integration</p>
-                            </div>
-                        </div>
-                        <div class="summary-card">
-                            <div class="summary-icon">⚡</div>
-                            <div class="summary-content">
-                                <h4>Specialization</h4>
-                                <p>React Native mobile apps with Firebase backend</p>
-                            </div>
-                        </div>
-                        <div class="summary-card">
-                            <div class="summary-icon">🎯</div>
-                            <div class="summary-content">
-                                <h4>Experience</h4>
-                                <p>3+ years building production-ready applications</p>
+                            <div class="certificate-item">
+                                <div class="certificate-title">AWS Artificial Intelligence Practitioner</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 Pawan Joshi. Built with ❤️ and code.</p>
         </div>
-        <div id="projects-content">
-            <h2 style="font-size: 2rem; font-weight: 700; text-align: center; margin-bottom: 2rem;">Innovations & Code</h2>
-            <div id="project-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;"></div>
-        </div>
-        <div id="music-content">
-            <div class="music-player-container">
-                <div class="music-header">
-                    <div class="music-header-info">
-                        <i data-lucide="music" class="music-header-icon"></i>
-                        <div>
-                            <h2 class="music-title">PawanOS Music</h2>
-                            <p class="music-subtitle">Curated coding playlist</p>
-                        </div>
-                    </div>
-                    <div class="music-stats">
-                        <span class="music-stat">5 Songs</span>
-                        <span class="music-stat">24 min</span>
-                    </div>
-                </div>
-
-                <div class="now-playing-section">
-                    <div class="album-art">
-                        <div class="album-art-inner">
-                            <i data-lucide="music" class="album-icon"></i>
-                        </div>
-                        <div class="vinyl-effect"></div>
-                    </div>
-                    <div class="now-playing-info">
-                        <h3 id="current-song-title">Lo-fi Study Beats</h3>
-                        <p id="current-song-artist">ChillHop Essentials</p>
-                        <div class="progress-container">
-                            <div class="progress-bar">
-                                <div class="progress-fill" id="progress-fill"></div>
-                                <div class="progress-handle" id="progress-handle"></div>
-                            </div>
-                            <div class="time-display">
-                                <span id="current-time">0:00</span>
-                                <span id="total-time">4:32</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="player-controls">
-                    <button id="shuffle-btn" class="control-btn secondary" title="Shuffle">
-                        <i data-lucide="shuffle"></i>
-                    </button>
-                    <button id="prev-btn" class="control-btn" title="Previous">
-                        <i data-lucide="skip-back"></i>
-                    </button>
-                    <button id="play-pause-btn" class="control-btn primary" title="Play/Pause">
-                        <i data-lucide="play"></i>
-                    </button>
-                    <button id="next-btn" class="control-btn" title="Next">
-                        <i data-lucide="skip-forward"></i>
-                    </button>
-                    <button id="repeat-btn" class="control-btn secondary" title="Repeat">
-                        <i data-lucide="repeat"></i>
-                    </button>
-                </div>
-
-                <div class="volume-control">
-                    <i data-lucide="volume-2" class="volume-icon"></i>
-                    <div class="volume-slider">
-                        <input type="range" id="volume-slider" min="0" max="100" value="70" class="slider">
-                    </div>
-                </div>
-
-                <div class="playlist-section">
-                    <h4 class="playlist-title">
-                        <i data-lucide="list-music"></i>
-                        Up Next
-                    </h4>
-                    <div class="playlist" id="playlist">
-                        </div>
-                </div>
-            </div>
-        </div>
-        <div id="file-explorer-content">
-            <div id="explorer-toolbar" style="background: rgba(0,0,0,0.1); padding: 0.5rem 1rem; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; gap: 1rem;">
-                <button id="back-btn" style="background: var(--widget-bg); border: none; padding: 0.5rem; border-radius: 0.25rem; cursor: pointer; color: var(--text-color);"><i data-lucide="arrow-left" style="width: 16px; height: 16px;"></i></button>
-                <button id="forward-btn" style="background: var(--widget-bg); border: none; padding: 0.5rem; border-radius: 0.25rem; cursor: pointer; color: var(--text-color);"><i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i></button>
-                <button id="up-btn" style="background: var(--widget-bg); border: none; padding: 0.5rem; border-radius: 0.25rem; cursor: pointer; color: var(--text-color);"><i data-lucide="arrow-up" style="width: 16px; height: 16px;"></i></button>
-                <div id="path-bar" style="flex-grow: 1; background: var(--widget-bg); padding: 0.5rem; border-radius: 0.25rem; font-family: var(--font-mono); font-size: 0.9rem;">~/</div>
-                <input type="text" id="search-input" placeholder="Search files..." style="background: var(--widget-bg); border: none; padding: 0.5rem; border-radius: 0.25rem; color: var(--text-color); outline: none; width: 150px;">
-                <button id="view-toggle" style="background: var(--widget-bg); border: none; padding: 0.5rem; border-radius: 0.25rem; cursor: pointer; color: var(--text-color);"><i data-lucide="grid-3x3" style="width: 16px; height: 16px;"></i></button>
-            </div>
-            <div style="display: flex; height: calc(100% - 60px);">
-                <div id="sidebar" style="width: 200px; border-right: 1px solid var(--border-color); padding: 1rem; flex-shrink: 0; overflow-y: auto;">
-                    <h3 style="font-weight: 600; margin-bottom: 1rem;">Quick Access</h3>
-                    <ul id="quick-access" style="list-style: none; padding: 0; margin: 0;">
-                        <li class="sidebar-item" data-path="~" style="padding: 0.5rem; cursor: pointer; border-radius: 0.25rem; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;"><i data-lucide="home" style="width: 16px; height: 16px;"></i>Home</li>
-                        <li class="sidebar-item" data-path="~/Desktop" style="padding: 0.5rem; cursor: pointer; border-radius: 0.25rem; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem; background: var(--widget-bg);"><i data-lucide="monitor" style="width: 16px; height: 16px;"></i>Desktop</li>
-                        <li class="sidebar-item" data-path="~/Documents" style="padding: 0.5rem; cursor: pointer; border-radius: 0.25rem; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;"><i data-lucide="folder" style="width: 16px; height: 16px;"></i>Documents</li>
-                        <li class="sidebar-item" data-path="~/Downloads" style="padding: 0.5rem; cursor: pointer; border-radius: 0.25rem; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;"><i data-lucide="download" style="width: 16px; height: 16px;"></i>Downloads</li>
-                        <li class="sidebar-item" data-path="~/Pictures" style="padding: 0.5rem; cursor: pointer; border-radius: 0.25rem; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;"><i data-lucide="image" style="width: 16px; height: 16px;"></i>Pictures</li>
-                        <li class="sidebar-item" data-path="~/Music" style="padding: 0.5rem; cursor: pointer; border-radius: 0.25rem; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;"><i data-lucide="music" style="width: 16px; height: 16px;"></i>Music</li>
-                        <li class="sidebar-item" data-path="~/Videos" style="padding: 0.5rem; cursor: pointer; border-radius: 0.25rem; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;"><i data-lucide="video" style="width: 16px; height: 16px;"></i>Videos</li>
-                    </ul>
-                </div>
-                <div style="flex-grow: 1; display: flex; flex-direction: column;">
-                    <div id="file-area" style="flex-grow: 1; padding: 1rem; overflow-y: auto;">
-                        <div id="file-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 1rem; align-content: flex-start;"></div>
-                        <div id="file-list" style="display: none;">
-                            <table style="width: 100%; border-collapse: collapse;">
-                                <thead>
-                                    <tr style="border-bottom: 1px solid var(--border-color);">
-                                        <th style="text-align: left; padding: 0.5rem; font-weight: 600;">Name</th>
-                                        <th style="text-align: left; padding: 0.5rem; font-weight: 600;">Size</th>
-                                        <th style="text-align: left; padding: 0.5rem; font-weight: 600;">Type</th>
-                                        <th style="text-align: left; padding: 0.5rem; font-weight: 600;">Modified</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="file-list-body"></tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div id="status-bar" style="background: rgba(0,0,0,0.1); padding: 0.5rem 1rem; border-top: 1px solid var(--border-color); font-size: 0.9rem; display: flex; justify-content: space-between;">
-                        <span id="item-count">0 items</span>
-                        <span id="selection-info"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="settings-content">
-            <div class="settings-container">
-                <h2 class="settings-title">System Settings</h2>
-                
-                <div class="settings-section">
-                    <h3 class="section-title">Appearance</h3>
-                    <div id="wallpaper-options" class="wallpaper-options"></div>
-                    
-                    <div class="setting-item">
-                        <div class="setting-info">
-                            <span class="setting-label">Dark Theme</span>
-                            <span class="setting-description">Switch between light and dark appearance</span>
-                        </div>
-                        <label class="toggle-switch">
-                            <input type="checkbox" id="dark-theme-toggle" checked>
-                            <span class="slider"></span>
-                        </label>
-                    </div>
-                    
-                    <div class="setting-item">
-                        <div class="setting-info">
-                            <span class="setting-label">Particle Background</span>
-                            <span class="setting-description">Enable animated background particles</span>
-                        </div>
-                        <label class="toggle-switch">
-                            <input type="checkbox" id="particles-toggle" checked>
-                            <span class="slider"></span>
-                        </label>
-                    </div>
-                    
-                    <div class="setting-item">
-                        <div class="setting-info">
-                            <span class="setting-label">Smooth Animations</span>
-                            <span class="setting-description">Enable UI animations and transitions</span>
-                        </div>
-                        <label class="toggle-switch">
-                            <input type="checkbox" id="animations-toggle" checked>
-                            <span class="slider"></span>
-                        </label>
-                    </div>
-                </div>
-                
-                <div class="settings-section">
-                    <h3 class="section-title">Interface</h3>
-                    
-                    <div class="setting-item">
-                        <div class="setting-info">
-                            <span class="setting-label">Sound Effects</span>
-                            <span class="setting-description">Play sounds for UI interactions</span>
-                        </div>
-                        <label class="toggle-switch">
-                            <input type="checkbox" id="sound-toggle" checked>
-                            <span class="slider"></span>
-                        </label>
-                    </div>
-                    
-                    <div class="setting-item">
-                        <div class="setting-info">
-                            <span class="setting-label">Desktop Notifications</span>
-                            <span class="setting-description">Show system notifications on desktop</span>
-                        </div>
-                        <label class="toggle-switch">
-                            <input type="checkbox" id="notifications-toggle" checked>
-                            <span class="slider"></span>
-                        </label>
-                    </div>
-                    
-                    <div class="setting-item">
-                        <div class="setting-info">
-                            <span class="setting-label">24-Hour Clock Format</span>
-                            <span class="setting-description">Display time in 24-hour format</span>
-                        </div>
-                        <label class="toggle-switch">
-                            <input type="checkbox" id="clock-format-toggle">
-                            <span class="slider"></span>
-                        </label>
-                    </div>
-                    
-                    <div class="setting-item">
-                        <div class="setting-info">
-                            <span class="setting-label">CPU Update Interval</span>
-                            <span class="setting-description">How often to update CPU usage (ms)</span>
-                        </div>
-                        <div class="range-control">
-                            <input type="range" id="cpu-interval-slider" min="500" max="5000" value="1000" step="500">
-                            <span id="cpu-interval-value">1000</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="settings-section">
-                    <h3 class="section-title">Data & Privacy</h3>
-                    
-                    <div class="button-group">
-                        <button id="export-settings-btn" class="settings-button">Export Settings</button>
-                        <button id="import-settings-btn" class="settings-button secondary">Import Settings</button>
-                    </div>
-                    
-                    <div class="button-group">
-                        <button id="clear-data-btn" class="settings-button danger">Clear All Data</button>
-                        <button id="reset-os-btn" class="settings-button danger">Reset OS</button>
-                    </div>
-                </div>
-                
-                <input type="file" id="settings-file-input" accept=".json" style="display: none;">
-            </div>
-        </div>
-        <div id="terminal-content">
-            <div id="terminal-output" style="flex-grow: 1; overflow-y: auto; font-family: var(--font-mono); padding: 0.5rem;"></div>
-            <form id="terminal-form" style="display: flex; align-items: center; padding: 0.5rem; border-top: 1px solid rgba(255,255,255,0.1);">
-                <span style="color: var(--accent-primary); margin-right: 0.5rem; white-space: nowrap;">joshi@PawanOS:~$</span>
-                <input type="text" id="terminal-input" autocomplete="off" spellcheck="false" style="flex-grow: 1; background: transparent; border: none; color: var(--text-color); outline: none; font-family: var(--font-mono); font-size: 14px;">
-                <button type="submit" style="display: none;">Submit</button>
-            </form>
-        </div>
-        <div id="file-viewer-content">
-            <div class="file-viewer-header">
-                <i data-lucide="file-text" id="file-viewer-icon"></i>
-                <h3 id="file-viewer-name">file.txt</h3>
-            </div>
-            <div class="file-viewer-properties">
-                <p><strong>Type:</strong> <span id="file-viewer-type">Text Document</span></p>
-                <p><strong>Size:</strong> <span id="file-viewer-size">12 KB</span></p>
-            </div>
-            <div class="file-viewer-preview" id="file-viewer-preview">
-                Content preview is not available for this file type in PawanOS.
-            </div>
-        </div>
-        <div id="image-viewer-content">
-            <img src="" id="image-viewer-img" style="width: 100%; height: 100%; object-fit: contain;">
-        </div>
-    </div>
-
-    <script src="script.js" defer></script>
+    </footer>
 </body>
 </html>
